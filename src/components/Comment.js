@@ -121,7 +121,6 @@ class Comment extends React.Component {
         if (this.state.hovered) {
             commentItemStyleMerged = Object.assign({}, commentItemStyle, commentItemStyleHovered);
         }
-        console.log(commentItemStyleMerged);
         return (
             <li
                 style={commentItemStyleMerged}

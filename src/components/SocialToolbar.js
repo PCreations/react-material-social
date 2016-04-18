@@ -51,7 +51,7 @@ class SocialToolbar extends React.Component {
     }
     render() {
         return (
-            <div style={containerStyle} role="toolbar">
+            <div style={containerStyle} role="toolbar" onClick={(e) => this.props.onClick(e)}>
                 <div style={style}>
                     <SocialButton
                         icon={<PlusOneSVG style={iconStyle} />} />
@@ -92,6 +92,7 @@ SocialToolbar.propTypes = {
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
+    onClick: React.PropTypes.func
 }
 
 

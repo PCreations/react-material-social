@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Comment from './Comment'
+import CommentInput from './CommentInput'
 
 
 const commentsBoxClosedStyle = {
@@ -97,9 +98,10 @@ class CommentsBox extends React.Component {
                                 <Comment {...c} key={c.id} />
                             ))}
                         </ul>
+                        <CommentInput {...this.props.commentInputProps} />
                     </div>
                 ) : (
-                    <div style={commentsBoxClosedStyle}>
+                    <div style={commentsBoxClosedStyle} onClick={(e) => this.props.onCommentBoxClosedClick(e)}>
                         <div style={commentStyle}>
                             <img width={36} height={36} style={firstAvatarStyle} src={firstComment.avatar} />
                             <div style={commentTextStyle}>
@@ -123,10 +125,19 @@ CommentsBox.propTypes = {
         reactionsCount: React.PropTypes.string.isRequired,
         text: React.PropTypes.string.isRequired
     })),
+    commentInputProps: React.PropTypes.shape({
+        avatar: React.PropTypes.string.isRequired,
+        addCommentText: React.PropTypes.string.isRequired,
+        plubishButtonText: React.PropTypes.string.isRequired,
+        opened: React.PropTypes.bool,
+        onTextChange: React.PropTypes.func,
+        onAddCommentClick: React.PropTypes.func
+    })
 }
 
 CommentsBox.defaultProps = {
-    opened: false
+    opened: false,
+    onCommentBoxClosedClick: (e) => {}
 }
 
 export default CommentsBox;
