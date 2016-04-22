@@ -82,7 +82,8 @@ ReactDOM.render(
                 plubishButtonText: 'publier',
             }}
             cancelButtonText={"Annuler"}
-            editButtonText={"Modifier"} />
+            editButtonText={"Modifier"}
+            onRender={() => console.log("render")} />
     </div>,
     document.getElementById('app')
 );

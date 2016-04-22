@@ -56,6 +56,12 @@ class SocialInteractionsBox extends React.Component {
         let comment = this.props.comments.filter(c => c.id == id)[0];
         return comment.text;
     }
+    componentDidMount() {
+        this.props.onRender();
+    }
+    componentDidUpdate() {
+        this.props.onRender();
+    }
     render() {
         let {comments, onCommentButtonClick, props} = this.props;
 
@@ -173,10 +179,12 @@ SocialInteractionsBox.propTypes = {
     }),
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
+    onRender: React.PropTypes.func
 }
 
 SocialInteractionsBox.defaultProps = {
-    style: {}
+    style: {},
+    onRender: () => {}
 }
 
 export default SocialInteractionsBox;
