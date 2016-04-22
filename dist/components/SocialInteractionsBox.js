@@ -302,6 +302,7 @@
         commentsCount: _react2.default.PropTypes.number,
         sharesCount: _react2.default.PropTypes.number,
         onReactionButtonClick: _react2.default.PropTypes.func,
+        onCommentButtonClick: _react2.default.PropTypes.func,
         onEditClick: _react2.default.PropTypes.func,
         onShareButtonClick: _react2.default.PropTypes.func,
         comments: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
@@ -324,6 +325,7 @@
 
     SocialInteractionsBox.defaultProps = {
         style: {},
+        onCommentButtonClick: function onCommentButtonClick() {},
         onRender: function onRender() {}
     };
 

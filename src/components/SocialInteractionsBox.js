@@ -162,6 +162,7 @@ SocialInteractionsBox.propTypes = {
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
     onReactionButtonClick: React.PropTypes.func,
+    onCommentButtonClick: React.PropTypes.func,
     onEditClick: React.PropTypes.func,
     onShareButtonClick: React.PropTypes.func,
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({
@@ -184,6 +185,7 @@ SocialInteractionsBox.propTypes = {
 
 SocialInteractionsBox.defaultProps = {
     style: {},
+    onCommentButtonClick: () => {},
     onRender: () => {}
 }
 
