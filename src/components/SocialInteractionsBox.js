@@ -108,7 +108,14 @@ class SocialInteractionsBox extends React.Component {
                     opened={this.state.opened}
                     comments={comments}
                     onCommentClick={(e, commentId) => this.setClickedComment(e, commentId)}
-                    commentInputProps={commentInputProps}
+                    commentInputProps={{
+                        ...commentInputProps,
+                        onPublishButtonClick: (e, commentText) => {
+                            this.setState({
+                                inputCommentOpened: false,
+                            }, this.props.onPublishButtonClick(e, commentText))
+                        }
+                    }}
                     editingCommentId={this.state.editingCommentId}
                     editingCommentText={this.state.editingCommentText}
                     commentPopover={
@@ -167,6 +174,7 @@ SocialInteractionsBox.propTypes = {
     onReactionButtonClick: React.PropTypes.func,
     onCommentButtonClick: React.PropTypes.func,
     onEditClick: React.PropTypes.func,
+    onPublishButtonClick: React.PropTypes.func,
     onShareButtonClick: React.PropTypes.func,
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,

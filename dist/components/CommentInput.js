@@ -204,7 +204,9 @@
                             'span',
                             {
                                 style: publishButtonTextStyleMerged,
-                                onClick: props.onPublishButtonClick },
+                                onClick: function onClick(e) {
+                                    return props.onPublishButtonClick(e, props.text);
+                                } },
                             props.plubishButtonText
                         )
                     )

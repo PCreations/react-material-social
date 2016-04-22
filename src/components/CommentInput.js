@@ -158,7 +158,7 @@ const CommentInput = (props) => {
                         <div role="button" style={publishButtonStyleMerged}>
                             <span
                                 style={publishButtonTextStyleMerged}
-                                onClick={props.onPublishButtonClick}>{props.plubishButtonText}</span>
+                                onClick={(e) => props.onPublishButtonClick(e, props.text)}>{props.plubishButtonText}</span>
                         </div>
                     </div>
                 ) : (

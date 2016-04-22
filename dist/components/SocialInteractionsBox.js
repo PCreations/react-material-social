@@ -236,7 +236,13 @@
                         onCommentClick: function onCommentClick(e, commentId) {
                             return _this2.setClickedComment(e, commentId);
                         },
-                        commentInputProps: commentInputProps,
+                        commentInputProps: _extends({}, commentInputProps, {
+                            onPublishButtonClick: function onPublishButtonClick(e, commentText) {
+                                _this2.setState({
+                                    inputCommentOpened: false
+                                }, _this2.props.onPublishButtonClick(e, commentText));
+                            }
+                        }),
                         editingCommentId: this.state.editingCommentId,
                         editingCommentText: this.state.editingCommentText,
                         commentPopover: _react2.default.createElement(
@@ -307,6 +313,7 @@
         onReactionButtonClick: _react2.default.PropTypes.func,
         onCommentButtonClick: _react2.default.PropTypes.func,
         onEditClick: _react2.default.PropTypes.func,
+        onPublishButtonClick: _react2.default.PropTypes.func,
         onShareButtonClick: _react2.default.PropTypes.func,
         comments: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
             id: _react2.default.PropTypes.string.isRequired,
