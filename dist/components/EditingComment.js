@@ -199,7 +199,7 @@
                 _react2.default.createElement(
                     'div',
                     { role: 'button', style: editButtonStyleMerged, onClick: function onClick(e) {
-                            return props.onEditClick(e, props.id);
+                            return props.onEditClick(e, props.id, props.text);
                         } },
                     _react2.default.createElement(
                         'span',

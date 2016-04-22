@@ -165,7 +165,7 @@ const EditingComment = (props) => {
                             onChange={(e) => props.onTextChange(e)}/>
                     </div>
                 </div>
-                <div role="button" style={editButtonStyleMerged} onClick={(e) => props.onEditClick(e, props.id)}>
+                <div role="button" style={editButtonStyleMerged} onClick={(e) => props.onEditClick(e, props.id, props.text)}>
                     <span style={buttonTextStyleMerged}>
                         {props.editButtonText}
                     </span>
