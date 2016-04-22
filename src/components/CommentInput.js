@@ -1,4 +1,8 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
+
+import pureComponent from './pureComponent';
+
 
 const commentInputContainerStyle = {
     borderTop: '1px solid #ebebeb',
@@ -104,54 +108,58 @@ const publishButtonStyle = {
 const publishButtonTextStyle = {
     margin: 8,
     display: 'inline-block',
-    textTransform: 'uppercase'
+    textTransform: 'uppercase',
+    cursor: 'default'
 }
 
-class CommentInput extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'CommentInput';
-    }
+const publishButtonTextActiveStyle = {
+    cursor: 'pointer',
+    color: '#2962ff'
+}
 
-    _onTextareaInputChange(e) {
-        this.props.onTextChange(e)
-        this.refs.textareaInput.focus();
-    }
+const CommentInput = (props) => {
 
-    render() {
-        let commentInputContainerMergedStyle = commentInputContainerStyle;
-        if (this.props.opened) {
-            commentInputContainerMergedStyle = Object.assign({}, commentInputContainerStyle, commentInputContainerOpenedStyle)
-        }
-        return (
-            <div style={commentInputContainerMergedStyle}>
-                <img width={36} height={36} style={avatarStyle} src={this.props.avatar} />
-                <div style={inputTextContainerStyle}>
-                    {this.props.opened ? (
-                        <div style={inputOpenedStyle}>
-                            <div style={inputTextOpenedContainerStyle}>
-                                <div style={inputTextOpenedTextStyle}>
-                                    <textarea
-                                        onChange={(e) => this._onTextareaInputChange(e)}
-                                        role="textbox"
-                                        ref="textareaInput"
-                                        placeholder={this.props.addCommentText}
-                                        style={textareaStyle}></textarea>
-                                </div>
-                            </div>
-                            <div role="button" style={publishButtonStyle}>
-                                <span style={publishButtonTextStyle}>{this.props.plubishButtonText}</span>
+    let textareaElement = null;
+
+    let commentInputContainerMergedStyle = commentInputContainerStyle;
+    let publishButtonTextMergedStyle = publishButtonTextStyle;
+    if (props.opened) {
+        commentInputContainerMergedStyle = Object.assign({}, commentInputContainerStyle, commentInputContainerOpenedStyle)
+    }
+    if (props.text.length > 0) {
+        publishButtonTextMergedStyle = Object.assign({}, publishButtonTextMergedStyle, publishButtonTextActiveStyle)
+    }
+    return (
+        <div style={commentInputContainerMergedStyle}>
+            <img width={36} height={36} style={avatarStyle} src={props.avatar} />
+            <div style={inputTextContainerStyle}>
+                {props.opened ? (
+                    <div style={inputOpenedStyle}>
+                        <div style={inputTextOpenedContainerStyle}>
+                            <div style={inputTextOpenedTextStyle}>
+                                <textarea
+                                    onChange={(e) => props.onTextChange(e)}
+                                    role="textbox"
+                                    value={props.text}
+                                    ref={(ref) => { ref && ReactDOM.findDOMNode(ref).focus() }}
+                                    placeholder={props.addCommentText}
+                                    style={textareaStyle}></textarea>
                             </div>
                         </div>
-                    ) : (
-                        <div role="button" style={inputTextStyle} onClick={(e) => this.props.onAddCommentClick(e)}>
-                            {this.props.addCommentText}
+                        <div role="button" style={publishButtonStyle}>
+                            <span
+                                style={publishButtonTextMergedStyle}
+                                onClick={props.onPublishButtonClick}>{props.plubishButtonText}</span>
                         </div>
-                    )}
-                </div>
+                    </div>
+                ) : (
+                    <div role="button" style={inputTextStyle} onClick={(e) => props.onAddCommentClick(e)}>
+                        {props.addCommentText}
+                    </div>
+                )}
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 
@@ -159,15 +167,23 @@ CommentInput.propTypes = {
     avatar: React.PropTypes.string.isRequired,
     addCommentText: React.PropTypes.string.isRequired,
     plubishButtonText: React.PropTypes.string.isRequired,
+    text: React.PropTypes.string,
     opened: React.PropTypes.bool,
     onTextChange: React.PropTypes.func,
-    onAddCommentClick: React.PropTypes.func
+    onAddCommentClick: React.PropTypes.func,
+    onPublishButtonClick: React.PropTypes.func
 }
 
 CommentInput.defaultProps = {
+    text: '',
     opened: false,
     onTextChange: (e) => {},
-    onAddCommentClick: (e) => {}
+    onAddCommentClick: (e) => {},
+    onPublishButtonClick: (e) => {}
 }
 
-export default CommentInput;
+export default pureComponent(CommentInput, [
+    'onTextChange',
+    'onAddCommentClick',
+    'onPublishButtonClick'
+]);

@@ -2,7 +2,6 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    devtool: 'eval',
     entry: [
         './src/index.js'
     ],
@@ -12,14 +11,14 @@ module.exports = {
         filename: 'bundle.js',
         publicPath: '/'
     },
-    plugins: [
+    /*plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
             }
         })
-    ],
+    ],*/
     module: {
         loaders: [
             {

@@ -1,7 +1,9 @@
 import React from 'react';
 
 import Comment from './Comment'
+import EditingComment from './EditingComment'
 import CommentInput from './CommentInput'
+import pureComponent from './pureComponent';
 
 
 const commentsBoxClosedStyle = {
@@ -78,42 +80,52 @@ const commentTextStyle = {
     maxHeight: 36
 }
 
-class CommentsBox extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'CommentsBox';
+const CommentsBox = (props) => {
+    if (props.comments.length == 0) {
+        return null
     }
-    render() {
-        if (this.props.comments.length == 0) {
-            return null
-        }
 
-        let firstComment = this.props.comments[0];
-        return (
-            <div>
-                {this.props.opened ? (
-                    <div style={commentsBoxOpenedStyle}>
-                        <ul style={commentsListStyle}>
-                            {this.props.comments.map(c => (
-                                <Comment {...c} key={c.id} />
-                            ))}
-                        </ul>
-                        <CommentInput {...this.props.commentInputProps} />
-                    </div>
-                ) : (
-                    <div style={commentsBoxClosedStyle} onClick={(e) => this.props.onCommentBoxClosedClick(e)}>
-                        <div style={commentStyle}>
-                            <img width={36} height={36} style={firstAvatarStyle} src={firstComment.avatar} />
-                            <div style={commentTextStyle}>
-                                <span style={commentAuthorStyle}>{firstComment.author+": "}</span>
-                                <span>{firstComment.text}</span>
-                            </div>
+    let firstComment = props.comments[0];
+    return (
+        <div>
+            {props.opened ? (
+                <div style={commentsBoxOpenedStyle}>
+                    <ul style={commentsListStyle}>
+                        {props.comments.map(c => (
+                            <li key={c.id}>
+                                {props.editingCommentId == c.id ? (
+                                    <EditingComment
+                                        id={c.id}
+                                        avatar={c.avatar}
+                                        text={props.editingCommentText}
+                                        originalText={c.text}
+                                        cancelButtonText={props.cancelButtonText}
+                                        editButtonText={props.editButtonText}
+                                        onCancelClick={(e) => props.onCancelClick(e)}
+                                        onEditClick={(e, commentId) => props.onEditClick(e, commentId)}
+                                        onTextChange={(e) => props.onEditingCommentTextChange(e)}/>
+                                ) : (
+                                    <Comment {...c} onClick={(e) => props.onCommentClick(e, c.id)}/>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                    {props.commentPopover}
+                    <CommentInput {...props.commentInputProps} />
+                </div>
+            ) : (
+                <div style={commentsBoxClosedStyle} onClick={(e) => props.onCommentBoxClosedClick(e)}>
+                    <div style={commentStyle}>
+                        <img width={36} height={36} style={firstAvatarStyle} src={firstComment.avatar} />
+                        <div style={commentTextStyle}>
+                            <span style={commentAuthorStyle}>{firstComment.author+": "}</span>
+                            <span>{firstComment.text}</span>
                         </div>
                     </div>
-                )}
-            </div>
-        );
-    }
+                </div>
+            )}
+        </div>
+    );
 }
 
 CommentsBox.propTypes = {
@@ -123,7 +135,7 @@ CommentsBox.propTypes = {
         avatar: React.PropTypes.string.isRequired,
         author: React.PropTypes.string.isRequired,
         reactionsCount: React.PropTypes.string.isRequired,
-        text: React.PropTypes.string.isRequired
+        text: React.PropTypes.string.isRequired,
     })),
     commentInputProps: React.PropTypes.shape({
         avatar: React.PropTypes.string.isRequired,
@@ -131,13 +143,34 @@ CommentsBox.propTypes = {
         plubishButtonText: React.PropTypes.string.isRequired,
         opened: React.PropTypes.bool,
         onTextChange: React.PropTypes.func,
-        onAddCommentClick: React.PropTypes.func
-    })
+        onAddCommentClick: React.PropTypes.func,
+        onPublishButtonClick: React.PropTypes.func,
+    }),
+    cancelButtonText: React.PropTypes.string.isRequired,
+    editButtonText: React.PropTypes.string.isRequired,
+    onCommentClick: React.PropTypes.func,
+    onCommentBoxClosedClick: React.PropTypes.func,
+    onCancelClick: React.PropTypes.func,
+    onEditClick: React.PropTypes.func,
+    onEditingCommentTextChange: React.PropTypes.func,
+    commentPopover: React.PropTypes.node.isRequired,
+    editingCommentId: React.PropTypes.string,
+    editingCommentText: React.PropTypes.string,
 }
 
 CommentsBox.defaultProps = {
     opened: false,
-    onCommentBoxClosedClick: (e) => {}
+    onCommentBoxClosedClick: (e) => {},
+    onCommentClick: (e, id) => {},
+    onEditClick: (e, id) => {},
+    onCancelClick: (e) => {},
+    onEditingCommentTextChange: (e) => {}
 }
 
-export default CommentsBox;
+export default pureComponent(CommentsBox, [
+    'onCommentClick',
+    'onCommentBoxClosedClick',
+    'onCancelClick',
+    'onEditClick',
+    'onCommentTextChange'
+]);

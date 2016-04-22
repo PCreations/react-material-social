@@ -5,6 +5,7 @@ import CommentSVG from 'material-ui/lib/svg-icons/communication/comment';
 import ShareSVG from 'material-ui/lib/svg-icons/social/share';
 
 import SocialButton from './SocialButton';
+import pureComponent from './pureComponent';
 
 
 const containerStyle = {
@@ -44,56 +45,83 @@ const countStyle = {
     marginRight: 6
 }
 
-class SocialToolbar extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'SocialToolbar';
+const SocialToolbar = (props) => {
+
+    let clickCallbackFactory = (e, func) => {
+        return (() => {
+            e.stopPropagation();
+            func(e);
+        })()
     }
-    render() {
-        return (
-            <div style={containerStyle} role="toolbar" onClick={(e) => this.props.onClick(e)}>
-                <div style={style}>
-                    <SocialButton
-                        icon={<PlusOneSVG style={iconStyle} />} />
-                    {this.props.reactionsCount && (
-                        <div style={countStyle}>
-                            {" "+this.props.reactionsCount+" "}
-                        </div>
+
+    return (
+        <div style={containerStyle} role="toolbar" onClick={(e) => props.onClick(e)}>
+            <div style={style}>
+                <SocialButton
+                    onClick={(e) => clickCallbackFactory(
+                        e,
+                        props.onReactionButtonClick
                     )}
-                    <div style={{
-                        WebkitBoxFlex: 1,
-                        boxFlex: 1,
-                        WebkitFlexGrow: 1,
-                        flexGrow: 1,
-                        WebkitFlexShrink: 1,
-                        flexShrink: 1
-                    }} />
-                    <SocialButton
-                        icon={<CommentSVG style={iconStyle} />} />
-                    {this.props.commentsCount && (
-                        <div style={countStyle}>
-                            {" "+this.props.commentsCount+" "}
-                        </div>
+                    icon={<PlusOneSVG style={iconStyle} />} />
+                {props.reactionsCount && (
+                    <div style={countStyle}>
+                        {" "+props.reactionsCount+" "}
+                    </div>
+                )}
+                <div style={{
+                    WebkitBoxFlex: 1,
+                    boxFlex: 1,
+                    WebkitFlexGrow: 1,
+                    flexGrow: 1,
+                    WebkitFlexShrink: 1,
+                    flexShrink: 1
+                }} />
+                <SocialButton
+                    onClick={(e) => clickCallbackFactory(
+                        e,
+                        props.onCommentButtonClick
                     )}
-                    <SocialButton
-                        icon={<ShareSVG style={iconStyle} />} />
-                    {this.props.sharesCount && (
-                        <div style={countStyle}>
-                            {" "+this.props.sharesCount+" "}
-                        </div>
+                    icon={<CommentSVG style={iconStyle} />} />
+                {props.commentsCount && (
+                    <div style={countStyle}>
+                        {" "+props.commentsCount+" "}
+                    </div>
+                )}
+                <SocialButton
+                    onClick={(e) => clickCallbackFactory(
+                        e,
+                        props.onShareButtonClick
                     )}
-                </div>
+                    icon={<ShareSVG style={iconStyle} />} />
+                {props.sharesCount && (
+                    <div style={countStyle}>
+                        {" "+props.sharesCount+" "}
+                    </div>
+                )}
             </div>
-        )
-    }
+        </div>
+    )
 }
 
 SocialToolbar.propTypes = {
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
-    onClick: React.PropTypes.func
+    onClick: React.PropTypes.func,
+    onReactionButtonClick: React.PropTypes.func,
+    onCommentButtonClick: React.PropTypes.func,
+    onShareButtonClick: React.PropTypes.func
 }
 
+SocialToolbar.defaultProps = {
+    onReactionButtonClick: (e) => console.log('reaction button clicked'),
+    onCommentButtonClick: (e) => console.log('comment button clicked'),
+    onShareButtonClick: (e) => console.log('share button clicked')
+}
 
-export default SocialToolbar;
+export default pureComponent(SocialToolbar, [
+    'onClick',
+    'onReactionButtonClick',
+    'onCommentButtonClick',
+    'onShareButtonClick'
+]);

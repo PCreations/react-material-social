@@ -2,6 +2,9 @@ import React from 'react';
 
 import IconButton from 'material-ui/lib/icon-button';
 
+import addHoverState from './addHoverState';
+import pureComponent from './pureComponent';
+
 
 const containerStyle = {
     display: 'block',
@@ -12,7 +15,7 @@ const containerStyle = {
     flexGrow: 0,
     WebkitFlexShrink: 0,
     flexShrink: 0
-};
+}
 
 const buttonStyle = {
     background: '#eee',
@@ -33,6 +36,10 @@ const buttonStyle = {
     padding: 0
 }
 
+const buttonStyleHovered = {
+    background: '#eee'
+}
+
 const iconStyle = {
     height: 18,
     width: 18,
@@ -40,31 +47,50 @@ const iconStyle = {
     fill: '#444'
 }
 
+const PureIconButton = pureComponent(IconButton, 'IconButton', [
+    'onBlur',
+    'onFocus',
+    'onKeyboardFocus',
+    'onMouseEnter',
+    'onMouseLeave',
+    'onMouseOut',
+    'onClick'
+]);
 
-class SocialButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'SocialButton';
+const SocialButton = (props) => {
+    let containerStyleMerged = Object.assign({}, containerStyle, props.containerStyle || {});
+    let buttonStyleMerged = Object.assign({}, buttonStyle, props.buttonStyle || {});
+    let buttonStyleHoveredMerged = Object.assign({}, buttonStyleHovered, props.buttonStyleHovered || {});
+    if (props.hovered) {
+        buttonStyleMerged = Object.assign({}, buttonStyleMerged, buttonStyleHoveredMerged);
     }
-    render() {
-        let buttonStyleMerged = Object.assign({}, buttonStyle, this.props.buttonStyle || {})
-        let iconStyleMerged = Object.assign({}, iconStyle, this.props.iconStyle || {})
-        return (
-            <div style={containerStyle}>
-                <IconButton
-                    style={buttonStyleMerged}
-                    iconStyle={iconStyleMerged}>
-                    {this.props.icon}
-                </IconButton>
-            </div>
-        );
-    }
+    let iconStyleMerged = Object.assign({}, iconStyle, props.iconStyle || {});
+
+    return (
+        <div style={containerStyleMerged}>
+            <PureIconButton
+                onClick={(e) => props.onClick(e)}
+                style={buttonStyleMerged}
+                iconStyle={iconStyleMerged}>
+                {props.icon}
+            </PureIconButton>
+        </div>
+    );
 }
 
 SocialButton.propTypes = {
     icon: React.PropTypes.node.isRequired,
+    containerStyle: React.PropTypes.object,
     buttonStyle: React.PropTypes.object,
-    iconStyle: React.PropTypes.object
+    buttonStyleHovered: React.PropTypes.object,
+    iconStyle: React.PropTypes.object,
+    onClick: React.PropTypes.func,
+    hovered: React.PropTypes.bool
 }
 
-export default SocialButton;
+SocialButton.defaultProps = {
+    onClick: (e) => {},
+    hovered: false
+}
+
+export default pureComponent(addHoverState(SocialButton), ['onClick']);

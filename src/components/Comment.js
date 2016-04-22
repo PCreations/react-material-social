@@ -3,7 +3,9 @@ import React from 'react';
 import PlusOneSVG from 'material-ui/lib/svg-icons/social/plus-one';
 import MoreVertSVG from 'material-ui/lib/svg-icons/navigation/more-vert';
 
-import SocialButton from './SocialButton'
+import SocialButton from './SocialButton';
+import addHoverState from './addHoverState';
+import pureComponent from './pureComponent';
 
 const commentItemStyle = {
     padding: '12px 16px',
@@ -108,87 +110,88 @@ const timeSinceStyle = {
     textDecoration: 'none'
 }
 
-class Comment extends React.Component {
-    constructor(props) {
-        super(props);
-        this.displayName = 'Comment';
-        this.state = {
-            hovered: false
-        }
+const Comment = (props) => {
+    const handleCommentClick = (event) => {
+        event.persist();
+        props.onClick(event);
     }
-    render() {
-        let commentItemStyleMerged = commentItemStyle;
-        if (this.state.hovered) {
-            commentItemStyleMerged = Object.assign({}, commentItemStyle, commentItemStyleHovered);
-        }
-        return (
-            <li
-                style={commentItemStyleMerged}
-                onMouseEnter={() => this.setState({hovered: true})}
-                onMouseLeave={() => this.setState({hovered: false})}>
-                <a href="#" style={commentAuthorProfileLinkStyle}>
-                    <img width={36} height={36} style={avatarStyle} src={this.props.avatar} />
-                </a>
-                <div role="heading" style={commentHeadingStyle}>
-                    <div style={commentAuthorHeadingStyle}>
-                        <a href="#" style={commentAuthorStyle}>{this.props.author}</a>
-                        <span style={commentReactionsCountStyle}>{this.props.reactionsCount}</span>
-                    </div>
-                    <div style={commentBodyStyle}>
-                        {this.props.text}
-                    </div>
+    let commentItemStyleMerged = commentItemStyle;
+    if (props.hovered) {
+        commentItemStyleMerged = Object.assign({}, commentItemStyle, commentItemStyleHovered);
+    }
+    return (
+        <div
+            style={commentItemStyleMerged}
+            onClick={(e) => handleCommentClick(e)}>
+            <a href="#" style={commentAuthorProfileLinkStyle}>
+                <img width={36} height={36} style={avatarStyle} src={props.avatar} />
+            </a>
+            <div role="heading" style={commentHeadingStyle}>
+                <div style={commentAuthorHeadingStyle}>
+                    <a href="#" style={commentAuthorStyle}>{props.author}</a>
+                    <span style={commentReactionsCountStyle}>{props.reactionsCount}</span>
                 </div>
-                <div style={commentInteractionsStyle}>
-                    <div style={commentReactionButtonContainerStyle}>
+                <div style={commentBodyStyle}>
+                    {props.text}
+                </div>
+            </div>
+            <div style={commentInteractionsStyle}>
+                <div style={commentReactionButtonContainerStyle}>
+                    <SocialButton
+                        onClick={(e) => e.stopPropagation()}
+                        buttonStyle={{
+                            width: 21,
+                            height: 21,
+                            display: 'block',
+                            background: '#e0e0e0',
+                        }}
+                        buttonStyleHovered={{
+                            background: '#e0e0e0'
+                        }}
+                        iconStyle={{
+                            width: 14,
+                            height: 14
+                        }}
+                        icon={<PlusOneSVG iconStyle={{
+                            width: 14,
+                            height: 14
+                        }}/>}/>
+                </div>
+                <div style={moreVertButtonContainerStyle}>
+                    {props.hovered ? (
                         <SocialButton
                             buttonStyle={{
-                                width: 21,
+                                position: 'absolute',
+                                top: -4,
+                                right: -4,
+                                background: 'none',
                                 height: 21,
+                                width: 21,
                                 display: 'block',
-                                background: '#e0e0e0',
+                                color: 'rgba(255,255,255,0.749)',
+                                fill: 'rgba(255,255,255,0.749)'
+                            }}
+                            buttonStyleHovered={{
+                                background: '#e0e0e0'
                             }}
                             iconStyle={{
                                 width: 14,
                                 height: 14
                             }}
-                            icon={<PlusOneSVG iconStyle={{
-                                width: 14,
-                                height: 14
+                            icon={<MoreVertSVG iconStyle={{
+                                width: 16,
+                                height: 16,
+                                marginTOp:'4px'
                             }}/>}/>
-                    </div>
-                    <div style={moreVertButtonContainerStyle}>
-                        {this.state.hovered ? (
-                            <SocialButton
-                                buttonStyle={{
-                                    position: 'absolute',
-                                    top: -4,
-                                    right: -4,
-                                    background: 'none',
-                                    height: 21,
-                                    width: 21,
-                                    display: 'block',
-                                    color: 'rgba(255,255,255,0.749)',
-                                    fill: 'rgba(255,255,255,0.749)'
-                                }}
-                                iconStyle={{
-                                    width: 14,
-                                    height: 14
-                                }}
-                                icon={<MoreVertSVG iconStyle={{
-                                    width: 16,
-                                    height: 16,
-                                    marginTOp:'4px'
-                                }}/>}/>
-                        ) : (
-                            <div style={timeSinceStyle}>
-                                <span>{this.props.timeSince}</span>
-                            </div>
-                        )}
-                    </div>
+                    ) : (
+                        <div style={timeSinceStyle}>
+                            <span>{props.timeSince}</span>
+                        </div>
+                    )}
                 </div>
-            </li>
-        );
-    }
+            </div>
+        </div>
+    );
 }
 
 Comment.propTypes = {
@@ -198,6 +201,12 @@ Comment.propTypes = {
     reactionsCount: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired,
     timeSince: React.PropTypes.string.isRequired,
+    onClick: React.PropTypes.func.isRequired,
+    hovered: React.PropTypes.bool
 }
 
-export default Comment;
+Comment.defaultProps = {
+    hovered: false
+}
+
+export default pureComponent(addHoverState(Comment), ['onClick']);
