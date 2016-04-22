@@ -134,6 +134,8 @@
             return PureComponent;
         }(_react2.default.Component);
 
+        PureComponent.propTypes = Object.assign({}, {}, Component.propTypes);
+
         return PureComponent;
     };
 

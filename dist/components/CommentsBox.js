@@ -100,13 +100,6 @@
         padding: 0
     };
 
-    var commentTextBlocStyle = {
-        fontSize: '14px',
-        lineHeight: '20px',
-        color: 'rgba(0,0,0,0.87)',
-        whiteSpace: 'pre-wrap'
-    };
-
     var firstAvatarStyle = {
         WebkitBorderRadius: '50%',
         borderRadius: '50%',
@@ -125,15 +118,24 @@
         }
 
         var firstComment = props.comments[0];
+
+        var commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened);
+        var commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList);
+        var commentsBoxClosedStyleMerged = Object.assign({}, commentsBoxClosedStyle, props.style.closed);
+        var commentStyleMerged = Object.assign({}, commentStyle, props.style.comment);
+        var firstAvatarStyleMerged = Object.assign({}, firstAvatarStyle, props.style.firstAvatar);
+        var commentTextStyleMerged = Object.assign({}, commentTextStyle, props.style.commentText);
+        var commentAuthorStyleMerged = Object.assign({}, commentAuthorStyle, props.style.commentAuthor);
+
         return _react2.default.createElement(
             'div',
             null,
             props.opened ? _react2.default.createElement(
                 'div',
-                { style: commentsBoxOpenedStyle },
+                { style: commentsBoxOpenedStyleMerged },
                 _react2.default.createElement(
                     'ul',
-                    { style: commentsListStyle },
+                    { style: commentsListStyleMerged },
                     props.comments.map(function (c) {
                         return _react2.default.createElement(
                             'li',
@@ -153,9 +155,10 @@
                                 },
                                 onTextChange: function onTextChange(e) {
                                     return props.onEditingCommentTextChange(e);
-                                } }) : _react2.default.createElement(_Comment2.default, _extends({}, c, { onClick: function onClick(e) {
+                                },
+                                style: props.editingCommentStyle }) : _react2.default.createElement(_Comment2.default, _extends({}, c, { onClick: function onClick(e) {
                                     return props.onCommentClick(e, c.id);
-                                } }))
+                                }, style: props.commentStyle }))
                         );
                     })
                 ),
@@ -163,19 +166,19 @@
                 _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
             ) : _react2.default.createElement(
                 'div',
-                { style: commentsBoxClosedStyle, onClick: function onClick(e) {
+                { style: commentsBoxClosedStyleMerged, onClick: function onClick(e) {
                         return props.onCommentBoxClosedClick(e);
                     } },
                 _react2.default.createElement(
                     'div',
-                    { style: commentStyle },
-                    _react2.default.createElement('img', { width: 36, height: 36, style: firstAvatarStyle, src: firstComment.avatar }),
+                    { style: commentStyleMerged },
+                    _react2.default.createElement('img', { width: 36, height: 36, style: firstAvatarStyleMerged, src: firstComment.avatar }),
                     _react2.default.createElement(
                         'div',
-                        { style: commentTextStyle },
+                        { style: commentTextStyleMerged },
                         _react2.default.createElement(
                             'span',
-                            { style: commentAuthorStyle },
+                            { style: commentAuthorStyleMerged },
                             firstComment.author + ": "
                         ),
                         _react2.default.createElement(
@@ -190,6 +193,18 @@
     };
 
     CommentsBox.propTypes = {
+        style: _react2.default.PropTypes.shape({
+            closed: _react2.default.PropTypes.object,
+            opened: _react2.default.PropTypes.object,
+            commentsList: _react2.default.PropTypes.object,
+            comment: _react2.default.PropTypes.object,
+            commentAuthor: _react2.default.PropTypes.object,
+            commentText: _react2.default.PropTypes.object,
+            firstAvatar: _react2.default.PropTypes.object
+        }),
+        editingCommentStyle: _EditingComment2.default.propTypes.style,
+        commentStyle: _Comment2.default.propTypes.style,
+        commentInputStyle: _CommentInput2.default.propTypes.style,
         opened: _react2.default.PropTypes.bool,
         comments: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
             id: _react2.default.PropTypes.string.isRequired,
@@ -220,6 +235,10 @@
     };
 
     CommentsBox.defaultProps = {
+        style: {},
+        editingCommentStyle: {},
+        commentStyle: {},
+        commentInputStyle: {},
         opened: false,
         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {},
         onCommentClick: function onCommentClick(e, id) {},

@@ -149,32 +149,41 @@
 
     var CommentInput = function CommentInput(props) {
 
-        var textareaElement = null;
+        var commentInputContainerStyleMerged = Object.assign({}, commentInputContainerStyle, props.style.container);
+        var commentInputContainerOpenedStyleMerged = Object.assign({}, commentInputContainerOpenedStyle, props.style.opened);
+        var avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar);
+        var inputTextContainerStyleMerged = Object.assign({}, inputTextContainerStyle, props.style.inputTextContainer);
+        var inputTextStyleMerged = Object.assign({}, inputTextStyle, props.style.inputText);
+        var inputOpenedStyleMerged = Object.assign({}, inputOpenedStyle, props.style.inputOpened);
+        var inputTextOpenedContainerStyleMerged = Object.assign({}, inputTextOpenedContainerStyle, props.style.inputTextOpenedContainer);
+        var inputTextOpenedTextStyleMerged = Object.assign({}, inputTextOpenedTextStyle, props.style.inputTextOpenedText);
+        var textareaStyleMerged = Object.assign({}, textareaStyle, props.style.textarea);
+        var publishButtonStyleMerged = Object.assign({}, publishButtonStyle, props.style.publishButton);
+        var publishButtonTextStyleMerged = Object.assign({}, publishButtonTextStyle, props.style.publishButtonText);
+        var publishButtonTextActiveStyleMerged = Object.assign({}, publishButtonTextActiveStyle, props.style.publishButtonTextActive);
 
-        var commentInputContainerMergedStyle = commentInputContainerStyle;
-        var publishButtonTextMergedStyle = publishButtonTextStyle;
         if (props.opened) {
-            commentInputContainerMergedStyle = Object.assign({}, commentInputContainerStyle, commentInputContainerOpenedStyle);
+            commentInputContainerStyleMerged = Object.assign({}, commentInputContainerStyleMerged, commentInputContainerOpenedStyleMerged);
         }
         if (props.text.length > 0) {
-            publishButtonTextMergedStyle = Object.assign({}, publishButtonTextMergedStyle, publishButtonTextActiveStyle);
+            publishButtonTextStyleMerged = Object.assign({}, publishButtonTextStyleMerged, publishButtonTextActiveStyleMerged);
         }
         return _react2.default.createElement(
             'div',
-            { style: commentInputContainerMergedStyle },
-            _react2.default.createElement('img', { width: 36, height: 36, style: avatarStyle, src: props.avatar }),
+            { style: commentInputContainerStyleMerged },
+            _react2.default.createElement('img', { width: 36, height: 36, style: avatarStyleMerged, src: props.avatar }),
             _react2.default.createElement(
                 'div',
-                { style: inputTextContainerStyle },
+                { style: inputTextContainerStyleMerged },
                 props.opened ? _react2.default.createElement(
                     'div',
-                    { style: inputOpenedStyle },
+                    { style: inputOpenedStyleMerged },
                     _react2.default.createElement(
                         'div',
-                        { style: inputTextOpenedContainerStyle },
+                        { style: inputTextOpenedContainerStyleMerged },
                         _react2.default.createElement(
                             'div',
-                            { style: inputTextOpenedTextStyle },
+                            { style: inputTextOpenedTextStyleMerged },
                             _react2.default.createElement('textarea', {
                                 onChange: function onChange(e) {
                                     return props.onTextChange(e);
@@ -185,23 +194,23 @@
                                     _ref && _reactDom2.default.findDOMNode(_ref).focus();
                                 },
                                 placeholder: props.addCommentText,
-                                style: textareaStyle })
+                                style: textareaStyleMerged })
                         )
                     ),
                     _react2.default.createElement(
                         'div',
-                        { role: 'button', style: publishButtonStyle },
+                        { role: 'button', style: publishButtonStyleMerged },
                         _react2.default.createElement(
                             'span',
                             {
-                                style: publishButtonTextMergedStyle,
+                                style: publishButtonTextStyleMerged,
                                 onClick: props.onPublishButtonClick },
                             props.plubishButtonText
                         )
                     )
                 ) : _react2.default.createElement(
                     'div',
-                    { role: 'button', style: inputTextStyle, onClick: function onClick(e) {
+                    { role: 'button', style: inputTextStyleMerged, onClick: function onClick(e) {
                             return props.onAddCommentClick(e);
                         } },
                     props.addCommentText
@@ -211,6 +220,21 @@
     };
 
     CommentInput.propTypes = {
+        style: _react2.default.PropTypes.shape({
+            container: _react2.default.PropTypes.object,
+            opened: _react2.default.PropTypes.object,
+            hovered: _react2.default.PropTypes.object,
+            avatar: _react2.default.PropTypes.object,
+            inputTextContainer: _react2.default.PropTypes.object,
+            inputText: _react2.default.PropTypes.object,
+            inputOpened: _react2.default.PropTypes.object,
+            inputTextOpenedContainer: _react2.default.PropTypes.object,
+            inputTextOpenedText: _react2.default.PropTypes.object,
+            textarea: _react2.default.PropTypes.object,
+            publishButton: _react2.default.PropTypes.object,
+            publishButtonText: _react2.default.PropTypes.object,
+            publishButtonTextActive: _react2.default.PropTypes.object
+        }),
         avatar: _react2.default.PropTypes.string.isRequired,
         addCommentText: _react2.default.PropTypes.string.isRequired,
         plubishButtonText: _react2.default.PropTypes.string.isRequired,
@@ -222,6 +246,7 @@
     };
 
     CommentInput.defaultProps = {
+        style: {},
         text: '',
         opened: false,
         onTextChange: function onTextChange(e) {},

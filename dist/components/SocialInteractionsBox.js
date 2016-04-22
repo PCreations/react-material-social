@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'material-ui/lib/popover/popover', 'material-ui/lib/menus/menu', 'material-ui/lib/menus/menu-item', './SocialToolbar', './CommentsBox', './pureComponent'], factory);
+        define(['exports', 'react', 'material-ui/lib/popover/popover', 'material-ui/lib/menus/menu', 'material-ui/lib/menus/menu-item', './SocialToolbar', './SocialButton', './CommentsBox', './Comment', './CommentInput', './EditingComment', './pureComponent'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('material-ui/lib/popover/popover'), require('material-ui/lib/menus/menu'), require('material-ui/lib/menus/menu-item'), require('./SocialToolbar'), require('./CommentsBox'), require('./pureComponent'));
+        factory(exports, require('react'), require('material-ui/lib/popover/popover'), require('material-ui/lib/menus/menu'), require('material-ui/lib/menus/menu-item'), require('./SocialToolbar'), require('./SocialButton'), require('./CommentsBox'), require('./Comment'), require('./CommentInput'), require('./EditingComment'), require('./pureComponent'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.popover, global.menu, global.menuItem, global.SocialToolbar, global.CommentsBox, global.pureComponent);
+        factory(mod.exports, global.react, global.popover, global.menu, global.menuItem, global.SocialToolbar, global.SocialButton, global.CommentsBox, global.Comment, global.CommentInput, global.EditingComment, global.pureComponent);
         global.SocialInteractionsBox = mod.exports;
     }
-})(this, function (exports, _react, _popover, _menu, _menuItem, _SocialToolbar, _CommentsBox, _pureComponent) {
+})(this, function (exports, _react, _popover, _menu, _menuItem, _SocialToolbar, _SocialButton, _CommentsBox, _Comment, _CommentInput, _EditingComment, _pureComponent) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -27,7 +27,15 @@
 
     var _SocialToolbar2 = _interopRequireDefault(_SocialToolbar);
 
+    var _SocialButton2 = _interopRequireDefault(_SocialButton);
+
     var _CommentsBox2 = _interopRequireDefault(_CommentsBox);
+
+    var _Comment2 = _interopRequireDefault(_Comment);
+
+    var _CommentInput2 = _interopRequireDefault(_CommentInput);
+
+    var _EditingComment2 = _interopRequireDefault(_EditingComment);
 
     var _pureComponent2 = _interopRequireDefault(_pureComponent);
 
@@ -191,9 +199,11 @@
                     text: this.state.inputText
                 });
 
+                var style = Object.assign({}, socialInteractionsBoxStyle, this.props.style.socialInteractionsBox);
+
                 return _react2.default.createElement(
                     'div',
-                    { style: socialInteractionsBoxStyle },
+                    { style: style },
                     _react2.default.createElement(_SocialToolbar2.default, _extends({}, props, {
                         onClick: function onClick(e) {
                             return _this2.setState({
@@ -202,7 +212,9 @@
                                 editingCommentId: ''
                             });
                         },
-                        onCommentButtonClick: onCommentButtonClickCallback })),
+                        onCommentButtonClick: onCommentButtonClickCallback,
+                        style: this.props.style.socialToolbar,
+                        socialButtonsStyle: this.props.style.socialButton })),
                     _react2.default.createElement(_CommentsBox2.default, {
                         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {
                             return _this2.setState({ opened: true });
@@ -255,7 +267,10 @@
                         },
                         onEditingCommentTextChange: function onEditingCommentTextChange(e) {
                             return _this2.setState({ editingCommentText: e.target.value });
-                        } })
+                        },
+                        style: this.props.style.commentsBox,
+                        editingCommentStyle: this.props.style.editingComment,
+                        commentStyle: this.props.style.comment })
                 );
             }
         }]);
@@ -264,6 +279,15 @@
     }(_react2.default.Component);
 
     SocialInteractionsBox.propTypes = {
+        style: _react2.default.PropTypes.shape({
+            socialInteractionsBox: _react2.default.PropTypes.object,
+            socialToolbar: _SocialToolbar2.default.propTypes.style,
+            commentsBox: _CommentsBox2.default.propTypes.style,
+            comment: _Comment2.default.propTypes.style,
+            editingComment: _EditingComment2.default.propTypes.style,
+            commentInput: _CommentInput2.default.propTypes.style,
+            socialButton: _SocialButton2.default.propTypes.style
+        }),
         reactionsCount: _react2.default.PropTypes.number.isRequired,
         commentsCount: _react2.default.PropTypes.number,
         sharesCount: _react2.default.PropTypes.number,
@@ -285,6 +309,10 @@
         }),
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired
+    };
+
+    SocialInteractionsBox.defaultProps = {
+        style: {}
     };
 
     exports.default = SocialInteractionsBox;

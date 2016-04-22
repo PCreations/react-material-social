@@ -58,13 +58,13 @@ const PureIconButton = pureComponent(IconButton, 'IconButton', [
 ]);
 
 const SocialButton = (props) => {
-    let containerStyleMerged = Object.assign({}, containerStyle, props.containerStyle || {});
-    let buttonStyleMerged = Object.assign({}, buttonStyle, props.buttonStyle || {});
-    let buttonStyleHoveredMerged = Object.assign({}, buttonStyleHovered, props.buttonStyleHovered || {});
+    let containerStyleMerged = Object.assign({}, containerStyle, props.style.container)
+    let buttonStyleMerged = Object.assign({}, buttonStyle, props.style.button)
+    let buttonStyleHoveredMerged = Object.assign({}, buttonStyleHovered, props.style.buttonHovered)
     if (props.hovered) {
         buttonStyleMerged = Object.assign({}, buttonStyleMerged, buttonStyleHoveredMerged);
     }
-    let iconStyleMerged = Object.assign({}, iconStyle, props.iconStyle || {});
+    let iconStyleMerged = Object.assign({}, iconStyle, props.style.icon);
 
     return (
         <div style={containerStyleMerged}>
@@ -79,16 +79,19 @@ const SocialButton = (props) => {
 }
 
 SocialButton.propTypes = {
-    icon: React.PropTypes.node.isRequired,
-    containerStyle: React.PropTypes.object,
-    buttonStyle: React.PropTypes.object,
-    buttonStyleHovered: React.PropTypes.object,
-    iconStyle: React.PropTypes.object,
+    style: React.PropTypes.shape({
+        container: React.PropTypes.object,
+        button: React.PropTypes.object,
+        buttonHovered: React.PropTypes.object,
+        icon: React.PropTypes.object
+    }),
+    icon: React.PropTypes.element,
     onClick: React.PropTypes.func,
     hovered: React.PropTypes.bool
 }
 
 SocialButton.defaultProps = {
+    style: {},
     onClick: (e) => {},
     hovered: false
 }

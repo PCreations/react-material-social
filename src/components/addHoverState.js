@@ -21,6 +21,8 @@ const addHoverState = (Component) => {
         }
     }
 
+    HoverableComponent.propTypes = Object.assign({}, {}, Component.propTypes);
+
     return HoverableComponent;
 }
 

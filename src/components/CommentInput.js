@@ -119,41 +119,50 @@ const publishButtonTextActiveStyle = {
 
 const CommentInput = (props) => {
 
-    let textareaElement = null;
+    let commentInputContainerStyleMerged = Object.assign({}, commentInputContainerStyle, props.style.container)
+    let commentInputContainerOpenedStyleMerged = Object.assign({}, commentInputContainerOpenedStyle, props.style.opened)
+    let avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar)
+    let inputTextContainerStyleMerged = Object.assign({}, inputTextContainerStyle, props.style.inputTextContainer)
+    let inputTextStyleMerged = Object.assign({}, inputTextStyle, props.style.inputText)
+    let inputOpenedStyleMerged = Object.assign({}, inputOpenedStyle, props.style.inputOpened)
+    let inputTextOpenedContainerStyleMerged = Object.assign({}, inputTextOpenedContainerStyle, props.style.inputTextOpenedContainer)
+    let inputTextOpenedTextStyleMerged = Object.assign({}, inputTextOpenedTextStyle, props.style.inputTextOpenedText)
+    let textareaStyleMerged = Object.assign({}, textareaStyle, props.style.textarea)
+    let publishButtonStyleMerged = Object.assign({}, publishButtonStyle, props.style.publishButton)
+    let publishButtonTextStyleMerged = Object.assign({}, publishButtonTextStyle, props.style.publishButtonText)
+    let publishButtonTextActiveStyleMerged = Object.assign({}, publishButtonTextActiveStyle, props.style.publishButtonTextActive)
 
-    let commentInputContainerMergedStyle = commentInputContainerStyle;
-    let publishButtonTextMergedStyle = publishButtonTextStyle;
     if (props.opened) {
-        commentInputContainerMergedStyle = Object.assign({}, commentInputContainerStyle, commentInputContainerOpenedStyle)
+        commentInputContainerStyleMerged = Object.assign({}, commentInputContainerStyleMerged, commentInputContainerOpenedStyleMerged)
     }
     if (props.text.length > 0) {
-        publishButtonTextMergedStyle = Object.assign({}, publishButtonTextMergedStyle, publishButtonTextActiveStyle)
+        publishButtonTextStyleMerged = Object.assign({}, publishButtonTextStyleMerged, publishButtonTextActiveStyleMerged)
     }
     return (
-        <div style={commentInputContainerMergedStyle}>
-            <img width={36} height={36} style={avatarStyle} src={props.avatar} />
-            <div style={inputTextContainerStyle}>
+        <div style={commentInputContainerStyleMerged}>
+            <img width={36} height={36} style={avatarStyleMerged} src={props.avatar} />
+            <div style={inputTextContainerStyleMerged}>
                 {props.opened ? (
-                    <div style={inputOpenedStyle}>
-                        <div style={inputTextOpenedContainerStyle}>
-                            <div style={inputTextOpenedTextStyle}>
+                    <div style={inputOpenedStyleMerged}>
+                        <div style={inputTextOpenedContainerStyleMerged}>
+                            <div style={inputTextOpenedTextStyleMerged}>
                                 <textarea
                                     onChange={(e) => props.onTextChange(e)}
                                     role="textbox"
                                     value={props.text}
                                     ref={(ref) => { ref && ReactDOM.findDOMNode(ref).focus() }}
                                     placeholder={props.addCommentText}
-                                    style={textareaStyle}></textarea>
+                                    style={textareaStyleMerged}></textarea>
                             </div>
                         </div>
-                        <div role="button" style={publishButtonStyle}>
+                        <div role="button" style={publishButtonStyleMerged}>
                             <span
-                                style={publishButtonTextMergedStyle}
+                                style={publishButtonTextStyleMerged}
                                 onClick={props.onPublishButtonClick}>{props.plubishButtonText}</span>
                         </div>
                     </div>
                 ) : (
-                    <div role="button" style={inputTextStyle} onClick={(e) => props.onAddCommentClick(e)}>
+                    <div role="button" style={inputTextStyleMerged} onClick={(e) => props.onAddCommentClick(e)}>
                         {props.addCommentText}
                     </div>
                 )}
@@ -164,6 +173,21 @@ const CommentInput = (props) => {
 
 
 CommentInput.propTypes = {
+    style: React.PropTypes.shape({
+        container: React.PropTypes.object,
+        opened: React.PropTypes.object,
+        hovered: React.PropTypes.object,
+        avatar: React.PropTypes.object,
+        inputTextContainer: React.PropTypes.object,
+        inputText: React.PropTypes.object,
+        inputOpened: React.PropTypes.object,
+        inputTextOpenedContainer: React.PropTypes.object,
+        inputTextOpenedText: React.PropTypes.object,
+        textarea: React.PropTypes.object,
+        publishButton: React.PropTypes.object,
+        publishButtonText: React.PropTypes.object,
+        publishButtonTextActive: React.PropTypes.object
+    }),
     avatar: React.PropTypes.string.isRequired,
     addCommentText: React.PropTypes.string.isRequired,
     plubishButtonText: React.PropTypes.string.isRequired,
@@ -175,6 +199,7 @@ CommentInput.propTypes = {
 }
 
 CommentInput.defaultProps = {
+    style: {},
     text: '',
     opened: false,
     onTextChange: (e) => {},

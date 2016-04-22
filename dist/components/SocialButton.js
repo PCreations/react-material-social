@@ -75,13 +75,13 @@
     var PureIconButton = (0, _pureComponent2.default)(_iconButton2.default, 'IconButton', ['onBlur', 'onFocus', 'onKeyboardFocus', 'onMouseEnter', 'onMouseLeave', 'onMouseOut', 'onClick']);
 
     var SocialButton = function SocialButton(props) {
-        var containerStyleMerged = Object.assign({}, containerStyle, props.containerStyle || {});
-        var buttonStyleMerged = Object.assign({}, buttonStyle, props.buttonStyle || {});
-        var buttonStyleHoveredMerged = Object.assign({}, buttonStyleHovered, props.buttonStyleHovered || {});
+        var containerStyleMerged = Object.assign({}, containerStyle, props.style.container);
+        var buttonStyleMerged = Object.assign({}, buttonStyle, props.style.button);
+        var buttonStyleHoveredMerged = Object.assign({}, buttonStyleHovered, props.style.buttonHovered);
         if (props.hovered) {
             buttonStyleMerged = Object.assign({}, buttonStyleMerged, buttonStyleHoveredMerged);
         }
-        var iconStyleMerged = Object.assign({}, iconStyle, props.iconStyle || {});
+        var iconStyleMerged = Object.assign({}, iconStyle, props.style.icon);
 
         return _react2.default.createElement(
             'div',
@@ -100,16 +100,19 @@
     };
 
     SocialButton.propTypes = {
-        icon: _react2.default.PropTypes.node.isRequired,
-        containerStyle: _react2.default.PropTypes.object,
-        buttonStyle: _react2.default.PropTypes.object,
-        buttonStyleHovered: _react2.default.PropTypes.object,
-        iconStyle: _react2.default.PropTypes.object,
+        style: _react2.default.PropTypes.shape({
+            container: _react2.default.PropTypes.object,
+            button: _react2.default.PropTypes.object,
+            buttonHovered: _react2.default.PropTypes.object,
+            icon: _react2.default.PropTypes.object
+        }),
+        icon: _react2.default.PropTypes.element,
         onClick: _react2.default.PropTypes.func,
         hovered: _react2.default.PropTypes.bool
     };
 
     SocialButton.defaultProps = {
+        style: {},
         onClick: function onClick(e) {},
         hovered: false
     };

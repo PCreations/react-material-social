@@ -82,7 +82,7 @@ const commentBodyStyle = {
     whiteSpace: 'pre-wrap'
 }
 
-const commentInteractionsStyle = {
+const commentInteractionsContainerStyle = {
     WebkitBoxFlex: 'none',
     WebkitFlex: 'none',
     flex: 'none',
@@ -110,81 +110,97 @@ const timeSinceStyle = {
     textDecoration: 'none'
 }
 
+const socialButtonReactionStyle = {
+    button: {
+        width: 21,
+        height: 21,
+        display: 'block',
+        background: '#e0e0e0',
+    },
+    buttonHovered: {
+        background: '#e0e0e0'
+    },
+    icon: {
+        width: 14,
+        height: 14
+    }
+}
+
+const socialButtonMoreVertStyle = {
+    button: {
+        position: 'absolute',
+        top: -4,
+        right: -4,
+        background: 'none',
+        height: 21,
+        width: 21,
+        display: 'block',
+        color: 'rgba(255,255,255,0.749)',
+        fill: 'rgba(255,255,255,0.749)'
+    },
+    buttonHovered: {
+        background: '#e0e0e0'
+    },
+    icon: {
+        width: 14,
+        height: 14
+    }
+}
+
 const Comment = (props) => {
     const handleCommentClick = (event) => {
         event.persist();
         props.onClick(event);
     }
-    let commentItemStyleMerged = commentItemStyle;
+    let commentItemStyleMerged = Object.assign({}, commentItemStyle, props.style.item)
+    let commentItemStyleHoveredMerged = Object.assign({}, commentItemStyleHovered, props.style.hovered)
+    let commentAuthorProfileLinkStyleMerged = Object.assign({}, commentAuthorProfileLinkStyle, props.style.authorProfileLink)
+    let avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar)
+    let commentHeadingStyleMerged = Object.assign({}, commentHeadingStyle, props.style.heading)
+    let commentAuthorHeadingStyleMerged = Object.assign({}, commentAuthorHeadingStyle, props.style.authorHeading)
+    let commentAuthorStyleMerged = Object.assign({}, commentAuthorStyle, props.style.author)
+    let commentReactionsCountStyleMerged = Object.assign({}, commentReactionsCountStyle, props.style.reactionsCount)
+    let commentBodyStyleMerged = Object.assign({}, commentBodyStyle, props.style.body)
+    let commentInteractionsContainerStyleMerged = Object.assign({}, commentInteractionsContainerStyle, props.style.interactionsContainer)
+    let commentReactionButtonContainerStyleMerged = Object.assign({}, commentReactionButtonContainerStyle, props.style.reactionButtonContainer)
+    let moreVertButtonContainerStyleMerged = Object.assign({}, moreVertButtonContainerStyle, props.style.moreVertButtonContainer)
+    let timeSinceStyleMerged = Object.assign({}, timeSinceStyle, props.style.timeSince)
+    let socialButtonReactionStyleMerged = Object.assign({}, socialButtonReactionStyle, props.socialButtonReactionStyle)
+    let socialButtonMoreVertStyleMerged = Object.assign({}, socialButtonMoreVertStyle, props.socialButtonMoreVertStyle)
+
     if (props.hovered) {
-        commentItemStyleMerged = Object.assign({}, commentItemStyle, commentItemStyleHovered);
+        commentItemStyleMerged = Object.assign({}, commentItemStyleMerged, commentItemStyleHoveredMerged);
     }
     return (
         <div
             style={commentItemStyleMerged}
             onClick={(e) => handleCommentClick(e)}>
-            <a href="#" style={commentAuthorProfileLinkStyle}>
-                <img width={36} height={36} style={avatarStyle} src={props.avatar} />
+            <a href="#" style={commentAuthorProfileLinkStyleMerged}>
+                <img width={36} height={36} style={avatarStyleMerged} src={props.avatar} />
             </a>
-            <div role="heading" style={commentHeadingStyle}>
-                <div style={commentAuthorHeadingStyle}>
-                    <a href="#" style={commentAuthorStyle}>{props.author}</a>
-                    <span style={commentReactionsCountStyle}>{props.reactionsCount}</span>
+            <div role="heading" style={commentHeadingStyleMerged}>
+                <div style={commentAuthorHeadingStyleMerged}>
+                    <a href="#" style={commentAuthorStyleMerged}>{props.author}</a>
+                    <span style={commentReactionsCountStyleMerged}>{props.reactionsCount}</span>
                 </div>
-                <div style={commentBodyStyle}>
+                <div style={commentBodyStyleMerged}>
                     {props.text}
                 </div>
             </div>
-            <div style={commentInteractionsStyle}>
-                <div style={commentReactionButtonContainerStyle}>
+            <div style={commentInteractionsContainerStyleMerged}>
+                <div style={commentReactionButtonContainerStyleMerged}>
                     <SocialButton
                         onClick={(e) => e.stopPropagation()}
-                        buttonStyle={{
-                            width: 21,
-                            height: 21,
-                            display: 'block',
-                            background: '#e0e0e0',
-                        }}
-                        buttonStyleHovered={{
-                            background: '#e0e0e0'
-                        }}
-                        iconStyle={{
-                            width: 14,
-                            height: 14
-                        }}
-                        icon={<PlusOneSVG iconStyle={{
-                            width: 14,
-                            height: 14
-                        }}/>}/>
+                        icon={<PlusOneSVG/>}
+                        style={socialButtonReactionStyleMerged}/>
                 </div>
-                <div style={moreVertButtonContainerStyle}>
+                <div style={moreVertButtonContainerStyleMerged}>
                     {props.hovered ? (
                         <SocialButton
-                            buttonStyle={{
-                                position: 'absolute',
-                                top: -4,
-                                right: -4,
-                                background: 'none',
-                                height: 21,
-                                width: 21,
-                                display: 'block',
-                                color: 'rgba(255,255,255,0.749)',
-                                fill: 'rgba(255,255,255,0.749)'
-                            }}
-                            buttonStyleHovered={{
-                                background: '#e0e0e0'
-                            }}
-                            iconStyle={{
-                                width: 14,
-                                height: 14
-                            }}
-                            icon={<MoreVertSVG iconStyle={{
-                                width: 16,
-                                height: 16,
-                                marginTOp:'4px'
-                            }}/>}/>
+                            icon={<MoreVertSVG/>}
+                            style={socialButtonMoreVertStyleMerged}/>
                     ) : (
-                        <div style={timeSinceStyle}>
+                        <div style={timeSinceStyleMerged}>
                             <span>{props.timeSince}</span>
                         </div>
                     )}
@@ -195,6 +211,23 @@ const Comment = (props) => {
 }
 
 Comment.propTypes = {
+    style: React.PropTypes.shape({
+        item: React.PropTypes.object,
+        hovered: React.PropTypes.object,
+        authorProfileLink: React.PropTypes.object,
+        avatar: React.PropTypes.object,
+        heading: React.PropTypes.object,
+        authorHeading: React.PropTypes.object,
+        author: React.PropTypes.object,
+        reactionsCount: React.PropTypes.object,
+        body: React.PropTypes.object,
+        interactionsContainer: React.PropTypes.object,
+        reactionButtonContainer: React.PropTypes.object,
+        moreVertButtonContainer: React.PropTypes.object,
+        timeSince: React.PropTypes.object,
+    }),
+    socialButtonReactionStyle: SocialButton.propTypes.style,
+    socialButtonMortVertStyle: SocialButton.propTypes.style,
     id: React.PropTypes.string.isRequired,
     avatar: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
@@ -206,6 +239,9 @@ Comment.propTypes = {
 }
 
 Comment.defaultProps = {
+    style: {},
+    socialButtonReactionStyle: {},
+    socialButtonMoreVertStyle: {},
     hovered: false
 }
 

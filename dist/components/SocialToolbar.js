@@ -38,10 +38,7 @@
     var containerStyle = {
         padding: '16px 8px',
         backgroundColor: '#fefefe',
-        height: 36
-    };
-
-    var style = {
+        height: 36,
         display: 'flex',
         WebkitBoxAlign: 'center',
         boxAlign: 'center',
@@ -81,57 +78,68 @@
             }();
         };
 
+        var containerStyleMerged = Object.assign({}, containerStyle, props.style.container);
+
+        var iconStyleMerged = Object.assign({}, iconStyle, props.style.icon);
+
+        var countStyleMerged = Object.assign({}, countStyle, props.style.count);
+
         return _react2.default.createElement(
             'div',
-            { style: containerStyle, role: 'toolbar', onClick: function onClick(e) {
+            { style: containerStyleMerged, role: 'toolbar', onClick: function onClick(e) {
                     return props.onClick(e);
                 } },
-            _react2.default.createElement(
+            _react2.default.createElement(_SocialButton2.default, {
+                onClick: function onClick(e) {
+                    return clickCallbackFactory(e, props.onReactionButtonClick);
+                },
+                icon: _react2.default.createElement(_plusOne2.default, { style: iconStyleMerged }),
+                style: props.socialButtonsStyle }),
+            props.reactionsCount && _react2.default.createElement(
                 'div',
-                { style: style },
-                _react2.default.createElement(_SocialButton2.default, {
-                    onClick: function onClick(e) {
-                        return clickCallbackFactory(e, props.onReactionButtonClick);
-                    },
-                    icon: _react2.default.createElement(_plusOne2.default, { style: iconStyle }) }),
-                props.reactionsCount && _react2.default.createElement(
-                    'div',
-                    { style: countStyle },
-                    " " + props.reactionsCount + " "
-                ),
-                _react2.default.createElement('div', { style: {
-                        WebkitBoxFlex: 1,
-                        boxFlex: 1,
-                        WebkitFlexGrow: 1,
-                        flexGrow: 1,
-                        WebkitFlexShrink: 1,
-                        flexShrink: 1
-                    } }),
-                _react2.default.createElement(_SocialButton2.default, {
-                    onClick: function onClick(e) {
-                        return clickCallbackFactory(e, props.onCommentButtonClick);
-                    },
-                    icon: _react2.default.createElement(_comment2.default, { style: iconStyle }) }),
-                props.commentsCount && _react2.default.createElement(
-                    'div',
-                    { style: countStyle },
-                    " " + props.commentsCount + " "
-                ),
-                _react2.default.createElement(_SocialButton2.default, {
-                    onClick: function onClick(e) {
-                        return clickCallbackFactory(e, props.onShareButtonClick);
-                    },
-                    icon: _react2.default.createElement(_share2.default, { style: iconStyle }) }),
-                props.sharesCount && _react2.default.createElement(
-                    'div',
-                    { style: countStyle },
-                    " " + props.sharesCount + " "
-                )
+                { style: countStyleMerged },
+                " " + props.reactionsCount + " "
+            ),
+            _react2.default.createElement('div', { style: {
+                    WebkitBoxFlex: 1,
+                    boxFlex: 1,
+                    WebkitFlexGrow: 1,
+                    flexGrow: 1,
+                    WebkitFlexShrink: 1,
+                    flexShrink: 1
+                } }),
+            _react2.default.createElement(_SocialButton2.default, {
+                onClick: function onClick(e) {
+                    return clickCallbackFactory(e, props.onCommentButtonClick);
+                },
+                icon: _react2.default.createElement(_comment2.default, { style: iconStyleMerged }),
+                style: props.socialButtonsStyle }),
+            props.commentsCount && _react2.default.createElement(
+                'div',
+                { style: countStyleMerged },
+                " " + props.commentsCount + " "
+            ),
+            _react2.default.createElement(_SocialButton2.default, {
+                onClick: function onClick(e) {
+                    return clickCallbackFactory(e, props.onShareButtonClick);
+                },
+                icon: _react2.default.createElement(_share2.default, { style: iconStyleMerged }),
+                style: props.socialButtonsStyle }),
+            props.sharesCount && _react2.default.createElement(
+                'div',
+                { style: countStyleMerged },
+                " " + props.sharesCount + " "
             )
         );
     };
 
     SocialToolbar.propTypes = {
+        style: _react2.default.PropTypes.shape({
+            container: _react2.default.PropTypes.object,
+            icon: _react2.default.PropTypes.object,
+            count: _react2.default.PropTypes.object
+        }),
+        socialButtonsStyle: _SocialButton2.default.propTypes.style,
         reactionsCount: _react2.default.PropTypes.number,
         commentsCount: _react2.default.PropTypes.number,
         sharesCount: _react2.default.PropTypes.number,
@@ -142,6 +150,7 @@
     };
 
     SocialToolbar.defaultProps = {
+        style: {},
         onReactionButtonClick: function onReactionButtonClick(e) {
             return console.log('reaction button clicked');
         },

@@ -68,7 +68,7 @@ const comments = [{
 
 ReactDOM.render(
     <div style={{
-        width: 432,
+        width: '100%',
         backgroundColor: '#fefefe'
     }}>
         <SocialInteractionsBox

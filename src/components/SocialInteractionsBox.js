@@ -5,7 +5,11 @@ import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
 
 import SocialToolbar from './SocialToolbar';
+import SocialButton from './SocialButton';
 import CommentsBox from './CommentsBox';
+import Comment from './Comment';
+import CommentInput from './CommentInput';
+import EditingComment from './EditingComment';
 import pureComponent from './pureComponent';
 
 const socialInteractionsBoxStyle = {
@@ -73,8 +77,14 @@ class SocialInteractionsBox extends React.Component {
             text: this.state.inputText
         });
 
+        let style = Object.assign(
+            {},
+            socialInteractionsBoxStyle,
+            this.props.style.socialInteractionsBox
+        )
+
         return (
-            <div style={socialInteractionsBoxStyle}>
+            <div style={style}>
                 <SocialToolbar
                     {...props}
                     onClick={(e) => this.setState({
@@ -82,7 +92,9 @@ class SocialInteractionsBox extends React.Component {
                         inputCommentOpened: false,
                         editingCommentId: ''
                     })}
-                    onCommentButtonClick={onCommentButtonClickCallback} />
+                    onCommentButtonClick={onCommentButtonClickCallback}
+                    style={this.props.style.socialToolbar}
+                    socialButtonsStyle={this.props.style.socialButton}/>
                 <CommentsBox
                     onCommentBoxClosedClick={(e) => this.setState({opened: true})}
                     opened={this.state.opened}
@@ -121,13 +133,25 @@ class SocialInteractionsBox extends React.Component {
                     editButtonText={this.props.editButtonText}
                     onCancelClick={(e) => this.setState({editingCommentId: ''})}
                     onEditClick={(e, commentId) => this.handleEditClick(e, commentId)}
-                    onEditingCommentTextChange={(e) => this.setState({editingCommentText: e.target.value})} />
+                    onEditingCommentTextChange={(e) => this.setState({editingCommentText: e.target.value})}
+                    style={this.props.style.commentsBox}
+                    editingCommentStyle={this.props.style.editingComment}
+                    commentStyle={this.props.style.comment}/>
             </div>
         );
     }
 }
 
 SocialInteractionsBox.propTypes = {
+    style: React.PropTypes.shape({
+        socialInteractionsBox: React.PropTypes.object,
+        socialToolbar: SocialToolbar.propTypes.style,
+        commentsBox: CommentsBox.propTypes.style,
+        comment: Comment.propTypes.style,
+        editingComment: EditingComment.propTypes.style,
+        commentInput: CommentInput.propTypes.style,
+        socialButton: SocialButton.propTypes.style
+    }),
     reactionsCount: React.PropTypes.number.isRequired,
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
@@ -149,6 +173,10 @@ SocialInteractionsBox.propTypes = {
     }),
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
+}
+
+SocialInteractionsBox.defaultProps = {
+    style: {}
 }
 
 export default SocialInteractionsBox;

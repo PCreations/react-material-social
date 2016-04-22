@@ -11,10 +11,7 @@ import pureComponent from './pureComponent';
 const containerStyle = {
     padding: '16px 8px',
     backgroundColor: '#fefefe',
-    height: 36
-}
-
-const style = {
+    height: 36,
     display: 'flex',
     WebkitBoxAlign: 'center',
     boxAlign: 'center',
@@ -29,7 +26,7 @@ const style = {
     boxPack: 'center',
     WebkitJustifyContent: 'center',
     justifyContent: 'center'
-};
+}
 
 const iconStyle = {
     width: '100%',
@@ -54,56 +51,69 @@ const SocialToolbar = (props) => {
         })()
     }
 
+    let containerStyleMerged = Object.assign({}, containerStyle, props.style.container)
+
+    let iconStyleMerged = Object.assign({}, iconStyle, props.style.icon)
+
+    let countStyleMerged = Object.assign({}, countStyle, props.style.count)
+
     return (
-        <div style={containerStyle} role="toolbar" onClick={(e) => props.onClick(e)}>
-            <div style={style}>
-                <SocialButton
-                    onClick={(e) => clickCallbackFactory(
-                        e,
-                        props.onReactionButtonClick
-                    )}
-                    icon={<PlusOneSVG style={iconStyle} />} />
-                {props.reactionsCount && (
-                    <div style={countStyle}>
-                        {" "+props.reactionsCount+" "}
-                    </div>
+        <div style={containerStyleMerged} role="toolbar" onClick={(e) => props.onClick(e)}>
+            <SocialButton
+                onClick={(e) => clickCallbackFactory(
+                    e,
+                    props.onReactionButtonClick
                 )}
-                <div style={{
-                    WebkitBoxFlex: 1,
-                    boxFlex: 1,
-                    WebkitFlexGrow: 1,
-                    flexGrow: 1,
-                    WebkitFlexShrink: 1,
-                    flexShrink: 1
-                }} />
-                <SocialButton
-                    onClick={(e) => clickCallbackFactory(
-                        e,
-                        props.onCommentButtonClick
-                    )}
-                    icon={<CommentSVG style={iconStyle} />} />
-                {props.commentsCount && (
-                    <div style={countStyle}>
-                        {" "+props.commentsCount+" "}
-                    </div>
+                icon={<PlusOneSVG style={iconStyleMerged} />}
+                style={props.socialButtonsStyle}/>
+            {props.reactionsCount && (
+                <div style={countStyleMerged}>
+                    {" "+props.reactionsCount+" "}
+                </div>
+            )}
+            <div style={{
+                WebkitBoxFlex: 1,
+                boxFlex: 1,
+                WebkitFlexGrow: 1,
+                flexGrow: 1,
+                WebkitFlexShrink: 1,
+                flexShrink: 1
+            }} />
+            <SocialButton
+                onClick={(e) => clickCallbackFactory(
+                    e,
+                    props.onCommentButtonClick
                 )}
-                <SocialButton
-                    onClick={(e) => clickCallbackFactory(
-                        e,
-                        props.onShareButtonClick
-                    )}
-                    icon={<ShareSVG style={iconStyle} />} />
-                {props.sharesCount && (
-                    <div style={countStyle}>
-                        {" "+props.sharesCount+" "}
-                    </div>
+                icon={<CommentSVG style={iconStyleMerged} />}
+                style={props.socialButtonsStyle}/>
+            {props.commentsCount && (
+                <div style={countStyleMerged}>
+                    {" "+props.commentsCount+" "}
+                </div>
+            )}
+            <SocialButton
+                onClick={(e) => clickCallbackFactory(
+                    e,
+                    props.onShareButtonClick
                 )}
-            </div>
+                icon={<ShareSVG style={iconStyleMerged} />}
+                style={props.socialButtonsStyle}/>
+            {props.sharesCount && (
+                <div style={countStyleMerged}>
+                    {" "+props.sharesCount+" "}
+                </div>
+            )}
         </div>
     )
 }
 
 SocialToolbar.propTypes = {
+    style: React.PropTypes.shape({
+        container: React.PropTypes.object,
+        icon: React.PropTypes.object,
+        count: React.PropTypes.object
+    }),
+    socialButtonsStyle: SocialButton.propTypes.style,
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
@@ -114,6 +124,7 @@ SocialToolbar.propTypes = {
 }
 
 SocialToolbar.defaultProps = {
+    style: {},
     onReactionButtonClick: (e) => console.log('reaction button clicked'),
     onCommentButtonClick: (e) => console.log('comment button clicked'),
     onShareButtonClick: (e) => console.log('share button clicked')

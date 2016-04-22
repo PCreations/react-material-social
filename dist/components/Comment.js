@@ -110,7 +110,7 @@
         whiteSpace: 'pre-wrap'
     };
 
-    var commentInteractionsStyle = {
+    var commentInteractionsContainerStyle = {
         WebkitBoxFlex: 'none',
         WebkitFlex: 'none',
         flex: 'none',
@@ -138,14 +138,66 @@
         textDecoration: 'none'
     };
 
+    var socialButtonReactionStyle = {
+        button: {
+            width: 21,
+            height: 21,
+            display: 'block',
+            background: '#e0e0e0'
+        },
+        buttonHovered: {
+            background: '#e0e0e0'
+        },
+        icon: {
+            width: 14,
+            height: 14
+        }
+    };
+
+    var socialButtonMoreVertStyle = {
+        button: {
+            position: 'absolute',
+            top: -4,
+            right: -4,
+            background: 'none',
+            height: 21,
+            width: 21,
+            display: 'block',
+            color: 'rgba(255,255,255,0.749)',
+            fill: 'rgba(255,255,255,0.749)'
+        },
+        buttonHovered: {
+            background: '#e0e0e0'
+        },
+        icon: {
+            width: 14,
+            height: 14
+        }
+    };
+
     var Comment = function Comment(props) {
         var handleCommentClick = function handleCommentClick(event) {
             event.persist();
             props.onClick(event);
         };
-        var commentItemStyleMerged = commentItemStyle;
+        var commentItemStyleMerged = Object.assign({}, commentItemStyle, props.style.item);
+        var commentItemStyleHoveredMerged = Object.assign({}, commentItemStyleHovered, props.style.hovered);
+        var commentAuthorProfileLinkStyleMerged = Object.assign({}, commentAuthorProfileLinkStyle, props.style.authorProfileLink);
+        var avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar);
+        var commentHeadingStyleMerged = Object.assign({}, commentHeadingStyle, props.style.heading);
+        var commentAuthorHeadingStyleMerged = Object.assign({}, commentAuthorHeadingStyle, props.style.authorHeading);
+        var commentAuthorStyleMerged = Object.assign({}, commentAuthorStyle, props.style.author);
+        var commentReactionsCountStyleMerged = Object.assign({}, commentReactionsCountStyle, props.style.reactionsCount);
+        var commentBodyStyleMerged = Object.assign({}, commentBodyStyle, props.style.body);
+        var commentInteractionsContainerStyleMerged = Object.assign({}, commentInteractionsContainerStyle, props.style.interactionsContainer);
+        var commentReactionButtonContainerStyleMerged = Object.assign({}, commentReactionButtonContainerStyle, props.style.reactionButtonContainer);
+        var moreVertButtonContainerStyleMerged = Object.assign({}, moreVertButtonContainerStyle, props.style.moreVertButtonContainer);
+        var timeSinceStyleMerged = Object.assign({}, timeSinceStyle, props.style.timeSince);
+        var socialButtonReactionStyleMerged = Object.assign({}, socialButtonReactionStyle, props.socialButtonReactionStyle);
+        var socialButtonMoreVertStyleMerged = Object.assign({}, socialButtonMoreVertStyle, props.socialButtonMoreVertStyle);
+
         if (props.hovered) {
-            commentItemStyleMerged = Object.assign({}, commentItemStyle, commentItemStyleHovered);
+            commentItemStyleMerged = Object.assign({}, commentItemStyleMerged, commentItemStyleHoveredMerged);
         }
         return _react2.default.createElement(
             'div',
@@ -156,89 +208,53 @@
                 } },
             _react2.default.createElement(
                 'a',
-                { href: '#', style: commentAuthorProfileLinkStyle },
-                _react2.default.createElement('img', { width: 36, height: 36, style: avatarStyle, src: props.avatar })
+                { href: '#', style: commentAuthorProfileLinkStyleMerged },
+                _react2.default.createElement('img', { width: 36, height: 36, style: avatarStyleMerged, src: props.avatar })
             ),
             _react2.default.createElement(
                 'div',
-                { role: 'heading', style: commentHeadingStyle },
+                { role: 'heading', style: commentHeadingStyleMerged },
                 _react2.default.createElement(
                     'div',
-                    { style: commentAuthorHeadingStyle },
+                    { style: commentAuthorHeadingStyleMerged },
                     _react2.default.createElement(
                         'a',
-                        { href: '#', style: commentAuthorStyle },
+                        { href: '#', style: commentAuthorStyleMerged },
                         props.author
                     ),
                     _react2.default.createElement(
                         'span',
-                        { style: commentReactionsCountStyle },
+                        { style: commentReactionsCountStyleMerged },
                         props.reactionsCount
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { style: commentBodyStyle },
+                    { style: commentBodyStyleMerged },
                     props.text
                 )
             ),
             _react2.default.createElement(
                 'div',
-                { style: commentInteractionsStyle },
+                { style: commentInteractionsContainerStyleMerged },
                 _react2.default.createElement(
                     'div',
-                    { style: commentReactionButtonContainerStyle },
+                    { style: commentReactionButtonContainerStyleMerged },
                     _react2.default.createElement(_SocialButton2.default, {
                         onClick: function onClick(e) {
                             return e.stopPropagation();
                         },
-                        buttonStyle: {
-                            width: 21,
-                            height: 21,
-                            display: 'block',
-                            background: '#e0e0e0'
-                        },
-                        buttonStyleHovered: {
-                            background: '#e0e0e0'
-                        },
-                        iconStyle: {
-                            width: 14,
-                            height: 14
-                        },
-                        icon: _react2.default.createElement(_plusOne2.default, { iconStyle: {
-                                width: 14,
-                                height: 14
-                            } }) })
+                        icon: _react2.default.createElement(_plusOne2.default, null),
+                        style: socialButtonReactionStyleMerged })
                 ),
                 _react2.default.createElement(
                     'div',
-                    { style: moreVertButtonContainerStyle },
+                    { style: moreVertButtonContainerStyleMerged },
                     props.hovered ? _react2.default.createElement(_SocialButton2.default, {
-                        buttonStyle: {
-                            position: 'absolute',
-                            top: -4,
-                            right: -4,
-                            background: 'none',
-                            height: 21,
-                            width: 21,
-                            display: 'block',
-                            color: 'rgba(255,255,255,0.749)',
-                            fill: 'rgba(255,255,255,0.749)'
-                        },
-                        buttonStyleHovered: {
-                            background: '#e0e0e0'
-                        },
-                        iconStyle: {
-                            width: 14,
-                            height: 14
-                        },
-                        icon: _react2.default.createElement(_moreVert2.default, { iconStyle: {
-                                width: 16,
-                                height: 16,
-                                marginTOp: '4px'
-                            } }) }) : _react2.default.createElement(
+                        icon: _react2.default.createElement(_moreVert2.default, null),
+                        style: socialButtonMoreVertStyleMerged }) : _react2.default.createElement(
                         'div',
-                        { style: timeSinceStyle },
+                        { style: timeSinceStyleMerged },
                         _react2.default.createElement(
                             'span',
                             null,
@@ -251,6 +267,23 @@
     };
 
     Comment.propTypes = {
+        style: _react2.default.PropTypes.shape({
+            item: _react2.default.PropTypes.object,
+            hovered: _react2.default.PropTypes.object,
+            authorProfileLink: _react2.default.PropTypes.object,
+            avatar: _react2.default.PropTypes.object,
+            heading: _react2.default.PropTypes.object,
+            authorHeading: _react2.default.PropTypes.object,
+            author: _react2.default.PropTypes.object,
+            reactionsCount: _react2.default.PropTypes.object,
+            body: _react2.default.PropTypes.object,
+            interactionsContainer: _react2.default.PropTypes.object,
+            reactionButtonContainer: _react2.default.PropTypes.object,
+            moreVertButtonContainer: _react2.default.PropTypes.object,
+            timeSince: _react2.default.PropTypes.object
+        }),
+        socialButtonReactionStyle: _SocialButton2.default.propTypes.style,
+        socialButtonMortVertStyle: _SocialButton2.default.propTypes.style,
         id: _react2.default.PropTypes.string.isRequired,
         avatar: _react2.default.PropTypes.string.isRequired,
         author: _react2.default.PropTypes.string.isRequired,
@@ -262,6 +295,9 @@
     };
 
     Comment.defaultProps = {
+        style: {},
+        socialButtonReactionStyle: {},
+        socialButtonMoreVertStyle: {},
         hovered: false
     };
 

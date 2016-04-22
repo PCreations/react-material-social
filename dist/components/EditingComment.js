@@ -155,25 +155,38 @@
 
     var EditingComment = function EditingComment(props) {
 
-        var editingCommentContainerStyleMerged = Object.assign({}, editingCommentContainerStyle, props.hovered ? editingCommentContainerStyleHovered : {});
+        var editingCommentContainerStyleMerged = Object.assign({}, editingCommentContainerStyle, props.style.container);
+        var editingCommentContainerStyleHoveredMerged = Object.assign({}, editingCommentContainerStyleHovered, props.style.hovered);
+        var avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar);
+        var editingCommentBlocStyleMerged = Object.assign({}, editingCommentBlocStyle, props.style.commentBloc);
+        var editingCommentTextContainerStyleMerged = Object.assign({}, editingCommentTextContainerStyle, props.style.commentTextContainer);
+        var editingCommentTextStyleMerged = Object.assign({}, editingCommentTextStyle, props.style.commentText);
+        var editingCommentTextareaMerged = Object.assign({}, editingCommentTextarea, props.style.commentTextarea);
+        var buttonStyleMerged = Object.assign({}, buttonStyle, props.style.button);
+        var cancelButtonStyleMerged = Object.assign({}, buttonStyleMerged, cancelButtonStyle, props.style.cancelButton);
+        var editButtonStyleMerged = Object.assign({}, buttonStyleMerged, editButtonStyle, props.style.editButton);
+        var editButtonTextActiveStyleMerged = Object.assign({}, editButtonTextActiveStyle, props.style.editButtonTextActive);
+        var buttonTextStyleMerged = Object.assign({}, buttonTextStyle, props.style.buttonTextStyle);
 
-        var editButtonStyleMerged = Object.assign({}, editButtonStyle, props.text.length > 0 && props.text != props.originalText ? editButtonTextActiveStyle : {});
+        editingCommentContainerStyleMerged = Object.assign({}, editingCommentContainerStyleMerged, props.hovered ? editingCommentContainerStyleHoveredMerged : {});
+
+        editButtonStyleMerged = Object.assign({}, editButtonStyleMerged, props.text.length > 0 && props.text != props.originalText ? editButtonTextActiveStyleMerged : {});
 
         return _react2.default.createElement(
             'div',
             { style: editingCommentContainerStyleMerged },
-            _react2.default.createElement('img', { width: 36, height: 36, style: avatarStyle, src: props.avatar }),
+            _react2.default.createElement('img', { width: 36, height: 36, style: avatarStyleMerged, src: props.avatar }),
             _react2.default.createElement(
                 'div',
-                { style: editingCommentBlocStyle },
+                { style: editingCommentBlocStyleMerged },
                 _react2.default.createElement(
                     'div',
-                    { style: editingCommentTextContainerStyle },
+                    { style: editingCommentTextContainerStyleMerged },
                     _react2.default.createElement(
                         'div',
-                        { style: editingCommentTextStyle },
+                        { style: editingCommentTextStyleMerged },
                         _react2.default.createElement('textarea', {
-                            style: editingCommentTextarea,
+                            style: editingCommentTextareaMerged,
                             value: props.text,
                             ref: function ref(_ref) {
                                 _ref && _reactDom2.default.findDOMNode(_ref).focus();
@@ -190,18 +203,18 @@
                         } },
                     _react2.default.createElement(
                         'span',
-                        { style: buttonTextStyle },
+                        { style: buttonTextStyleMerged },
                         props.editButtonText
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { role: 'button', style: cancelButtonStyle, onClick: function onClick(e) {
+                    { role: 'button', style: cancelButtonStyleMerged, onClick: function onClick(e) {
                             return props.onCancelClick(e);
                         } },
                     _react2.default.createElement(
                         'span',
-                        { style: buttonTextStyle },
+                        { style: buttonTextStyleMerged },
                         props.cancelButtonText
                     )
                 )
@@ -210,6 +223,20 @@
     };
 
     EditingComment.propTypes = {
+        style: _react2.default.PropTypes.shape({
+            container: _react2.default.PropTypes.object,
+            hovered: _react2.default.PropTypes.object,
+            avatar: _react2.default.PropTypes.object,
+            commentBloc: _react2.default.PropTypes.object,
+            commentTextContainer: _react2.default.PropTypes.object,
+            commentText: _react2.default.PropTypes.object,
+            commentTextarea: _react2.default.PropTypes.object,
+            button: _react2.default.PropTypes.object,
+            cancelButton: _react2.default.PropTypes.object,
+            editButton: _react2.default.PropTypes.object,
+            editButtonTextActive: _react2.default.PropTypes.object,
+            buttonText: _react2.default.PropTypes.object
+        }),
         id: _react2.default.PropTypes.string.isRequired,
         avatar: _react2.default.PropTypes.string.isRequired,
         text: _react2.default.PropTypes.string.isRequired,
@@ -220,6 +247,11 @@
         onCancelClick: _react2.default.PropTypes.func.isRequired,
         onEditClick: _react2.default.PropTypes.func.isRequired,
         onTextChange: _react2.default.PropTypes.func.isRequired
+    };
+
+    EditingComment.defaultProps = {
+        style: {},
+        hovered: false
     };
 
     exports.default = (0, _pureComponent2.default)((0, _addHoverState2.default)(EditingComment), ['onCancelClick', 'onEditClick', 'onTextChange']);

@@ -28,6 +28,8 @@ const pureComponent = (Component, propsToRemove = []) => {
         }
     }
 
+    PureComponent.propTypes = Object.assign({}, {}, Component.propTypes);
+
     return PureComponent;
 
 }

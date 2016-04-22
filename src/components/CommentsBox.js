@@ -59,13 +59,6 @@ const commentsListStyle = {
     padding: 0
 }
 
-const commentTextBlocStyle = {
-    fontSize: '14px',
-    lineHeight: '20px',
-    color: 'rgba(0,0,0,0.87)',
-    whiteSpace: 'pre-wrap'
-}
-
 const firstAvatarStyle = {
     WebkitBorderRadius: '50%',
     borderRadius: '50%',
@@ -73,8 +66,6 @@ const firstAvatarStyle = {
     flexShrink: 0,
     marginRight: 8
 }
-
-
 
 const commentTextStyle = {
     maxHeight: 36
@@ -86,11 +77,20 @@ const CommentsBox = (props) => {
     }
 
     let firstComment = props.comments[0];
+
+    let commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened)
+    let commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList)
+    let commentsBoxClosedStyleMerged = Object.assign({}, commentsBoxClosedStyle, props.style.closed)
+    let commentStyleMerged = Object.assign({}, commentStyle, props.style.comment)
+    let firstAvatarStyleMerged = Object.assign({}, firstAvatarStyle, props.style.firstAvatar)
+    let commentTextStyleMerged = Object.assign({}, commentTextStyle, props.style.commentText)
+    let commentAuthorStyleMerged = Object.assign({}, commentAuthorStyle, props.style.commentAuthor)
+
     return (
         <div>
             {props.opened ? (
-                <div style={commentsBoxOpenedStyle}>
-                    <ul style={commentsListStyle}>
+                <div style={commentsBoxOpenedStyleMerged}>
+                    <ul style={commentsListStyleMerged}>
                         {props.comments.map(c => (
                             <li key={c.id}>
                                 {props.editingCommentId == c.id ? (
@@ -103,9 +103,10 @@ const CommentsBox = (props) => {
                                         editButtonText={props.editButtonText}
                                         onCancelClick={(e) => props.onCancelClick(e)}
                                         onEditClick={(e, commentId) => props.onEditClick(e, commentId)}
-                                        onTextChange={(e) => props.onEditingCommentTextChange(e)}/>
+                                        onTextChange={(e) => props.onEditingCommentTextChange(e)}
+                                        style={props.editingCommentStyle}/>
                                 ) : (
-                                    <Comment {...c} onClick={(e) => props.onCommentClick(e, c.id)}/>
+                                    <Comment {...c} onClick={(e) => props.onCommentClick(e, c.id)} style={props.commentStyle}/>
                                 )}
                             </li>
                         ))}
@@ -114,11 +115,11 @@ const CommentsBox = (props) => {
                     <CommentInput {...props.commentInputProps} />
                 </div>
             ) : (
-                <div style={commentsBoxClosedStyle} onClick={(e) => props.onCommentBoxClosedClick(e)}>
-                    <div style={commentStyle}>
-                        <img width={36} height={36} style={firstAvatarStyle} src={firstComment.avatar} />
-                        <div style={commentTextStyle}>
-                            <span style={commentAuthorStyle}>{firstComment.author+": "}</span>
+                <div style={commentsBoxClosedStyleMerged} onClick={(e) => props.onCommentBoxClosedClick(e)}>
+                    <div style={commentStyleMerged}>
+                        <img width={36} height={36} style={firstAvatarStyleMerged} src={firstComment.avatar} />
+                        <div style={commentTextStyleMerged}>
+                            <span style={commentAuthorStyleMerged}>{firstComment.author+": "}</span>
                             <span>{firstComment.text}</span>
                         </div>
                     </div>
@@ -129,6 +130,18 @@ const CommentsBox = (props) => {
 }
 
 CommentsBox.propTypes = {
+    style: React.PropTypes.shape({
+        closed: React.PropTypes.object,
+        opened: React.PropTypes.object,
+        commentsList: React.PropTypes.object,
+        comment: React.PropTypes.object,
+        commentAuthor: React.PropTypes.object,
+        commentText: React.PropTypes.object,
+        firstAvatar: React.PropTypes.object
+    }),
+    editingCommentStyle: EditingComment.propTypes.style,
+    commentStyle: Comment.propTypes.style,
+    commentInputStyle: CommentInput.propTypes.style,
     opened: React.PropTypes.bool,
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
@@ -159,6 +172,10 @@ CommentsBox.propTypes = {
 }
 
 CommentsBox.defaultProps = {
+    style: {},
+    editingCommentStyle: {},
+    commentStyle: {},
+    commentInputStyle: {},
     opened: false,
     onCommentBoxClosedClick: (e) => {},
     onCommentClick: (e, id) => {},

@@ -125,6 +125,8 @@
             return HoverableComponent;
         }(_react2.default.Component);
 
+        HoverableComponent.propTypes = Object.assign({}, {}, Component.propTypes);
+
         return HoverableComponent;
     };
 

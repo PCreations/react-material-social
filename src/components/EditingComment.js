@@ -121,35 +121,57 @@ const EditingComment = (props) => {
     let editingCommentContainerStyleMerged = Object.assign(
         {},
         editingCommentContainerStyle,
-        props.hovered ? editingCommentContainerStyleHovered : {}
+        props.style.container
+    )
+    let editingCommentContainerStyleHoveredMerged = Object.assign(
+        {},
+        editingCommentContainerStyleHovered,
+        props.style.hovered
+    )
+    let avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar)
+    let editingCommentBlocStyleMerged = Object.assign({}, editingCommentBlocStyle, props.style.commentBloc)
+    let editingCommentTextContainerStyleMerged = Object.assign({}, editingCommentTextContainerStyle, props.style.commentTextContainer)
+    let editingCommentTextStyleMerged = Object.assign({}, editingCommentTextStyle, props.style.commentText)
+    let editingCommentTextareaMerged = Object.assign({}, editingCommentTextarea, props.style.commentTextarea)
+    let buttonStyleMerged = Object.assign({}, buttonStyle, props.style.button)
+    let cancelButtonStyleMerged = Object.assign({}, buttonStyleMerged, cancelButtonStyle, props.style.cancelButton)
+    let editButtonStyleMerged = Object.assign({}, buttonStyleMerged, editButtonStyle, props.style.editButton)
+    let editButtonTextActiveStyleMerged = Object.assign({}, editButtonTextActiveStyle, props.style.editButtonTextActive)
+    let buttonTextStyleMerged = Object.assign({}, buttonTextStyle, props.style.buttonTextStyle)
+
+
+    editingCommentContainerStyleMerged = Object.assign(
+        {},
+        editingCommentContainerStyleMerged,
+        props.hovered ? editingCommentContainerStyleHoveredMerged : {}
     )
 
-    let editButtonStyleMerged = Object.assign(
+    editButtonStyleMerged = Object.assign(
         {},
-        editButtonStyle,
-        props.text.length > 0 && props.text != props.originalText ? editButtonTextActiveStyle : {}
+        editButtonStyleMerged,
+        props.text.length > 0 && props.text != props.originalText ? editButtonTextActiveStyleMerged : {}
     );
 
     return (
         <div style={editingCommentContainerStyleMerged}>
-            <img width={36} height={36} style={avatarStyle} src={props.avatar} />
-            <div style={editingCommentBlocStyle}>
-                <div style={editingCommentTextContainerStyle}>
-                    <div style={editingCommentTextStyle}>
+            <img width={36} height={36} style={avatarStyleMerged} src={props.avatar} />
+            <div style={editingCommentBlocStyleMerged}>
+                <div style={editingCommentTextContainerStyleMerged}>
+                    <div style={editingCommentTextStyleMerged}>
                         <textarea
-                            style={editingCommentTextarea}
+                            style={editingCommentTextareaMerged}
                             value={props.text}
                             ref={(ref) => { ref && ReactDOM.findDOMNode(ref).focus() }}
                             onChange={(e) => props.onTextChange(e)}/>
                     </div>
                 </div>
                 <div role="button" style={editButtonStyleMerged} onClick={(e) => props.onEditClick(e, props.id)}>
-                    <span style={buttonTextStyle}>
+                    <span style={buttonTextStyleMerged}>
                         {props.editButtonText}
                     </span>
                 </div>
-                <div role="button" style={cancelButtonStyle} onClick={(e) => props.onCancelClick(e)}>
-                    <span style={buttonTextStyle}>
+                <div role="button" style={cancelButtonStyleMerged} onClick={(e) => props.onCancelClick(e)}>
+                    <span style={buttonTextStyleMerged}>
                         {props.cancelButtonText}
                     </span>
                 </div>
@@ -159,6 +181,20 @@ const EditingComment = (props) => {
 }
 
 EditingComment.propTypes = {
+    style: React.PropTypes.shape({
+        container: React.PropTypes.object,
+        hovered: React.PropTypes.object,
+        avatar: React.PropTypes.object,
+        commentBloc: React.PropTypes.object,
+        commentTextContainer: React.PropTypes.object,
+        commentText: React.PropTypes.object,
+        commentTextarea: React.PropTypes.object,
+        button: React.PropTypes.object,
+        cancelButton: React.PropTypes.object,
+        editButton: React.PropTypes.object,
+        editButtonTextActive: React.PropTypes.object,
+        buttonText: React.PropTypes.object
+    }),
     id: React.PropTypes.string.isRequired,
     avatar: React.PropTypes.string.isRequired,
     text: React.PropTypes.string.isRequired,
@@ -169,6 +205,11 @@ EditingComment.propTypes = {
     onCancelClick: React.PropTypes.func.isRequired,
     onEditClick: React.PropTypes.func.isRequired,
     onTextChange: React.PropTypes.func.isRequired,
+}
+
+EditingComment.defaultProps = {
+    style: {},
+    hovered: false
 }
 
 export default pureComponent(addHoverState(EditingComment), ['onCancelClick', 'onEditClick', 'onTextChange']);

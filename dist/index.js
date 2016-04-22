@@ -92,7 +92,7 @@
     _reactDom2.default.render(_react2.default.createElement(
         'div',
         { style: {
-                width: 432,
+                width: '100%',
                 backgroundColor: '#fefefe'
             } },
         _react2.default.createElement(_SocialInteractionsBox2.default, {
