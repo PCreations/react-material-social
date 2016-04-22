@@ -150,8 +150,8 @@
                                 onCancelClick: function onCancelClick(e) {
                                     return props.onCancelClick(e);
                                 },
-                                onEditClick: function onEditClick(e, commentId) {
-                                    return props.onEditClick(e, commentId);
+                                onEditClick: function onEditClick(e, commentId, commentText) {
+                                    return props.onEditClick(e, commentId, commentText);
                                 },
                                 onTextChange: function onTextChange(e) {
                                     return props.onEditingCommentTextChange(e);
@@ -242,7 +242,7 @@
         opened: false,
         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {},
         onCommentClick: function onCommentClick(e, id) {},
-        onEditClick: function onEditClick(e, id) {},
+        onEditClick: function onEditClick(e, id, text) {},
         onCancelClick: function onCancelClick(e) {},
         onEditingCommentTextChange: function onEditingCommentTextChange(e) {}
     };

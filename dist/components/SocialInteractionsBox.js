@@ -271,8 +271,8 @@
                         onCancelClick: function onCancelClick(e) {
                             return _this2.setState({ editingCommentId: '' });
                         },
-                        onEditClick: function onEditClick(e, commentId) {
-                            return _this2.handleEditClick(e, commentId);
+                        onEditClick: function onEditClick(e, commentId, commentText) {
+                            return _this2.handleEditClick(e, commentId, commentText);
                         },
                         onEditingCommentTextChange: function onEditingCommentTextChange(e) {
                             return _this2.setState({ editingCommentText: e.target.value });

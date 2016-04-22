@@ -137,7 +137,7 @@ class SocialInteractionsBox extends React.Component {
                     cancelButtonText={this.props.cancelButtonText}
                     editButtonText={this.props.editButtonText}
                     onCancelClick={(e) => this.setState({editingCommentId: ''})}
-                    onEditClick={(e, commentId) => this.handleEditClick(e, commentId)}
+                    onEditClick={(e, commentId, commentText) => this.handleEditClick(e, commentId, commentText)}
                     onEditingCommentTextChange={(e) => this.setState({editingCommentText: e.target.value})}
                     style={this.props.style.commentsBox}
                     editingCommentStyle={this.props.style.editingComment}

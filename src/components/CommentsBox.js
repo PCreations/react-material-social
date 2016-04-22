@@ -102,7 +102,7 @@ const CommentsBox = (props) => {
                                         cancelButtonText={props.cancelButtonText}
                                         editButtonText={props.editButtonText}
                                         onCancelClick={(e) => props.onCancelClick(e)}
-                                        onEditClick={(e, commentId) => props.onEditClick(e, commentId)}
+                                        onEditClick={(e, commentId, commentText) => props.onEditClick(e, commentId, commentText)}
                                         onTextChange={(e) => props.onEditingCommentTextChange(e)}
                                         style={props.editingCommentStyle}/>
                                 ) : (
@@ -179,7 +179,7 @@ CommentsBox.defaultProps = {
     opened: false,
     onCommentBoxClosedClick: (e) => {},
     onCommentClick: (e, id) => {},
-    onEditClick: (e, id) => {},
+    onEditClick: (e, id, text) => {},
     onCancelClick: (e) => {},
     onEditingCommentTextChange: (e) => {}
 }
