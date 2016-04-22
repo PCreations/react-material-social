@@ -169,6 +169,16 @@
                 return comment.text;
             }
         }, {
+            key: 'componentDidMount',
+            value: function componentDidMount() {
+                this.props.onRender();
+            }
+        }, {
+            key: 'componentDidUpdate',
+            value: function componentDidUpdate() {
+                this.props.onRender();
+            }
+        }, {
             key: 'render',
             value: function render() {
                 var _this2 = this;
@@ -308,11 +318,13 @@
             text: _react2.default.PropTypes.string
         }),
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
-        editButtonText: _react2.default.PropTypes.string.isRequired
+        editButtonText: _react2.default.PropTypes.string.isRequired,
+        onRender: _react2.default.PropTypes.func
     };
 
     SocialInteractionsBox.defaultProps = {
-        style: {}
+        style: {},
+        onRender: function onRender() {}
     };
 
     exports.default = SocialInteractionsBox;

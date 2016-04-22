@@ -106,6 +106,9 @@
                 plubishButtonText: 'publier'
             },
             cancelButtonText: "Annuler",
-            editButtonText: "Modifier" })
+            editButtonText: "Modifier",
+            onRender: function onRender() {
+                return console.log("render");
+            } })
     ), document.getElementById('app'));
 });
