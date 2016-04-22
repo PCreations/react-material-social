@@ -157,7 +157,6 @@
         }, {
             key: 'handleEditClick',
             value: function handleEditClick(e, commentId) {
-
                 this.props.onEditClick(e, commentId);
             }
         }, {
@@ -224,7 +223,7 @@
                         },
                         onCommentButtonClick: onCommentButtonClickCallback,
                         style: this.props.style.socialToolbar,
-                        socialButtonsStyle: this.props.style.socialButton })),
+                        socialButtonsStyle: this.props.style.socialToolbarButton || this.props.style.socialButton })),
                     _react2.default.createElement(_CommentsBox2.default, {
                         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {
                             return _this2.setState({ opened: true });
@@ -292,6 +291,7 @@
         style: _react2.default.PropTypes.shape({
             socialInteractionsBox: _react2.default.PropTypes.object,
             socialToolbar: _SocialToolbar2.default.propTypes.style,
+            socialToolbarButton: _SocialButton2.default.propTypes.style,
             commentsBox: _CommentsBox2.default.propTypes.style,
             comment: _Comment2.default.propTypes.style,
             editingComment: _EditingComment2.default.propTypes.style,

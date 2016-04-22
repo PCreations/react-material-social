@@ -49,7 +49,6 @@ class SocialInteractionsBox extends React.Component {
         });
     }
     handleEditClick(e, commentId) {
-
         this.props.onEditClick(e, commentId);
     }
     getCommentTextFromId(id) {
@@ -100,7 +99,7 @@ class SocialInteractionsBox extends React.Component {
                     })}
                     onCommentButtonClick={onCommentButtonClickCallback}
                     style={this.props.style.socialToolbar}
-                    socialButtonsStyle={this.props.style.socialButton}/>
+                    socialButtonsStyle={this.props.style.socialToolbarButton || this.props.style.socialButton}/>
                 <CommentsBox
                     onCommentBoxClosedClick={(e) => this.setState({opened: true})}
                     opened={this.state.opened}
@@ -152,6 +151,7 @@ SocialInteractionsBox.propTypes = {
     style: React.PropTypes.shape({
         socialInteractionsBox: React.PropTypes.object,
         socialToolbar: SocialToolbar.propTypes.style,
+        socialToolbarButton: SocialButton.propTypes.style,
         commentsBox: CommentsBox.propTypes.style,
         comment: Comment.propTypes.style,
         editingComment: EditingComment.propTypes.style,
