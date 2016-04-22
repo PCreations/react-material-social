@@ -157,7 +157,10 @@
         }, {
             key: 'handleEditClick',
             value: function handleEditClick(e, commentId, commentText) {
-                this.props.onEditClick(e, commentId, commentText);
+                this.setState({
+                    editingCommentId: "",
+                    editingCommentText: ""
+                }, this.props.onEditClick(e, commentId, commentText));
             }
         }, {
             key: 'getCommentTextFromId',
