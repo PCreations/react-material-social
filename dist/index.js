@@ -1,23 +1,25 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(["exports", "react"], factory);
+        define(['react-dom', 'react', 'react-addons-perf', './components/SocialInteractionsBox'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require("react"));
+        factory(require('react-dom'), require('react'), require('react-addons-perf'), require('./components/SocialInteractionsBox'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react);
+        factory(global.reactDom, global.react, global.reactAddonsPerf, global.SocialInteractionsBox);
         global.index = mod.exports;
     }
-})(this, function (exports, _react) {
-    "use strict";
+})(this, function (_reactDom, _react, _reactAddonsPerf, _SocialInteractionsBox) {
+    'use strict';
 
-    Object.defineProperty(exports, "__esModule", {
-        value: true
-    });
+    var _reactDom2 = _interopRequireDefault(_reactDom);
 
     var _react2 = _interopRequireDefault(_react);
+
+    var _reactAddonsPerf2 = _interopRequireDefault(_reactAddonsPerf);
+
+    var _SocialInteractionsBox2 = _interopRequireDefault(_SocialInteractionsBox);
 
     function _interopRequireDefault(obj) {
         return obj && obj.__esModule ? obj : {
@@ -25,86 +27,85 @@
         };
     }
 
-    function _classCallCheck(instance, Constructor) {
-        if (!(instance instanceof Constructor)) {
-            throw new TypeError("Cannot call a class as a function");
-        }
-    }
+    window.Perf = _reactAddonsPerf2.default;
 
-    var _createClass = function () {
-        function defineProperties(target, props) {
-            for (var i = 0; i < props.length; i++) {
-                var descriptor = props[i];
-                descriptor.enumerable = descriptor.enumerable || false;
-                descriptor.configurable = true;
-                if ("value" in descriptor) descriptor.writable = true;
-                Object.defineProperty(target, descriptor.key, descriptor);
-            }
-        }
+    window.React = _react2.default;
 
-        return function (Constructor, protoProps, staticProps) {
-            if (protoProps) defineProperties(Constructor.prototype, protoProps);
-            if (staticProps) defineProperties(Constructor, staticProps);
-            return Constructor;
-        };
-    }();
+    var comments = [{
+        id: 'abcd',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'abcdE',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'qsdq',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'mlk',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'www',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'xxx',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'zzz',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'wxz',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "what is the material used in google's primer app?﻿",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }];
 
-    function _possibleConstructorReturn(self, call) {
-        if (!self) {
-            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-        }
-
-        return call && (typeof call === "object" || typeof call === "function") ? call : self;
-    }
-
-    function _inherits(subClass, superClass) {
-        if (typeof superClass !== "function" && superClass !== null) {
-            throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-        }
-
-        subClass.prototype = Object.create(superClass && superClass.prototype, {
-            constructor: {
-                value: subClass,
-                enumerable: false,
-                writable: true,
-                configurable: true
-            }
-        });
-        if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-    }
-
-    var MyComponent = function (_React$Component) {
-        _inherits(MyComponent, _React$Component);
-
-        function MyComponent() {
-            _classCallCheck(this, MyComponent);
-
-            return _possibleConstructorReturn(this, Object.getPrototypeOf(MyComponent).apply(this, arguments));
-        }
-
-        _createClass(MyComponent, [{
-            key: "componentDidMount",
-            value: function componentDidMount() {
-                // some logic here - we only test if the method is called
-            }
-        }, {
-            key: "render",
-            value: function render() {
-                return _react2.default.createElement(
-                    "div",
-                    { className: "my-component" },
-                    _react2.default.createElement("i", { className: "icon-test" }),
-                    _react2.default.createElement("i", { className: "icon-test" }),
-                    _react2.default.createElement("i", { className: "icon-test" }),
-                    _react2.default.createElement("button", { onClick: this.props.handleClick, type: "button" })
-                );
-            }
-        }]);
-
-        return MyComponent;
-    }(_react2.default.Component);
-
-    ;
-
-    exports.default = MyComponent;
+    _reactDom2.default.render(_react2.default.createElement(
+        'div',
+        { style: {
+                width: 432,
+                backgroundColor: '#fefefe'
+            } },
+        _react2.default.createElement(_SocialInteractionsBox2.default, {
+            reactionsCount: 45,
+            commentsCount: 1,
+            sharesCount: 15,
+            comments: comments,
+            commentInputProps: {
+                avatar: 'http://lh3.googleusercontent.com/-ImgnbmvkTZ8/AAAAAAAAAAI/AAAAAAAAHZ8/SRkXfj7CBkM/s36-p-k-rw-no/photo.jpg',
+                addCommentText: 'Ajoutez un commentaire...',
+                plubishButtonText: 'publier'
+            },
+            cancelButtonText: "Annuler",
+            editButtonText: "Modifier" })
+    ), document.getElementById('app'));
 });
