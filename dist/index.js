@@ -107,8 +107,8 @@
             },
             cancelButtonText: "Annuler",
             editButtonText: "Modifier",
-            onRender: function onRender() {
-                return console.log("render");
+            onRender: function onRender(self) {
+                return console.log("render", self.state.opened);
             } })
     ), document.getElementById('app'));
 });

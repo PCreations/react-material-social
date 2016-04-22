@@ -171,12 +171,12 @@
         }, {
             key: 'componentDidMount',
             value: function componentDidMount() {
-                this.props.onRender();
+                this.props.onRender(this);
             }
         }, {
             key: 'componentDidUpdate',
             value: function componentDidUpdate() {
-                this.props.onRender();
+                this.props.onRender(this);
             }
         }, {
             key: 'render',

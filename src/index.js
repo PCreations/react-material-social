@@ -83,7 +83,7 @@ ReactDOM.render(
             }}
             cancelButtonText={"Annuler"}
             editButtonText={"Modifier"}
-            onRender={() => console.log("render")} />
+            onRender={(self) => console.log("render", self.state.opened)} />
     </div>,
     document.getElementById('app')
 );

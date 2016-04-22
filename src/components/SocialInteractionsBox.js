@@ -57,10 +57,10 @@ class SocialInteractionsBox extends React.Component {
         return comment.text;
     }
     componentDidMount() {
-        this.props.onRender();
+        this.props.onRender(this);
     }
     componentDidUpdate() {
-        this.props.onRender();
+        this.props.onRender(this);
     }
     render() {
         let {comments, onCommentButtonClick, props} = this.props;
