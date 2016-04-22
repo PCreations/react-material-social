@@ -48,8 +48,8 @@ class SocialInteractionsBox extends React.Component {
             clickedComment: null
         });
     }
-    handleEditClick(e, commentId) {
-        this.props.onEditClick(e, commentId);
+    handleEditClick(e, commentId, commentText) {
+        this.props.onEditClick(e, commentId, commentText);
     }
     getCommentTextFromId(id) {
         let comment = this.props.comments.filter(c => c.id == id)[0];
