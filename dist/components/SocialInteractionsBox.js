@@ -216,7 +216,10 @@
                 return _react2.default.createElement(
                     'div',
                     { style: style },
-                    _react2.default.createElement(_SocialToolbar2.default, _extends({}, props, {
+                    _react2.default.createElement(_SocialToolbar2.default, {
+                        reactionsCount: this.props.reactionsCount,
+                        commentsCount: this.props.commentsCount,
+                        sharesCount: this.props.sharesCount,
                         onClick: function onClick(e) {
                             return _this2.setState({
                                 opened: !_this2.state.opened,
@@ -224,9 +227,11 @@
                                 editingCommentId: ''
                             });
                         },
+                        onReactionButtonClick: this.props.onReactionButtonClick,
+                        onShareButtonClick: this.props.onShareButtonClick,
                         onCommentButtonClick: onCommentButtonClickCallback,
                         style: this.props.style.socialToolbar,
-                        socialButtonsStyle: this.props.style.socialToolbarButton || this.props.style.socialButton })),
+                        socialButtonsStyle: this.props.style.socialToolbarButton || this.props.style.socialButton }),
                     _react2.default.createElement(_CommentsBox2.default, {
                         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {
                             return _this2.setState({ opened: true });
@@ -307,7 +312,7 @@
             commentInput: _CommentInput2.default.propTypes.style,
             socialButton: _SocialButton2.default.propTypes.style
         }),
-        reactionsCount: _react2.default.PropTypes.number.isRequired,
+        reactionsCount: _react2.default.PropTypes.number,
         commentsCount: _react2.default.PropTypes.number,
         sharesCount: _react2.default.PropTypes.number,
         onReactionButtonClick: _react2.default.PropTypes.func,

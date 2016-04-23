@@ -94,12 +94,16 @@ class SocialInteractionsBox extends React.Component {
         return (
             <div style={style}>
                 <SocialToolbar
-                    {...props}
+                    reactionsCount={this.props.reactionsCount}
+                    commentsCount={this.props.commentsCount}
+                    sharesCount={this.props.sharesCount}
                     onClick={(e) => this.setState({
                         opened: !this.state.opened,
                         inputCommentOpened: false,
                         editingCommentId: ''
                     })}
+                    onReactionButtonClick={this.props.onReactionButtonClick}
+                    onShareButtonClick={this.props.onShareButtonClick}
                     onCommentButtonClick={onCommentButtonClickCallback}
                     style={this.props.style.socialToolbar}
                     socialButtonsStyle={this.props.style.socialToolbarButton || this.props.style.socialButton}/>
@@ -168,7 +172,7 @@ SocialInteractionsBox.propTypes = {
         commentInput: CommentInput.propTypes.style,
         socialButton: SocialButton.propTypes.style
     }),
-    reactionsCount: React.PropTypes.number.isRequired,
+    reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
     onReactionButtonClick: React.PropTypes.func,
