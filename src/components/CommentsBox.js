@@ -72,10 +72,6 @@ const commentTextStyle = {
 }
 
 const CommentsBox = (props) => {
-    if (props.comments.length == 0) {
-        return null
-    }
-
     let firstComment = props.comments[0];
 
     let commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened)
@@ -120,15 +116,19 @@ const CommentsBox = (props) => {
                     <CommentInput {...props.commentInputProps} />
                 </div>
             ) : (
-                <div style={commentsBoxClosedStyleMerged} onClick={(e) => props.onCommentBoxClosedClick(e)}>
-                    <div style={commentStyleMerged}>
-                        <img width={36} height={36} style={firstAvatarStyleMerged} src={firstComment.avatar} />
-                        <div style={commentTextStyleMerged}>
-                            <span style={commentAuthorStyleMerged}>{firstComment.author+": "}</span>
-                            <span>{firstComment.text}</span>
+                firstComment ? (
+                    <div style={commentsBoxClosedStyleMerged} onClick={(e) => props.onCommentBoxClosedClick(e)}>
+                        <div style={commentStyleMerged}>
+                            <img width={36} height={36} style={firstAvatarStyleMerged} src={firstComment.avatar} />
+                            <div style={commentTextStyleMerged}>
+                                <span style={commentAuthorStyleMerged}>{firstComment.author+": "}</span>
+                                <span>{firstComment.text}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                ) : (
+                    <noscript />
+                )
             )}
         </div>
     );

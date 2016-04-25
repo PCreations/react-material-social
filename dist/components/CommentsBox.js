@@ -113,10 +113,6 @@
     };
 
     var CommentsBox = function CommentsBox(props) {
-        if (props.comments.length == 0) {
-            return null;
-        }
-
         var firstComment = props.comments[0];
 
         var commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened);
@@ -170,7 +166,7 @@
                 ),
                 props.commentPopover,
                 _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
-            ) : _react2.default.createElement(
+            ) : firstComment ? _react2.default.createElement(
                 'div',
                 { style: commentsBoxClosedStyleMerged, onClick: function onClick(e) {
                         return props.onCommentBoxClosedClick(e);
@@ -194,7 +190,7 @@
                         )
                     )
                 )
-            )
+            ) : _react2.default.createElement('noscript', null)
         );
     };
 

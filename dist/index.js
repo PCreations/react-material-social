@@ -34,63 +34,7 @@
 
     window.React = _react2.default;
 
-    var comments = [{
-        id: 'abcd',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'abcdE',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'qsdq',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'mlk',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'www',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'xxx',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'zzz',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }, {
-        id: 'wxz',
-        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
-        author: 'Shubhansh Jaiswal',
-        text: "what is the material used in google's primer app?﻿",
-        reactionsCount: '+5',
-        timeSince: '6h'
-    }];
+    var comments = [];
 
     _reactDom2.default.render(_react2.default.createElement(
         'div',
@@ -99,7 +43,6 @@
                 backgroundColor: '#fefefe'
             } },
         _react2.default.createElement(_SocialInteractionsBox2.default, {
-            style: style,
             reactionIcon: _react2.default.createElement(_thumbUp2.default, null),
             reactionsCount: 45,
             commentsCount: 1,
