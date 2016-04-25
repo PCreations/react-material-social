@@ -103,7 +103,7 @@ class SocialInteractionsBox extends React.Component {
             <div style={style}>
                 <SocialToolbar
                     reactionIcon={this.props.reactionIcon}
-                    reactionButtonactive={this.props.reactionButtonActive}
+                    reactionButtonActive={this.props.reactionButtonActive}
                     reactionsCount={this.props.reactionsCount}
                     commentsCount={this.props.commentsCount}
                     sharesCount={this.props.sharesCount}
@@ -196,6 +196,7 @@ SocialInteractionsBox.propTypes = {
         commentInput: CommentInput.propTypes.style,
         socialButton: SocialButton.propTypes.style
     }),
+    reactionButtonActive: React.PropTypes.bool,
     reactionIcon: React.PropTypes.element,
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
@@ -234,6 +235,7 @@ SocialInteractionsBox.defaultProps = {
         commentInput: {},
         socialButton: {}
     },
+    reactionButtonActive: false,
     reactionIcon: <PlusOneSVG/>,
     onReactionButtonClick: () => {},
     onCommentButtonClick: () => {},

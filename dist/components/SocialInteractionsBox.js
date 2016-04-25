@@ -226,7 +226,7 @@
                     { style: style },
                     _react2.default.createElement(_SocialToolbar2.default, {
                         reactionIcon: this.props.reactionIcon,
-                        reactionButtonactive: this.props.reactionButtonActive,
+                        reactionButtonActive: this.props.reactionButtonActive,
                         reactionsCount: this.props.reactionsCount,
                         commentsCount: this.props.commentsCount,
                         sharesCount: this.props.sharesCount,
@@ -337,6 +337,7 @@
             commentInput: _CommentInput2.default.propTypes.style,
             socialButton: _SocialButton2.default.propTypes.style
         }),
+        reactionButtonActive: _react2.default.PropTypes.bool,
         reactionIcon: _react2.default.PropTypes.element,
         reactionsCount: _react2.default.PropTypes.number,
         commentsCount: _react2.default.PropTypes.number,
@@ -375,6 +376,7 @@
             commentInput: {},
             socialButton: {}
         },
+        reactionButtonActive: false,
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},
         onCommentButtonClick: function onCommentButtonClick() {},

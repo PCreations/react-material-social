@@ -60,7 +60,7 @@ const SocialToolbar = (props) => {
     return (
         <div style={containerStyleMerged} role="toolbar" onClick={(e) => props.onClick(e)}>
             <SocialButton
-                active={props.reactionButtonactive}
+                active={props.reactionButtonActive}
                 onClick={(e) => clickCallbackFactory(
                     e,
                     props.onReactionButtonClick
@@ -117,7 +117,7 @@ SocialToolbar.propTypes = {
     reactionIcon: React.PropTypes.element,
     commentIcon: React.PropTypes.element,
     shareIcon: React.PropTypes.element,
-    reactionButtonactive: React.PropTypes.bool,
+    reactionButtonActive: React.PropTypes.bool,
     socialButtonsStyle: SocialButton.propTypes.style,
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
@@ -133,7 +133,7 @@ SocialToolbar.defaultProps = {
     reactionIcon: <PlusOneSVG/>,
     commentIcon: <CommentSVG/>,
     shareIcon: <ShareSVG/>,
-    reactionButtonactive: false,
+    reactionButtonActive: false,
     onReactionButtonClick: (e) => console.log('reaction button clicked'),
     onCommentButtonClick: (e) => console.log('comment button clicked'),
     onShareButtonClick: (e) => console.log('share button clicked')

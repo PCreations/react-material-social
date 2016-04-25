@@ -90,7 +90,7 @@
                     return props.onClick(e);
                 } },
             _react2.default.createElement(_SocialButton2.default, {
-                active: props.reactionButtonactive,
+                active: props.reactionButtonActive,
                 onClick: function onClick(e) {
                     return clickCallbackFactory(e, props.onReactionButtonClick);
                 },
@@ -143,7 +143,7 @@
         reactionIcon: _react2.default.PropTypes.element,
         commentIcon: _react2.default.PropTypes.element,
         shareIcon: _react2.default.PropTypes.element,
-        reactionButtonactive: _react2.default.PropTypes.bool,
+        reactionButtonActive: _react2.default.PropTypes.bool,
         socialButtonsStyle: _SocialButton2.default.propTypes.style,
         reactionsCount: _react2.default.PropTypes.number,
         commentsCount: _react2.default.PropTypes.number,
@@ -159,7 +159,7 @@
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         commentIcon: _react2.default.createElement(_comment2.default, null),
         shareIcon: _react2.default.createElement(_share2.default, null),
-        reactionButtonactive: false,
+        reactionButtonActive: false,
         onReactionButtonClick: function onReactionButtonClick(e) {
             return console.log('reaction button clicked');
         },
