@@ -100,6 +100,9 @@
         if (props.hovered) {
             buttonStyleMerged = Object.assign({}, buttonStyleMerged, buttonStyleHoveredMerged);
         }
+        if (props.active) {
+            containerStyleMerged = Object.assign({}, containerStyleMerged, props.style.containerActive);
+        }
         var iconStyleMerged = Object.assign({}, iconStyle, props.style.icon);
         var activeIconStyleMerged = Object.assign({}, activeIconStyle, props.style.activeIcon);
         var activeIconContainerStyle = {
@@ -140,6 +143,7 @@
     SocialButton.propTypes = {
         style: _react2.default.PropTypes.shape({
             container: _react2.default.PropTypes.object,
+            containerActive: _react2.default.PropTypes.object,
             button: _react2.default.PropTypes.object,
             activeButton: _react2.default.PropTypes.object,
             buttonHovered: _react2.default.PropTypes.object,

@@ -83,6 +83,9 @@ const SocialButton = (props) => {
     if (props.hovered) {
         buttonStyleMerged = Object.assign({}, buttonStyleMerged, buttonStyleHoveredMerged);
     }
+    if (props.active) {
+        containerStyleMerged = Object.assign({}, containerStyleMerged, props.style.containerActive)
+    }
     let iconStyleMerged = Object.assign({}, iconStyle, props.style.icon);
     let activeIconStyleMerged = Object.assign({}, activeIconStyle, props.style.activeIcon);
     let activeIconContainerStyle = {
@@ -117,6 +120,7 @@ const SocialButton = (props) => {
 SocialButton.propTypes = {
     style: React.PropTypes.shape({
         container: React.PropTypes.object,
+        containerActive: React.PropTypes.object,
         button: React.PropTypes.object,
         activeButton: React.PropTypes.object,
         buttonHovered: React.PropTypes.object,
