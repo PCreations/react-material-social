@@ -174,8 +174,8 @@ const Comment = (props) => {
     let commentReactionButtonContainerStyleMerged = Object.assign({}, commentReactionButtonContainerStyle, props.style.reactionButtonContainer)
     let moreVertButtonContainerStyleMerged = Object.assign({}, moreVertButtonContainerStyle, props.style.moreVertButtonContainer)
     let timeSinceStyleMerged = Object.assign({}, timeSinceStyle, props.style.timeSince)
-    let socialButtonReactionStyleMerged = Object.assign({}, socialButtonReactionStyle, props.socialButtonReactionStyle)
-    let socialButtonMoreVertStyleMerged = Object.assign({}, socialButtonMoreVertStyle, props.socialButtonMoreVertStyle)
+    let socialButtonReactionStyleMerged = Object.assign({}, socialButtonReactionStyle, props.style.socialButtonReaction)
+    let socialButtonMoreVertStyleMerged = Object.assign({}, socialButtonMoreVertStyle, props.style.moreVertButtonContainer)
 
     if (props.hovered) {
         commentItemStyleMerged = Object.assign({}, commentItemStyleMerged, commentItemStyleHoveredMerged);
@@ -236,14 +236,11 @@ Comment.propTypes = {
         body: React.PropTypes.object,
         interactionsContainer: React.PropTypes.object,
         reactionButtonContainer: React.PropTypes.object,
-        reactionButtonActive: React.PropTypes.object,
-        reactionIcon: React.PropTypes.object,
-        reactionIconActive: React.PropTypes.object,
         moreVertButtonContainer: React.PropTypes.object,
+        socialButtonReaction: SocialButton.propTypes.style,
+        socialButtonMortVert: SocialButton.propTypes.style,
         timeSince: React.PropTypes.object,
     }),
-    socialButtonReactionStyle: SocialButton.propTypes.style,
-    socialButtonMortVertStyle: SocialButton.propTypes.style,
     id: React.PropTypes.string.isRequired,
     avatar: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
@@ -259,8 +256,6 @@ Comment.propTypes = {
 
 Comment.defaultProps = {
     style: {},
-    socialButtonReactionStyle: {},
-    socialButtonMoreVertStyle: {},
     reactionButtonActive: false,
     onReactionButtonClick: (e, id) => {},
     hovered: false

@@ -201,8 +201,8 @@
         var commentReactionButtonContainerStyleMerged = Object.assign({}, commentReactionButtonContainerStyle, props.style.reactionButtonContainer);
         var moreVertButtonContainerStyleMerged = Object.assign({}, moreVertButtonContainerStyle, props.style.moreVertButtonContainer);
         var timeSinceStyleMerged = Object.assign({}, timeSinceStyle, props.style.timeSince);
-        var socialButtonReactionStyleMerged = Object.assign({}, socialButtonReactionStyle, props.socialButtonReactionStyle);
-        var socialButtonMoreVertStyleMerged = Object.assign({}, socialButtonMoreVertStyle, props.socialButtonMoreVertStyle);
+        var socialButtonReactionStyleMerged = Object.assign({}, socialButtonReactionStyle, props.style.socialButtonReaction);
+        var socialButtonMoreVertStyleMerged = Object.assign({}, socialButtonMoreVertStyle, props.style.moreVertButtonContainer);
 
         if (props.hovered) {
             commentItemStyleMerged = Object.assign({}, commentItemStyleMerged, commentItemStyleHoveredMerged);
@@ -289,14 +289,11 @@
             body: _react2.default.PropTypes.object,
             interactionsContainer: _react2.default.PropTypes.object,
             reactionButtonContainer: _react2.default.PropTypes.object,
-            reactionButtonActive: _react2.default.PropTypes.object,
-            reactionIcon: _react2.default.PropTypes.object,
-            reactionIconActive: _react2.default.PropTypes.object,
             moreVertButtonContainer: _react2.default.PropTypes.object,
+            socialButtonReaction: _SocialButton2.default.propTypes.style,
+            socialButtonMortVert: _SocialButton2.default.propTypes.style,
             timeSince: _react2.default.PropTypes.object
         }),
-        socialButtonReactionStyle: _SocialButton2.default.propTypes.style,
-        socialButtonMortVertStyle: _SocialButton2.default.propTypes.style,
         id: _react2.default.PropTypes.string.isRequired,
         avatar: _react2.default.PropTypes.string.isRequired,
         author: _react2.default.PropTypes.string.isRequired,
@@ -312,8 +309,6 @@
 
     Comment.defaultProps = {
         style: {},
-        socialButtonReactionStyle: {},
-        socialButtonMoreVertStyle: {},
         reactionButtonActive: false,
         onReactionButtonClick: function onReactionButtonClick(e, id) {},
         hovered: false

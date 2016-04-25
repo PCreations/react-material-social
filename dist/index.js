@@ -99,6 +99,7 @@
                 backgroundColor: '#fefefe'
             } },
         _react2.default.createElement(_SocialInteractionsBox2.default, {
+            style: style,
             reactionIcon: _react2.default.createElement(_thumbUp2.default, null),
             reactionsCount: 45,
             commentsCount: 1,

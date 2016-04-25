@@ -66,13 +66,13 @@ const comments = [{
     timeSince: '6h'
 }];
 
-
 ReactDOM.render(
     <div style={{
         width: '100%',
         backgroundColor: '#fefefe'
     }}>
         <SocialInteractionsBox
+            style={style}
             reactionIcon={<ThumbUp/>}
             reactionsCount={45}
             commentsCount={1}
