@@ -149,6 +149,8 @@
 
     var CommentInput = function CommentInput(props) {
 
+        var textareaNode = null;
+
         var commentInputContainerStyleMerged = Object.assign({}, commentInputContainerStyle, props.style.container);
         var commentInputContainerOpenedStyleMerged = Object.assign({}, commentInputContainerOpenedStyle, props.style.opened);
         var avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar);
@@ -167,6 +169,11 @@
         }
         if (props.text.length > 0) {
             publishButtonTextStyleMerged = Object.assign({}, publishButtonTextStyleMerged, publishButtonTextActiveStyleMerged);
+        }
+        var lth = textareaStyleMerged.lineHeight;
+        var lines = 1;
+        if (textareaNode) {
+            lines = textareaNode.scrollHeight / lth;
         }
         return _react2.default.createElement(
             'div',
@@ -191,7 +198,10 @@
                                 role: 'textbox',
                                 value: props.text,
                                 ref: function ref(_ref) {
-                                    _ref && _reactDom2.default.findDOMNode(_ref).focus();
+                                    if (_ref) {
+                                        textareaNode = _reactDom2.default.findDOMNode(_ref);
+                                        textareaNode.focus();
+                                    }
                                 },
                                 placeholder: props.addCommentText,
                                 style: textareaStyleMerged })

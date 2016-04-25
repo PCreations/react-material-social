@@ -60,11 +60,12 @@ const SocialToolbar = (props) => {
     return (
         <div style={containerStyleMerged} role="toolbar" onClick={(e) => props.onClick(e)}>
             <SocialButton
+                active={props.reactionButtonactive}
                 onClick={(e) => clickCallbackFactory(
                     e,
                     props.onReactionButtonClick
                 )}
-                icon={<PlusOneSVG style={iconStyleMerged} />}
+                icon={React.cloneElement(props.reactionIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
             {props.reactionsCount && (
                 <div style={countStyleMerged}>
@@ -84,7 +85,7 @@ const SocialToolbar = (props) => {
                     e,
                     props.onCommentButtonClick
                 )}
-                icon={<CommentSVG style={iconStyleMerged} />}
+                icon={React.cloneElement(props.commentIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
             {props.commentsCount && (
                 <div style={countStyleMerged}>
@@ -96,7 +97,7 @@ const SocialToolbar = (props) => {
                     e,
                     props.onShareButtonClick
                 )}
-                icon={<ShareSVG style={iconStyleMerged} />}
+                icon={React.cloneElement(props.shareIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
             {props.sharesCount && (
                 <div style={countStyleMerged}>
@@ -113,6 +114,10 @@ SocialToolbar.propTypes = {
         icon: React.PropTypes.object,
         count: React.PropTypes.object
     }),
+    reactionIcon: React.PropTypes.element,
+    commentIcon: React.PropTypes.element,
+    shareIcon: React.PropTypes.element,
+    reactionButtonactive: React.PropTypes.bool,
     socialButtonsStyle: SocialButton.propTypes.style,
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
@@ -125,6 +130,10 @@ SocialToolbar.propTypes = {
 
 SocialToolbar.defaultProps = {
     style: {},
+    reactionIcon: <PlusOneSVG/>,
+    commentIcon: <CommentSVG/>,
+    shareIcon: <ShareSVG/>,
+    reactionButtonactive: false,
     onReactionButtonClick: (e) => console.log('reaction button clicked'),
     onCommentButtonClick: (e) => console.log('comment button clicked'),
     onShareButtonClick: (e) => console.log('share button clicked')

@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom';
 import React from 'react';
 import Perf from 'react-addons-perf';
 window.Perf = Perf;
+import ThumbUp from 'material-ui/lib/svg-icons/action/thumb-up';
 
 import SocialInteractionsBox from './components/SocialInteractionsBox';
 
@@ -72,6 +73,7 @@ ReactDOM.render(
         backgroundColor: '#fefefe'
     }}>
         <SocialInteractionsBox
+            reactionIcon={<ThumbUp/>}
             reactionsCount={45}
             commentsCount={1}
             sharesCount={15}

@@ -3,6 +3,7 @@ import React from 'react'
 import Popover from 'material-ui/lib/popover/popover';
 import Menu from 'material-ui/lib/menus/menu';
 import MenuItem from 'material-ui/lib/menus/menu-item';
+import PlusOneSVG from 'material-ui/lib/svg-icons/social/plus-one';
 
 import SocialToolbar from './SocialToolbar';
 import SocialButton from './SocialButton';
@@ -26,13 +27,15 @@ class SocialInteractionsBox extends React.Component {
         this.displayName = 'SocialInteractionsBox';
         this.state = {
             opened: false,
+            reactionButtonActive: false,
             inputCommentOpened: false,
             clickedComment: null,
             popoverOpened: false,
             clickedCommentId: "",
             editingCommentId: "",
             editingCommentText: "",
-            inputText: ""
+            inputText: "",
+            activeReactionButtons: []
         }
     }
     setClickedComment(e, commentId) {
@@ -91,18 +94,28 @@ class SocialInteractionsBox extends React.Component {
             this.props.style.socialInteractionsBox
         )
 
+        comments = this.props.comments.map(c => {
+            c.reactionButtonActive = this.state.activeReactionButtons.indexOf(c.id) !== -1
+            return c
+        })
+
+
         return (
             <div style={style}>
                 <SocialToolbar
+                    reactionIcon={this.props.reactionIcon}
+                    reactionButtonactive={this.state.reactionButtonActive}
                     reactionsCount={this.props.reactionsCount}
                     commentsCount={this.props.commentsCount}
                     sharesCount={this.props.sharesCount}
                     onClick={(e) => this.setState({
                         opened: !this.state.opened,
                         inputCommentOpened: false,
-                        editingCommentId: ''
+                        editingCommentId: '',
                     })}
-                    onReactionButtonClick={this.props.onReactionButtonClick}
+                    onReactionButtonClick={(e) => this.setState({
+                        reactionButtonActive: !this.state.reactionButtonActive
+                    }, this.props.onReactionButtonClick(e))}
                     onShareButtonClick={this.props.onShareButtonClick}
                     onCommentButtonClick={onCommentButtonClickCallback}
                     style={this.props.style.socialToolbar}
@@ -111,6 +124,20 @@ class SocialInteractionsBox extends React.Component {
                     onCommentBoxClosedClick={(e) => this.setState({opened: true})}
                     opened={this.state.opened}
                     comments={comments}
+                    reactionIcon={this.props.reactionIcon}
+                    onReactionButtonClick={(e, commentId) => {
+                        let buttonIndex = this.state.activeReactionButtons.indexOf(commentId)
+                        let activeReactionButtons = this.state.activeReactionButtons
+                        if (buttonIndex === -1) {
+                            activeReactionButtons.push(commentId)
+                        }
+                        else {
+                            activeReactionButtons.splice(buttonIndex, 1);
+                        }
+                        this.setState({
+                            activeReactionButtons: activeReactionButtons
+                        })
+                    }}
                     onCommentClick={(e, commentId) => this.setClickedComment(e, commentId)}
                     commentInputProps={{
                         ...commentInputProps,
@@ -172,6 +199,7 @@ SocialInteractionsBox.propTypes = {
         commentInput: CommentInput.propTypes.style,
         socialButton: SocialButton.propTypes.style
     }),
+    reactionIcon: React.PropTypes.element,
     reactionsCount: React.PropTypes.number,
     commentsCount: React.PropTypes.number,
     sharesCount: React.PropTypes.number,
@@ -199,7 +227,18 @@ SocialInteractionsBox.propTypes = {
 }
 
 SocialInteractionsBox.defaultProps = {
-    style: {},
+    style: {
+        socialInteractionsBox: {},
+        socialToolbar: {},
+        socialToolbarButton: {},
+        commentsBox: {},
+        comment: {},
+        editingComment: {},
+        commentInput: {},
+        socialButton: {}
+    },
+    reactionIcon: <PlusOneSVG/>,
+    onReactionButtonClick: () => {},
     onCommentButtonClick: () => {},
     onRender: () => {}
 }

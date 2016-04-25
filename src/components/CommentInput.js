@@ -119,6 +119,8 @@ const publishButtonTextActiveStyle = {
 
 const CommentInput = (props) => {
 
+    let textareaNode = null;
+
     let commentInputContainerStyleMerged = Object.assign({}, commentInputContainerStyle, props.style.container)
     let commentInputContainerOpenedStyleMerged = Object.assign({}, commentInputContainerOpenedStyle, props.style.opened)
     let avatarStyleMerged = Object.assign({}, avatarStyle, props.style.avatar)
@@ -138,6 +140,11 @@ const CommentInput = (props) => {
     if (props.text.length > 0) {
         publishButtonTextStyleMerged = Object.assign({}, publishButtonTextStyleMerged, publishButtonTextActiveStyleMerged)
     }
+    let lth = textareaStyleMerged.lineHeight
+    let lines = 1
+    if (textareaNode) {
+        lines = textareaNode.scrollHeight / lth
+    }
     return (
         <div style={commentInputContainerStyleMerged}>
             <img width={36} height={36} style={avatarStyleMerged} src={props.avatar} />
@@ -150,7 +157,12 @@ const CommentInput = (props) => {
                                     onChange={(e) => props.onTextChange(e)}
                                     role="textbox"
                                     value={props.text}
-                                    ref={(ref) => { ref && ReactDOM.findDOMNode(ref).focus() }}
+                                    ref={(ref) => {
+                                        if (ref) {
+                                            textareaNode = ReactDOM.findDOMNode(ref)
+                                            textareaNode.focus();
+                                        }
+                                    }}
                                     placeholder={props.addCommentText}
                                     style={textareaStyleMerged}></textarea>
                             </div>

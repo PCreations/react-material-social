@@ -106,7 +106,12 @@ const CommentsBox = (props) => {
                                         onTextChange={(e) => props.onEditingCommentTextChange(e)}
                                         style={props.editingCommentStyle}/>
                                 ) : (
-                                    <Comment {...c} onClick={(e) => props.onCommentClick(e, c.id)} style={props.commentStyle}/>
+                                    <Comment
+                                        {...c}
+                                        onClick={(e) => props.onCommentClick(e, c.id)}
+                                        onReactionButtonClick={(e, id) => props.onReactionButtonClick(e, id)}
+                                        reactionIcon={props.reactionIcon}
+                                        style={props.commentStyle}/>
                                 )}
                             </li>
                         ))}
@@ -150,6 +155,7 @@ CommentsBox.propTypes = {
         reactionsCount: React.PropTypes.string.isRequired,
         text: React.PropTypes.string.isRequired,
     })),
+    reactionIcon: React.PropTypes.element,
     commentInputProps: React.PropTypes.shape({
         avatar: React.PropTypes.string.isRequired,
         addCommentText: React.PropTypes.string.isRequired,
@@ -162,6 +168,7 @@ CommentsBox.propTypes = {
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
     onCommentClick: React.PropTypes.func,
+    onReactionButtonClick: React.PropTypes.func,
     onCommentBoxClosedClick: React.PropTypes.func,
     onCancelClick: React.PropTypes.func,
     onEditClick: React.PropTypes.func,
@@ -179,6 +186,7 @@ CommentsBox.defaultProps = {
     opened: false,
     onCommentBoxClosedClick: (e) => {},
     onCommentClick: (e, id) => {},
+    onReactionButtonClick: (e, id) => {},
     onEditClick: (e, id, text) => {},
     onCancelClick: (e) => {},
     onEditingCommentTextChange: (e) => {}
@@ -186,6 +194,7 @@ CommentsBox.defaultProps = {
 
 export default pureComponent(CommentsBox, [
     'onCommentClick',
+    'onReactionButtonClick',
     'onCommentBoxClosedClick',
     'onCancelClick',
     'onEditClick',

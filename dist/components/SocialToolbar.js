@@ -90,10 +90,11 @@
                     return props.onClick(e);
                 } },
             _react2.default.createElement(_SocialButton2.default, {
+                active: props.reactionButtonactive,
                 onClick: function onClick(e) {
                     return clickCallbackFactory(e, props.onReactionButtonClick);
                 },
-                icon: _react2.default.createElement(_plusOne2.default, { style: iconStyleMerged }),
+                icon: _react2.default.cloneElement(props.reactionIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
             props.reactionsCount && _react2.default.createElement(
                 'div',
@@ -112,7 +113,7 @@
                 onClick: function onClick(e) {
                     return clickCallbackFactory(e, props.onCommentButtonClick);
                 },
-                icon: _react2.default.createElement(_comment2.default, { style: iconStyleMerged }),
+                icon: _react2.default.cloneElement(props.commentIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
             props.commentsCount && _react2.default.createElement(
                 'div',
@@ -123,7 +124,7 @@
                 onClick: function onClick(e) {
                     return clickCallbackFactory(e, props.onShareButtonClick);
                 },
-                icon: _react2.default.createElement(_share2.default, { style: iconStyleMerged }),
+                icon: _react2.default.cloneElement(props.shareIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
             props.sharesCount && _react2.default.createElement(
                 'div',
@@ -139,6 +140,10 @@
             icon: _react2.default.PropTypes.object,
             count: _react2.default.PropTypes.object
         }),
+        reactionIcon: _react2.default.PropTypes.element,
+        commentIcon: _react2.default.PropTypes.element,
+        shareIcon: _react2.default.PropTypes.element,
+        reactionButtonactive: _react2.default.PropTypes.bool,
         socialButtonsStyle: _SocialButton2.default.propTypes.style,
         reactionsCount: _react2.default.PropTypes.number,
         commentsCount: _react2.default.PropTypes.number,
@@ -151,6 +156,10 @@
 
     SocialToolbar.defaultProps = {
         style: {},
+        reactionIcon: _react2.default.createElement(_plusOne2.default, null),
+        commentIcon: _react2.default.createElement(_comment2.default, null),
+        shareIcon: _react2.default.createElement(_share2.default, null),
+        reactionButtonactive: false,
         onReactionButtonClick: function onReactionButtonClick(e) {
             return console.log('reaction button clicked');
         },

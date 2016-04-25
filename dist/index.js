@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['react-dom', 'react', 'react-addons-perf', './components/SocialInteractionsBox'], factory);
+        define(['react-dom', 'react', 'react-addons-perf', 'material-ui/lib/svg-icons/action/thumb-up', './components/SocialInteractionsBox'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(require('react-dom'), require('react'), require('react-addons-perf'), require('./components/SocialInteractionsBox'));
+        factory(require('react-dom'), require('react'), require('react-addons-perf'), require('material-ui/lib/svg-icons/action/thumb-up'), require('./components/SocialInteractionsBox'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(global.reactDom, global.react, global.reactAddonsPerf, global.SocialInteractionsBox);
+        factory(global.reactDom, global.react, global.reactAddonsPerf, global.thumbUp, global.SocialInteractionsBox);
         global.index = mod.exports;
     }
-})(this, function (_reactDom, _react, _reactAddonsPerf, _SocialInteractionsBox) {
+})(this, function (_reactDom, _react, _reactAddonsPerf, _thumbUp, _SocialInteractionsBox) {
     'use strict';
 
     var _reactDom2 = _interopRequireDefault(_reactDom);
@@ -18,6 +18,8 @@
     var _react2 = _interopRequireDefault(_react);
 
     var _reactAddonsPerf2 = _interopRequireDefault(_reactAddonsPerf);
+
+    var _thumbUp2 = _interopRequireDefault(_thumbUp);
 
     var _SocialInteractionsBox2 = _interopRequireDefault(_SocialInteractionsBox);
 
@@ -28,6 +30,7 @@
     }
 
     window.Perf = _reactAddonsPerf2.default;
+
 
     window.React = _react2.default;
 
@@ -96,6 +99,7 @@
                 backgroundColor: '#fefefe'
             } },
         _react2.default.createElement(_SocialInteractionsBox2.default, {
+            reactionIcon: _react2.default.createElement(_thumbUp2.default, null),
             reactionsCount: 45,
             commentsCount: 1,
             sharesCount: 15,

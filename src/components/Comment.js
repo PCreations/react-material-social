@@ -1,6 +1,5 @@
 import React from 'react';
 
-import PlusOneSVG from 'material-ui/lib/svg-icons/social/plus-one';
 import MoreVertSVG from 'material-ui/lib/svg-icons/navigation/more-vert';
 
 import SocialButton from './SocialButton';
@@ -117,6 +116,16 @@ const socialButtonReactionStyle = {
         display: 'block',
         background: '#e0e0e0',
     },
+    activeButton: {
+        width: 21,
+        height: 21
+    },
+    activeIcon: {
+        width: 14,
+        height: 14,
+        top: '-4px',
+        position: 'relative'
+    },
     buttonHovered: {
         background: '#e0e0e0'
     },
@@ -190,8 +199,12 @@ const Comment = (props) => {
             <div style={commentInteractionsContainerStyleMerged}>
                 <div style={commentReactionButtonContainerStyleMerged}>
                     <SocialButton
-                        onClick={(e) => e.stopPropagation()}
-                        icon={<PlusOneSVG/>}
+                        active={props.reactionButtonActive}
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            props.onReactionButtonClick(e, props.id)
+                        }}
+                        icon={props.reactionIcon}
                         style={socialButtonReactionStyleMerged}/>
                 </div>
                 <div style={moreVertButtonContainerStyleMerged}>
@@ -223,6 +236,9 @@ Comment.propTypes = {
         body: React.PropTypes.object,
         interactionsContainer: React.PropTypes.object,
         reactionButtonContainer: React.PropTypes.object,
+        reactionButtonActive: React.PropTypes.object,
+        reactionIcon: React.PropTypes.object,
+        reactionIconActive: React.PropTypes.object,
         moreVertButtonContainer: React.PropTypes.object,
         timeSince: React.PropTypes.object,
     }),
@@ -231,7 +247,10 @@ Comment.propTypes = {
     id: React.PropTypes.string.isRequired,
     avatar: React.PropTypes.string.isRequired,
     author: React.PropTypes.string.isRequired,
-    reactionsCount: React.PropTypes.string.isRequired,
+    reactionIcon: React.PropTypes.element.isRequired,
+    reactionButtonActive: React.PropTypes.bool,
+    onReactionButtonClick: React.PropTypes.func,
+    reactionsCount: React.PropTypes.node,
     text: React.PropTypes.string.isRequired,
     timeSince: React.PropTypes.string.isRequired,
     onClick: React.PropTypes.func.isRequired,
@@ -242,7 +261,9 @@ Comment.defaultProps = {
     style: {},
     socialButtonReactionStyle: {},
     socialButtonMoreVertStyle: {},
+    reactionButtonActive: false,
+    onReactionButtonClick: (e, id) => {},
     hovered: false
 }
 
-export default pureComponent(addHoverState(Comment), ['onClick']);
+export default pureComponent(addHoverState(Comment), ['onClick', 'onReactionButtonClick']);

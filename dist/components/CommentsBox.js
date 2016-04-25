@@ -156,9 +156,15 @@
                                 onTextChange: function onTextChange(e) {
                                     return props.onEditingCommentTextChange(e);
                                 },
-                                style: props.editingCommentStyle }) : _react2.default.createElement(_Comment2.default, _extends({}, c, { onClick: function onClick(e) {
+                                style: props.editingCommentStyle }) : _react2.default.createElement(_Comment2.default, _extends({}, c, {
+                                onClick: function onClick(e) {
                                     return props.onCommentClick(e, c.id);
-                                }, style: props.commentStyle }))
+                                },
+                                onReactionButtonClick: function onReactionButtonClick(e, id) {
+                                    return props.onReactionButtonClick(e, id);
+                                },
+                                reactionIcon: props.reactionIcon,
+                                style: props.commentStyle }))
                         );
                     })
                 ),
@@ -213,6 +219,7 @@
             reactionsCount: _react2.default.PropTypes.string.isRequired,
             text: _react2.default.PropTypes.string.isRequired
         })),
+        reactionIcon: _react2.default.PropTypes.element,
         commentInputProps: _react2.default.PropTypes.shape({
             avatar: _react2.default.PropTypes.string.isRequired,
             addCommentText: _react2.default.PropTypes.string.isRequired,
@@ -225,6 +232,7 @@
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
         onCommentClick: _react2.default.PropTypes.func,
+        onReactionButtonClick: _react2.default.PropTypes.func,
         onCommentBoxClosedClick: _react2.default.PropTypes.func,
         onCancelClick: _react2.default.PropTypes.func,
         onEditClick: _react2.default.PropTypes.func,
@@ -242,10 +250,11 @@
         opened: false,
         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {},
         onCommentClick: function onCommentClick(e, id) {},
+        onReactionButtonClick: function onReactionButtonClick(e, id) {},
         onEditClick: function onEditClick(e, id, text) {},
         onCancelClick: function onCancelClick(e) {},
         onEditingCommentTextChange: function onEditingCommentTextChange(e) {}
     };
 
-    exports.default = (0, _pureComponent2.default)(CommentsBox, ['onCommentClick', 'onCommentBoxClosedClick', 'onCancelClick', 'onEditClick', 'onCommentTextChange']);
+    exports.default = (0, _pureComponent2.default)(CommentsBox, ['onCommentClick', 'onReactionButtonClick', 'onCommentBoxClosedClick', 'onCancelClick', 'onEditClick', 'onCommentTextChange']);
 });

@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'material-ui/lib/svg-icons/social/plus-one', 'material-ui/lib/svg-icons/navigation/more-vert', './SocialButton', './addHoverState', './pureComponent'], factory);
+        define(['exports', 'react', 'material-ui/lib/svg-icons/navigation/more-vert', './SocialButton', './addHoverState', './pureComponent'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('material-ui/lib/svg-icons/social/plus-one'), require('material-ui/lib/svg-icons/navigation/more-vert'), require('./SocialButton'), require('./addHoverState'), require('./pureComponent'));
+        factory(exports, require('react'), require('material-ui/lib/svg-icons/navigation/more-vert'), require('./SocialButton'), require('./addHoverState'), require('./pureComponent'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.plusOne, global.moreVert, global.SocialButton, global.addHoverState, global.pureComponent);
+        factory(mod.exports, global.react, global.moreVert, global.SocialButton, global.addHoverState, global.pureComponent);
         global.Comment = mod.exports;
     }
-})(this, function (exports, _react, _plusOne, _moreVert, _SocialButton, _addHoverState, _pureComponent) {
+})(this, function (exports, _react, _moreVert, _SocialButton, _addHoverState, _pureComponent) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -18,8 +18,6 @@
     });
 
     var _react2 = _interopRequireDefault(_react);
-
-    var _plusOne2 = _interopRequireDefault(_plusOne);
 
     var _moreVert2 = _interopRequireDefault(_moreVert);
 
@@ -145,6 +143,16 @@
             display: 'block',
             background: '#e0e0e0'
         },
+        activeButton: {
+            width: 21,
+            height: 21
+        },
+        activeIcon: {
+            width: 14,
+            height: 14,
+            top: '-4px',
+            position: 'relative'
+        },
         buttonHovered: {
             background: '#e0e0e0'
         },
@@ -241,10 +249,12 @@
                     'div',
                     { style: commentReactionButtonContainerStyleMerged },
                     _react2.default.createElement(_SocialButton2.default, {
+                        active: props.reactionButtonActive,
                         onClick: function onClick(e) {
-                            return e.stopPropagation();
+                            e.stopPropagation();
+                            props.onReactionButtonClick(e, props.id);
                         },
-                        icon: _react2.default.createElement(_plusOne2.default, null),
+                        icon: props.reactionIcon,
                         style: socialButtonReactionStyleMerged })
                 ),
                 _react2.default.createElement(
@@ -279,6 +289,9 @@
             body: _react2.default.PropTypes.object,
             interactionsContainer: _react2.default.PropTypes.object,
             reactionButtonContainer: _react2.default.PropTypes.object,
+            reactionButtonActive: _react2.default.PropTypes.object,
+            reactionIcon: _react2.default.PropTypes.object,
+            reactionIconActive: _react2.default.PropTypes.object,
             moreVertButtonContainer: _react2.default.PropTypes.object,
             timeSince: _react2.default.PropTypes.object
         }),
@@ -287,7 +300,10 @@
         id: _react2.default.PropTypes.string.isRequired,
         avatar: _react2.default.PropTypes.string.isRequired,
         author: _react2.default.PropTypes.string.isRequired,
-        reactionsCount: _react2.default.PropTypes.string.isRequired,
+        reactionIcon: _react2.default.PropTypes.element.isRequired,
+        reactionButtonActive: _react2.default.PropTypes.bool,
+        onReactionButtonClick: _react2.default.PropTypes.func,
+        reactionsCount: _react2.default.PropTypes.node,
         text: _react2.default.PropTypes.string.isRequired,
         timeSince: _react2.default.PropTypes.string.isRequired,
         onClick: _react2.default.PropTypes.func.isRequired,
@@ -298,8 +314,10 @@
         style: {},
         socialButtonReactionStyle: {},
         socialButtonMoreVertStyle: {},
+        reactionButtonActive: false,
+        onReactionButtonClick: function onReactionButtonClick(e, id) {},
         hovered: false
     };
 
-    exports.default = (0, _pureComponent2.default)((0, _addHoverState2.default)(Comment), ['onClick']);
+    exports.default = (0, _pureComponent2.default)((0, _addHoverState2.default)(Comment), ['onClick', 'onReactionButtonClick']);
 });
