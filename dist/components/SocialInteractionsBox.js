@@ -128,7 +128,6 @@
             _this.displayName = 'SocialInteractionsBox';
             _this.state = {
                 opened: false,
-                reactionButtonActive: false,
                 inputCommentOpened: false,
                 clickedComment: null,
                 popoverOpened: false,
@@ -227,7 +226,7 @@
                     { style: style },
                     _react2.default.createElement(_SocialToolbar2.default, {
                         reactionIcon: this.props.reactionIcon,
-                        reactionButtonactive: this.state.reactionButtonActive,
+                        reactionButtonactive: this.props.reactionButtonActive,
                         reactionsCount: this.props.reactionsCount,
                         commentsCount: this.props.commentsCount,
                         sharesCount: this.props.sharesCount,
@@ -239,9 +238,7 @@
                             });
                         },
                         onReactionButtonClick: function onReactionButtonClick(e) {
-                            return _this2.setState({
-                                reactionButtonActive: !_this2.state.reactionButtonActive
-                            }, _this2.props.onReactionButtonClick(e));
+                            return _this2.props.onReactionButtonClick(e);
                         },
                         onShareButtonClick: this.props.onShareButtonClick,
                         onCommentButtonClick: onCommentButtonClickCallback,
