@@ -55,10 +55,6 @@
     "webpack": "^1.12.15",
     "webpack-dev-server": "^1.14.1"
   },
-  "peerDependencies": {
-    "react": "^0.14.8",
-    "react-dom": "^0.14.8"
-  },
   "dependencies": {
     "babel-loader": "^6.2.4",
     "babel-runtime": "^6.6.1",
