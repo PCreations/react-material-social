@@ -60,12 +60,6 @@ class SocialInteractionsBox extends React.Component {
         let comment = this.props.comments.filter(c => c.id == id)[0];
         return comment.text;
     }
-    componentDidMount() {
-        this.props.onRender(this);
-    }
-    componentDidUpdate() {
-        this.props.onRender(this);
-    }
     render() {
         let {comments, onCommentButtonClick, props} = this.props;
 
@@ -111,6 +105,8 @@ class SocialInteractionsBox extends React.Component {
                         opened: !this.state.opened,
                         inputCommentOpened: false,
                         editingCommentId: '',
+                    }, () => {
+                        this.state.opened ? this.props.onBoxOpened() : null
                     })}
                     onReactionButtonClick={(e) => this.props.onReactionButtonClick(e)}
                     onShareButtonClick={this.props.onShareButtonClick}
@@ -221,7 +217,7 @@ SocialInteractionsBox.propTypes = {
     }),
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
-    onRender: React.PropTypes.func
+    onBoxOpened: React.PropTypes.func
 }
 
 SocialInteractionsBox.defaultProps = {
@@ -239,7 +235,7 @@ SocialInteractionsBox.defaultProps = {
     reactionIcon: <PlusOneSVG/>,
     onReactionButtonClick: () => {},
     onCommentButtonClick: () => {},
-    onRender: () => {}
+    onBoxOpened: () => {}
 }
 
 export default SocialInteractionsBox;

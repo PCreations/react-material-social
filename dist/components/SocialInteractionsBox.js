@@ -174,16 +174,6 @@
                 return comment.text;
             }
         }, {
-            key: 'componentDidMount',
-            value: function componentDidMount() {
-                this.props.onRender(this);
-            }
-        }, {
-            key: 'componentDidUpdate',
-            value: function componentDidUpdate() {
-                this.props.onRender(this);
-            }
-        }, {
             key: 'render',
             value: function render() {
                 var _this2 = this;
@@ -235,6 +225,8 @@
                                 opened: !_this2.state.opened,
                                 inputCommentOpened: false,
                                 editingCommentId: ''
+                            }, function () {
+                                _this2.state.opened ? _this2.props.onBoxOpened() : null;
                             });
                         },
                         onReactionButtonClick: function onReactionButtonClick(e) {
@@ -362,7 +354,7 @@
         }),
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
-        onRender: _react2.default.PropTypes.func
+        onBoxOpened: _react2.default.PropTypes.func
     };
 
     SocialInteractionsBox.defaultProps = {
@@ -380,7 +372,7 @@
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},
         onCommentButtonClick: function onCommentButtonClick() {},
-        onRender: function onRender() {}
+        onBoxOpened: function onBoxOpened() {}
     };
 
     exports.default = SocialInteractionsBox;
