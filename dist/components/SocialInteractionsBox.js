@@ -226,7 +226,7 @@
                                 inputCommentOpened: false,
                                 editingCommentId: ''
                             }, function () {
-                                _this2.state.opened ? _this2.props.onBoxOpened() : null;
+                                _this2.state.opened ? _this2.props.onBoxToggled() : null;
                             });
                         },
                         onReactionButtonClick: function onReactionButtonClick(e) {
@@ -372,7 +372,7 @@
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},
         onCommentButtonClick: function onCommentButtonClick() {},
-        onBoxOpened: function onBoxOpened() {}
+        onBoxToggled: function onBoxToggled() {}
     };
 
     exports.default = SocialInteractionsBox;

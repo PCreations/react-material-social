@@ -106,7 +106,7 @@ class SocialInteractionsBox extends React.Component {
                         inputCommentOpened: false,
                         editingCommentId: '',
                     }, () => {
-                        this.state.opened ? this.props.onBoxOpened() : null
+                        this.state.opened ? this.props.onBoxToggled() : null
                     })}
                     onReactionButtonClick={(e) => this.props.onReactionButtonClick(e)}
                     onShareButtonClick={this.props.onShareButtonClick}
@@ -235,7 +235,7 @@ SocialInteractionsBox.defaultProps = {
     reactionIcon: <PlusOneSVG/>,
     onReactionButtonClick: () => {},
     onCommentButtonClick: () => {},
-    onBoxOpened: () => {}
+    onBoxToggled: () => {}
 }
 
 export default SocialInteractionsBox;
