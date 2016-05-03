@@ -72,7 +72,7 @@ const commentTextStyle = {
 }
 
 const CommentsBox = (props) => {
-    let firstComment = props.comments[0];
+    let lastComment = props.comments.length > 0 ? props.comments[props.comments.length] : null;
 
     let commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened)
     let commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList)
@@ -116,13 +116,13 @@ const CommentsBox = (props) => {
                     <CommentInput {...props.commentInputProps} />
                 </div>
             ) : (
-                firstComment ? (
+                lastComment ? (
                     <div style={commentsBoxClosedStyleMerged} onClick={(e) => props.onCommentBoxClosedClick(e)}>
                         <div style={commentStyleMerged}>
-                            <img width={36} height={36} style={firstAvatarStyleMerged} src={firstComment.avatar} />
+                            <img width={36} height={36} style={firstAvatarStyleMerged} src={lastComment.avatar} />
                             <div style={commentTextStyleMerged}>
-                                <span style={commentAuthorStyleMerged}>{firstComment.author+": "}</span>
-                                <span>{firstComment.text}</span>
+                                <span style={commentAuthorStyleMerged}>{lastComment.author+": "}</span>
+                                <span>{lastComment.text}</span>
                             </div>
                         </div>
                     </div>

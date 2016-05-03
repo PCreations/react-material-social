@@ -105,9 +105,7 @@ class SocialInteractionsBox extends React.Component {
                         opened: !this.state.opened,
                         inputCommentOpened: false,
                         editingCommentId: '',
-                    }, () => {
-                        this.state.opened ? this.props.onBoxToggled() : null
-                    })}
+                    }, () => this.props.onBoxToggled(this.state.opened)) }
                     onReactionButtonClick={(e) => this.props.onReactionButtonClick(e)}
                     onShareButtonClick={this.props.onShareButtonClick}
                     onCommentButtonClick={onCommentButtonClickCallback}

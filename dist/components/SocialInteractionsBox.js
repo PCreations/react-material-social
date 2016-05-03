@@ -226,7 +226,7 @@
                                 inputCommentOpened: false,
                                 editingCommentId: ''
                             }, function () {
-                                _this2.state.opened ? _this2.props.onBoxToggled() : null;
+                                return _this2.props.onBoxToggled(_this2.state.opened);
                             });
                         },
                         onReactionButtonClick: function onReactionButtonClick(e) {

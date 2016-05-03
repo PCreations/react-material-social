@@ -113,7 +113,7 @@
     };
 
     var CommentsBox = function CommentsBox(props) {
-        var firstComment = props.comments[0];
+        var lastComment = props.comments.length > 0 ? props.comments[props.comments.length] : null;
 
         var commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened);
         var commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList);
@@ -166,7 +166,7 @@
                 ),
                 props.commentPopover,
                 _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
-            ) : firstComment ? _react2.default.createElement(
+            ) : lastComment ? _react2.default.createElement(
                 'div',
                 { style: commentsBoxClosedStyleMerged, onClick: function onClick(e) {
                         return props.onCommentBoxClosedClick(e);
@@ -174,19 +174,19 @@
                 _react2.default.createElement(
                     'div',
                     { style: commentStyleMerged },
-                    _react2.default.createElement('img', { width: 36, height: 36, style: firstAvatarStyleMerged, src: firstComment.avatar }),
+                    _react2.default.createElement('img', { width: 36, height: 36, style: firstAvatarStyleMerged, src: lastComment.avatar }),
                     _react2.default.createElement(
                         'div',
                         { style: commentTextStyleMerged },
                         _react2.default.createElement(
                             'span',
                             { style: commentAuthorStyleMerged },
-                            firstComment.author + ": "
+                            lastComment.author + ": "
                         ),
                         _react2.default.createElement(
                             'span',
                             null,
-                            firstComment.text
+                            lastComment.text
                         )
                     )
                 )
