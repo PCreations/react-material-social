@@ -113,7 +113,7 @@
     };
 
     var CommentsBox = function CommentsBox(props) {
-        var lastComment = props.comments.length > 0 ? props.comments[props.comments.length] : null;
+        var lastComment = props.comments.length > 0 ? props.comments[props.comments.length - 1] : null;
 
         var commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened);
         var commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList);

@@ -72,7 +72,7 @@ const commentTextStyle = {
 }
 
 const CommentsBox = (props) => {
-    let lastComment = props.comments.length > 0 ? props.comments[props.comments.length] : null;
+    let lastComment = props.comments.length > 0 ? props.comments[props.comments.length - 1] : null;
 
     let commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened)
     let commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList)
