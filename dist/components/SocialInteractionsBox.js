@@ -241,6 +241,7 @@
                             return _this2.setState({ opened: true });
                         },
                         opened: this.state.opened,
+                        previewedComment: this.props.previewedComment,
                         comments: comments,
                         reactionIcon: this.props.reactionIcon,
                         onReactionButtonClick: function onReactionButtonClick(e, commentId) {
@@ -352,6 +353,7 @@
             opened: _react2.default.PropTypes.bool,
             text: _react2.default.PropTypes.string
         }),
+        previewedComment: _CommentsBox2.default.propTypes.previewedComment,
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
         onBoxOpened: _react2.default.PropTypes.func

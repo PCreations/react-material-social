@@ -45,6 +45,11 @@ ReactDOM.render(
                 addCommentText: 'Ajoutez un commentaire...',
                 plubishButtonText: 'publier',
             }}
+            previewedComment={{
+                avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+                author: 'Shubhansh Jaiswal',
+                text: 'Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire...'
+            }}
             cancelButtonText={"Annuler"}
             editButtonText={"Modifier"}
             onRender={(self) => console.log("render", self.state.opened)} />

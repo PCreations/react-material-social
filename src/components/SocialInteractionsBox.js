@@ -114,6 +114,7 @@ class SocialInteractionsBox extends React.Component {
                 <CommentsBox
                     onCommentBoxClosedClick={(e) => this.setState({opened: true})}
                     opened={this.state.opened}
+                    previewedComment={this.props.previewedComment}
                     comments={comments}
                     reactionIcon={this.props.reactionIcon}
                     onReactionButtonClick={(e, commentId) => {
@@ -213,6 +214,7 @@ SocialInteractionsBox.propTypes = {
         opened: React.PropTypes.bool,
         text: React.PropTypes.string
     }),
+    previewedComment: CommentsBox.propTypes.previewedComment,
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
     onBoxOpened: React.PropTypes.func

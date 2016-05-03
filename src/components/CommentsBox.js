@@ -72,8 +72,6 @@ const commentTextStyle = {
 }
 
 const CommentsBox = (props) => {
-    let lastComment = props.comments.length > 0 ? props.comments[props.comments.length - 1] : null;
-
     let commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened)
     let commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList)
     let commentsBoxClosedStyleMerged = Object.assign({}, commentsBoxClosedStyle, props.style.closed)
@@ -116,13 +114,13 @@ const CommentsBox = (props) => {
                     <CommentInput {...props.commentInputProps} />
                 </div>
             ) : (
-                lastComment ? (
+                props.previewedComment ? (
                     <div style={commentsBoxClosedStyleMerged} onClick={(e) => props.onCommentBoxClosedClick(e)}>
                         <div style={commentStyleMerged}>
-                            <img width={36} height={36} style={firstAvatarStyleMerged} src={lastComment.avatar} />
+                            <img width={36} height={36} style={firstAvatarStyleMerged} src={props.previewedComment.avatar} />
                             <div style={commentTextStyleMerged}>
-                                <span style={commentAuthorStyleMerged}>{lastComment.author+": "}</span>
-                                <span>{lastComment.text}</span>
+                                <span style={commentAuthorStyleMerged}>{props.previewedComment.author+": "}</span>
+                                <span>{props.previewedComment.text}</span>
                             </div>
                         </div>
                     </div>
@@ -164,6 +162,11 @@ CommentsBox.propTypes = {
         onTextChange: React.PropTypes.func,
         onAddCommentClick: React.PropTypes.func,
         onPublishButtonClick: React.PropTypes.func,
+    }),
+    previewedComment: React.PropTypes.shape({
+        avatar: React.PropTypes.string.isRequired,
+        author: React.PropTypes.string.isRequired,
+        text: React.PropTypes.string.isRequired,
     }),
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,

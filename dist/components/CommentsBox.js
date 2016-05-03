@@ -113,8 +113,6 @@
     };
 
     var CommentsBox = function CommentsBox(props) {
-        var lastComment = props.comments.length > 0 ? props.comments[props.comments.length - 1] : null;
-
         var commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened);
         var commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList);
         var commentsBoxClosedStyleMerged = Object.assign({}, commentsBoxClosedStyle, props.style.closed);
@@ -166,7 +164,7 @@
                 ),
                 props.commentPopover,
                 _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
-            ) : lastComment ? _react2.default.createElement(
+            ) : props.previewedComment ? _react2.default.createElement(
                 'div',
                 { style: commentsBoxClosedStyleMerged, onClick: function onClick(e) {
                         return props.onCommentBoxClosedClick(e);
@@ -174,19 +172,19 @@
                 _react2.default.createElement(
                     'div',
                     { style: commentStyleMerged },
-                    _react2.default.createElement('img', { width: 36, height: 36, style: firstAvatarStyleMerged, src: lastComment.avatar }),
+                    _react2.default.createElement('img', { width: 36, height: 36, style: firstAvatarStyleMerged, src: props.previewedComment.avatar }),
                     _react2.default.createElement(
                         'div',
                         { style: commentTextStyleMerged },
                         _react2.default.createElement(
                             'span',
                             { style: commentAuthorStyleMerged },
-                            lastComment.author + ": "
+                            props.previewedComment.author + ": "
                         ),
                         _react2.default.createElement(
                             'span',
                             null,
-                            lastComment.text
+                            props.previewedComment.text
                         )
                     )
                 )
@@ -224,6 +222,11 @@
             onTextChange: _react2.default.PropTypes.func,
             onAddCommentClick: _react2.default.PropTypes.func,
             onPublishButtonClick: _react2.default.PropTypes.func
+        }),
+        previewedComment: _react2.default.PropTypes.shape({
+            avatar: _react2.default.PropTypes.string.isRequired,
+            author: _react2.default.PropTypes.string.isRequired,
+            text: _react2.default.PropTypes.string.isRequired
         }),
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
