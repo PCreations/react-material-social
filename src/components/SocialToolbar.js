@@ -87,11 +87,9 @@ const SocialToolbar = (props) => {
                 )}
                 icon={React.cloneElement(props.commentIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
-            {props.commentsCount && (
-                <div style={countStyleMerged}>
-                    {" "+props.commentsCount+" "}
-                </div>
-            )}
+            <div style={countStyleMerged}>
+                {" "+props.commentsCount+" "}
+            </div>
             <SocialButton
                 onClick={(e) => clickCallbackFactory(
                     e,
@@ -99,11 +97,9 @@ const SocialToolbar = (props) => {
                 )}
                 icon={React.cloneElement(props.shareIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
-            {props.sharesCount && (
-                <div style={countStyleMerged}>
-                    {" "+props.sharesCount+" "}
-                </div>
-            )}
+            <div style={countStyleMerged}>
+                {" "+props.sharesCount+" "}
+            </div>
         </div>
     )
 }
@@ -133,6 +129,9 @@ SocialToolbar.defaultProps = {
     reactionIcon: <PlusOneSVG/>,
     commentIcon: <CommentSVG/>,
     shareIcon: <ShareSVG/>,
+    commentsCount: 0,
+    reactionsCount: 0,
+    sharesCount: 0,
     reactionButtonActive: false,
     onReactionButtonClick: (e) => console.log('reaction button clicked'),
     onCommentButtonClick: (e) => console.log('comment button clicked'),

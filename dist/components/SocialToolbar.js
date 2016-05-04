@@ -115,7 +115,7 @@
                 },
                 icon: _react2.default.cloneElement(props.commentIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
-            props.commentsCount && _react2.default.createElement(
+            _react2.default.createElement(
                 'div',
                 { style: countStyleMerged },
                 " " + props.commentsCount + " "
@@ -126,7 +126,7 @@
                 },
                 icon: _react2.default.cloneElement(props.shareIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
-            props.sharesCount && _react2.default.createElement(
+            _react2.default.createElement(
                 'div',
                 { style: countStyleMerged },
                 " " + props.sharesCount + " "
@@ -159,6 +159,9 @@
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         commentIcon: _react2.default.createElement(_comment2.default, null),
         shareIcon: _react2.default.createElement(_share2.default, null),
+        commentsCount: 0,
+        reactionsCount: 0,
+        sharesCount: 0,
         reactionButtonActive: false,
         onReactionButtonClick: function onReactionButtonClick(e) {
             return console.log('reaction button clicked');

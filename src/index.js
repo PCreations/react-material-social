@@ -70,7 +70,6 @@ ReactDOM.render(
             reactionIcon={<ThumbUp/>}
             reactionsCount={45}
             commentsCount={1}
-            sharesCount={15}
             comments={comments}
             commentInputProps={{
                 avatar: 'http://lh3.googleusercontent.com/-ImgnbmvkTZ8/AAAAAAAAAAI/AAAAAAAAHZ8/SRkXfj7CBkM/s36-p-k-rw-no/photo.jpg',

@@ -115,6 +115,10 @@
         fontFamily: 'Roboto,RobotoDraft,Helvetica,Arial,sans-serif'
     };
 
+    var socialInteractionsBoxEmptyStyle = {
+        maxHeight: 78
+    };
+
     var socialInteractionsBoxOpenedStyle = {
         maxHeight: 529
     };
@@ -218,6 +222,10 @@
                     style = _extends({}, style, socialInteractionsBoxOpenedStyle);
                 } else {
                     style = _extends({}, style, socialInteractionsBoxNotOpenedStyle);
+                }
+
+                if (!this.props.comments) {
+                    style = _extends({}, style, socialInteractionsBoxEmptyStyle);
                 }
 
                 comments = this.props.comments.map(function (c) {
