@@ -276,7 +276,7 @@
                             }
                             _this2.setState({
                                 activeReactionButtons: activeReactionButtons
-                            });
+                            }, _this2.props.onCommentReactionButtonClick(commentId));
                         },
                         onCommentClick: function onCommentClick(e, commentId) {
                             return _this2.setClickedComment(e, commentId);
@@ -363,6 +363,7 @@
         onEditClick: _react2.default.PropTypes.func,
         onPublishButtonClick: _react2.default.PropTypes.func,
         onShareButtonClick: _react2.default.PropTypes.func,
+        onCommentReactionButtonClick: _react2.default.PropTypes.func,
         comments: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
             id: _react2.default.PropTypes.string.isRequired,
             avatar: _react2.default.PropTypes.string.isRequired,
@@ -398,6 +399,7 @@
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},
         onCommentButtonClick: function onCommentButtonClick() {},
+        onCommentReactionButtonClick: function onCommentReactionButtonClick(commentId) {},
         onBoxToggled: function onBoxToggled() {}
     };
 

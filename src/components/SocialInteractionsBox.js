@@ -159,7 +159,7 @@ class SocialInteractionsBox extends React.Component {
                         }
                         this.setState({
                             activeReactionButtons: activeReactionButtons
-                        })
+                        }, this.props.onCommentReactionButtonClick(commentId))
                     }}
                     onCommentClick={(e, commentId) => this.setClickedComment(e, commentId)}
                     commentInputProps={{
@@ -233,6 +233,7 @@ SocialInteractionsBox.propTypes = {
     onEditClick: React.PropTypes.func,
     onPublishButtonClick: React.PropTypes.func,
     onShareButtonClick: React.PropTypes.func,
+    onCommentReactionButtonClick: React.PropTypes.func,
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
         avatar: React.PropTypes.string.isRequired,
@@ -268,6 +269,7 @@ SocialInteractionsBox.defaultProps = {
     reactionIcon: <PlusOneSVG/>,
     onReactionButtonClick: () => {},
     onCommentButtonClick: () => {},
+    onCommentReactionButtonClick: (commentId) => {},
     onBoxToggled: () => {}
 }
 
