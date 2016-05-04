@@ -12,7 +12,10 @@ const commentsBoxClosedStyle = {
     height: 60,
     overflow: 'hidden',
     position: 'relative',
-    background: '#f9f9f9'
+    background: '#f9f9f9',
+    opacity: 0,
+    WebkitTransition: 'opacity 2s ease-in-out',
+    transition: 'opacity 2s ease-in-out'
 }
 
 const commentsBoxOpenedStyle = {

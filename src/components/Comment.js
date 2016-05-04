@@ -9,8 +9,6 @@ import pureComponent from './pureComponent';
 const commentItemStyle = {
     padding: '12px 16px',
     display: 'flex',
-    WebkitTransition: 'background-color .3s cubic-bezier(0,0,0.2,1)',
-    transition: 'background-color .3s cubic-bezier(0,0,0.2,1)',
     backgroundColor: '#f9f9f9'
 }
 
@@ -197,16 +195,18 @@ const Comment = (props) => {
                 </div>
             </div>
             <div style={commentInteractionsContainerStyleMerged}>
-                <div style={commentReactionButtonContainerStyleMerged}>
-                    <SocialButton
-                        active={props.reactionButtonActive}
-                        onClick={(e) => {
-                            e.stopPropagation();
-                            props.onReactionButtonClick(e, props.id)
-                        }}
-                        icon={props.reactionIcon}
-                        style={socialButtonReactionStyleMerged}/>
-                </div>
+                {props.hovered && (
+                    <div style={commentReactionButtonContainerStyleMerged}>
+                        <SocialButton
+                            active={props.reactionButtonActive}
+                            onClick={(e) => {
+                                e.stopPropagation();
+                                props.onReactionButtonClick(e, props.id)
+                            }}
+                            icon={props.reactionIcon}
+                            style={socialButtonReactionStyleMerged}/>
+                    </div>
+                )}
                 <div style={moreVertButtonContainerStyleMerged}>
                     {props.hovered ? (
                         <SocialButton

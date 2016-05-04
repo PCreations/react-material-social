@@ -15,13 +15,45 @@ const comments = [{
     text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
     reactionsCount: '+5',
     timeSince: '6h',
+},{
     id: 'abcdd',
     avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
     author: 'Shubhansh Jaiswal',
     text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
     reactionsCount: '+5',
     timeSince: '6h',
+},{
     id: 'abcdl',
+    avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+    author: 'Shubhansh Jaiswal',
+    text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+    reactionsCount: '+5',
+    timeSince: '6h'
+},{
+    id: 'abcdf',
+    avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+    author: 'Shubhansh Jaiswal',
+    text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+    reactionsCount: '+5',
+    timeSince: '6h'
+},
+{
+    id: 'abcdg',
+    avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+    author: 'Shubhansh Jaiswal',
+    text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+    reactionsCount: '+5',
+    timeSince: '6h'
+},
+{
+    id: 'abcdh',
+    avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+    author: 'Shubhansh Jaiswal',
+    text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+    reactionsCount: '+5',
+    timeSince: '6h'
+},{
+    id: 'abcdj',
     avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
     author: 'Shubhansh Jaiswal',
     text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",

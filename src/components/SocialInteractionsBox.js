@@ -19,6 +19,14 @@ const socialInteractionsBoxStyle = {
     fontFamily: 'Roboto,RobotoDraft,Helvetica,Arial,sans-serif'
 }
 
+const socialInteractionsBoxOpenedStyle = {
+    maxHeight: 529
+}
+
+const socialInteractionsBoxNotOpenedStyle = {
+    maxHeight: 128
+}
+
 const PurePopover = pureComponent(Popover, 'Popover', ['onRequestClose']);
 
 class SocialInteractionsBox extends React.Component {
@@ -86,6 +94,18 @@ class SocialInteractionsBox extends React.Component {
             socialInteractionsBoxStyle,
             this.props.style.socialInteractionsBox
         )
+
+        if (this.state.opened) {
+            style = {
+                ...style,
+                ...socialInteractionsBoxOpenedStyle
+            }
+        } else {
+            style = {
+                ...style,
+                ...socialInteractionsBoxNotOpenedStyle
+            }
+        }
 
         comments = this.props.comments.map(c => {
             c.reactionButtonActive = this.state.activeReactionButtons.indexOf(c.id) !== -1

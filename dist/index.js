@@ -29,36 +29,61 @@
         };
     }
 
-    var _ref;
-
-    function _defineProperty(obj, key, value) {
-        if (key in obj) {
-            Object.defineProperty(obj, key, {
-                value: value,
-                enumerable: true,
-                configurable: true,
-                writable: true
-            });
-        } else {
-            obj[key] = value;
-        }
-
-        return obj;
-    }
-
     window.Perf = _reactAddonsPerf2.default;
 
 
     window.React = _react2.default;
 
-    var comments = [(_ref = {
+    var comments = [{
         id: 'abcd',
         avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
         author: 'Shubhansh Jaiswal',
         text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
         reactionsCount: '+5',
         timeSince: '6h'
-    }, _defineProperty(_ref, 'id', 'abcdd'), _defineProperty(_ref, 'avatar', 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg'), _defineProperty(_ref, 'author', 'Shubhansh Jaiswal'), _defineProperty(_ref, 'text', "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel"), _defineProperty(_ref, 'reactionsCount', '+5'), _defineProperty(_ref, 'timeSince', '6h'), _defineProperty(_ref, 'id', 'abcdl'), _defineProperty(_ref, 'avatar', 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg'), _defineProperty(_ref, 'author', 'Shubhansh Jaiswal'), _defineProperty(_ref, 'text', "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel"), _defineProperty(_ref, 'reactionsCount', '+5'), _defineProperty(_ref, 'timeSince', '6h'), _ref)];
+    }, {
+        id: 'abcdd',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'abcdl',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'abcdf',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'abcdg',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'abcdh',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }, {
+        id: 'abcdj',
+        avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',
+        author: 'Shubhansh Jaiswal',
+        text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
+        reactionsCount: '+5',
+        timeSince: '6h'
+    }];
 
     _reactDom2.default.render(_react2.default.createElement(
         'div',

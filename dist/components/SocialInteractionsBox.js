@@ -115,6 +115,14 @@
         fontFamily: 'Roboto,RobotoDraft,Helvetica,Arial,sans-serif'
     };
 
+    var socialInteractionsBoxOpenedStyle = {
+        maxHeight: 529
+    };
+
+    var socialInteractionsBoxNotOpenedStyle = {
+        maxHeight: 128
+    };
+
     var PurePopover = (0, _pureComponent2.default)(_popover2.default, 'Popover', ['onRequestClose']);
 
     var SocialInteractionsBox = function (_React$Component) {
@@ -205,6 +213,12 @@
                 });
 
                 var style = Object.assign({}, socialInteractionsBoxStyle, this.props.style.socialInteractionsBox);
+
+                if (this.state.opened) {
+                    style = _extends({}, style, socialInteractionsBoxOpenedStyle);
+                } else {
+                    style = _extends({}, style, socialInteractionsBoxNotOpenedStyle);
+                }
 
                 comments = this.props.comments.map(function (c) {
                     c.reactionButtonActive = _this2.state.activeReactionButtons.indexOf(c.id) !== -1;
