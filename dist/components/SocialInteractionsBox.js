@@ -139,7 +139,7 @@
 
             _this.displayName = 'SocialInteractionsBox';
             _this.state = {
-                opened: false,
+                opened: props.defaultOpened,
                 inputCommentOpened: false,
                 clickedComment: null,
                 popoverOpened: false,
@@ -352,6 +352,7 @@
             commentInput: _CommentInput2.default.propTypes.style,
             socialButton: _SocialButton2.default.propTypes.style
         }),
+        defaultOpened: _react2.default.PropTypes.bool,
         reactionButtonActive: _react2.default.PropTypes.bool,
         reactionIcon: _react2.default.PropTypes.element,
         reactionsCount: _react2.default.PropTypes.number,
@@ -392,6 +393,7 @@
             commentInput: {},
             socialButton: {}
         },
+        defaultOpened: false,
         reactionButtonActive: false,
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},

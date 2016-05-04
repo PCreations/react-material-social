@@ -38,7 +38,7 @@ class SocialInteractionsBox extends React.Component {
         super(props);
         this.displayName = 'SocialInteractionsBox';
         this.state = {
-            opened: false,
+            opened: props.defaultOpened,
             inputCommentOpened: false,
             clickedComment: null,
             popoverOpened: false,
@@ -222,6 +222,7 @@ SocialInteractionsBox.propTypes = {
         commentInput: CommentInput.propTypes.style,
         socialButton: SocialButton.propTypes.style
     }),
+    defaultOpened: React.PropTypes.bool,
     reactionButtonActive: React.PropTypes.bool,
     reactionIcon: React.PropTypes.element,
     reactionsCount: React.PropTypes.number,
@@ -262,6 +263,7 @@ SocialInteractionsBox.defaultProps = {
         commentInput: {},
         socialButton: {}
     },
+    defaultOpened: false,
     reactionButtonActive: false,
     reactionIcon: <PlusOneSVG/>,
     onReactionButtonClick: () => {},
