@@ -195,7 +195,7 @@ const Comment = (props) => {
                 </div>
             </div>
             <div style={commentInteractionsContainerStyleMerged}>
-                {props.hovered && (
+                {(props.hovered || props.reactionButtonActive) && (
                     <div style={commentReactionButtonContainerStyleMerged}>
                         <SocialButton
                             active={props.reactionButtonActive}
@@ -208,7 +208,7 @@ const Comment = (props) => {
                     </div>
                 )}
                 <div style={moreVertButtonContainerStyleMerged}>
-                    {props.hovered ? (
+                    {(props.hovered && !props.reactionButtonActive) ? (
                         <SocialButton
                             icon={<MoreVertSVG/>}
                             style={socialButtonMoreVertStyleMerged}/>

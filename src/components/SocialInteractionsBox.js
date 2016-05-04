@@ -46,7 +46,7 @@ class SocialInteractionsBox extends React.Component {
             editingCommentId: "",
             editingCommentText: "",
             inputText: "",
-            activeReactionButtons: []
+            activeReactionButtons: props.activeReactionButtons
         }
     }
     setClickedComment(e, commentId) {
@@ -234,6 +234,7 @@ SocialInteractionsBox.propTypes = {
     onPublishButtonClick: React.PropTypes.func,
     onShareButtonClick: React.PropTypes.func,
     onCommentReactionButtonClick: React.PropTypes.func,
+    activeReactionButtons: React.PropTypes.array,
     comments: React.PropTypes.arrayOf(React.PropTypes.shape({
         id: React.PropTypes.string.isRequired,
         avatar: React.PropTypes.string.isRequired,
@@ -264,6 +265,7 @@ SocialInteractionsBox.defaultProps = {
         commentInput: {},
         socialButton: {}
     },
+    activeReactionButtons: [],
     defaultOpened: false,
     reactionButtonActive: false,
     reactionIcon: <PlusOneSVG/>,

@@ -147,7 +147,7 @@
                 editingCommentId: "",
                 editingCommentText: "",
                 inputText: "",
-                activeReactionButtons: []
+                activeReactionButtons: props.activeReactionButtons
             };
             return _this;
         }
@@ -364,6 +364,7 @@
         onPublishButtonClick: _react2.default.PropTypes.func,
         onShareButtonClick: _react2.default.PropTypes.func,
         onCommentReactionButtonClick: _react2.default.PropTypes.func,
+        activeReactionButtons: _react2.default.PropTypes.array,
         comments: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
             id: _react2.default.PropTypes.string.isRequired,
             avatar: _react2.default.PropTypes.string.isRequired,
@@ -394,6 +395,7 @@
             commentInput: {},
             socialButton: {}
         },
+        activeReactionButtons: [],
         defaultOpened: false,
         reactionButtonActive: false,
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
