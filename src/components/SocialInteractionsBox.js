@@ -19,6 +19,10 @@ const socialInteractionsBoxStyle = {
     fontFamily: 'Roboto,RobotoDraft,Helvetica,Arial,sans-serif'
 }
 
+const socialInteractionsBoxEmptyStyle = {
+    maxHeight: 78
+}
+
 const socialInteractionsBoxOpenedStyle = {
     maxHeight: 529
 }
@@ -104,6 +108,13 @@ class SocialInteractionsBox extends React.Component {
             style = {
                 ...style,
                 ...socialInteractionsBoxNotOpenedStyle
+            }
+        }
+
+        if (!this.props.comments) {
+            style = {
+                ...style,
+                ...socialInteractionsBoxEmptyStyle
             }
         }
 
