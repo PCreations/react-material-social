@@ -67,6 +67,10 @@ ReactDOM.render(
         backgroundColor: '#fefefe'
     }}>
         <SocialInteractionsBox
+            readOnly={true}
+            commentInputReadOnly={
+                <p>{"Connectez-vous"}</p>
+            }
             reactionIcon={<ThumbUp/>}
             reactionsCount={45}
             commentsCount={1}

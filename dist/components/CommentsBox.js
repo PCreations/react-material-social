@@ -166,7 +166,7 @@
                     })
                 ),
                 props.commentPopover,
-                _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
+                props.readOnly ? props.commentInputReadOnly : _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
             ) : props.previewedComment ? _react2.default.createElement(
                 'div',
                 { style: commentsBoxClosedStyleMerged, onClick: function onClick(e) {
@@ -231,6 +231,8 @@
             author: _react2.default.PropTypes.string.isRequired,
             text: _react2.default.PropTypes.string.isRequired
         }),
+        readOnly: _react2.default.PropTypes.bool,
+        commentInputReadOnly: _react2.default.PropTypes.node,
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
         onCommentClick: _react2.default.PropTypes.func,
@@ -249,6 +251,8 @@
         editingCommentStyle: {},
         commentStyle: {},
         commentInputStyle: {},
+        readOnly: false,
+        commentInputReadOnly: _react2.default.createElement('noscript', null),
         opened: false,
         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {},
         onCommentClick: function onCommentClick(e, id) {},

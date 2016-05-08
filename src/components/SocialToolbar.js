@@ -61,6 +61,7 @@ const SocialToolbar = (props) => {
         <div style={containerStyleMerged} role="toolbar" onClick={(e) => props.onClick(e)}>
             <SocialButton
                 active={props.reactionButtonActive}
+                disabled={props.readOnly}
                 onClick={(e) => clickCallbackFactory(
                     e,
                     props.onReactionButtonClick
@@ -110,6 +111,7 @@ SocialToolbar.propTypes = {
         icon: React.PropTypes.object,
         count: React.PropTypes.object
     }),
+    readOnly: React.PropTypes.bool,
     reactionIcon: React.PropTypes.element,
     commentIcon: React.PropTypes.element,
     shareIcon: React.PropTypes.element,
@@ -126,6 +128,7 @@ SocialToolbar.propTypes = {
 
 SocialToolbar.defaultProps = {
     style: {},
+    readOnly: false,
     reactionIcon: <PlusOneSVG/>,
     commentIcon: <CommentSVG/>,
     shareIcon: <ShareSVG/>,

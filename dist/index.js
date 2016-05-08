@@ -92,6 +92,12 @@
                 backgroundColor: '#fefefe'
             } },
         _react2.default.createElement(_SocialInteractionsBox2.default, {
+            readOnly: true,
+            commentInputReadOnly: _react2.default.createElement(
+                'p',
+                null,
+                "Connectez-vous"
+            ),
             reactionIcon: _react2.default.createElement(_thumbUp2.default, null),
             reactionsCount: 45,
             commentsCount: 1,

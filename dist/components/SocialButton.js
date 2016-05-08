@@ -131,9 +131,10 @@
                 PureIconButton,
                 {
                     onClick: function onClick(e) {
-                        return props.onClick(e);
+                        return props.onClick(e, props.disabled);
                     },
                     style: buttonStyleMerged,
+                    disabled: props.disabled,
                     iconStyle: iconStyleMerged },
                 props.icon
             )
@@ -150,6 +151,7 @@
             icon: _react2.default.PropTypes.object,
             activeIcon: _react2.default.PropTypes.object
         }),
+        disabled: _react2.default.PropTypes.bool,
         active: _react2.default.PropTypes.bool,
         icon: _react2.default.PropTypes.element,
         onClick: _react2.default.PropTypes.func,
@@ -159,6 +161,7 @@
     SocialButton.defaultProps = {
         style: {},
         active: false,
+        disabled: false,
         onClick: function onClick(e) {},
         hovered: false
     };

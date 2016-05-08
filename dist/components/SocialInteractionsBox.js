@@ -237,6 +237,7 @@
                     'div',
                     { style: style },
                     _react2.default.createElement(_SocialToolbar2.default, {
+                        readOnly: this.props.readOnly,
                         reactionIcon: this.props.reactionIcon,
                         reactionButtonActive: this.props.reactionButtonActive,
                         reactionsCount: this.props.reactionsCount,
@@ -259,6 +260,8 @@
                         style: this.props.style.socialToolbar,
                         socialButtonsStyle: this.props.style.socialToolbarButton || this.props.style.socialButton }),
                     _react2.default.createElement(_CommentsBox2.default, {
+                        readOnly: this.props.readOnly,
+                        commentInputReadOnly: this.props.commentInputReadOnly,
                         onCommentBoxClosedClick: function onCommentBoxClosedClick(e) {
                             return _this2.setState({ opened: true });
                         },
@@ -352,6 +355,8 @@
             commentInput: _CommentInput2.default.propTypes.style,
             socialButton: _SocialButton2.default.propTypes.style
         }),
+        readOnly: _react2.default.PropTypes.bool,
+        commentInputReadOnly: _react2.default.PropTypes.node,
         defaultOpened: _react2.default.PropTypes.bool,
         reactionButtonActive: _react2.default.PropTypes.bool,
         reactionIcon: _react2.default.PropTypes.element,
@@ -395,6 +400,7 @@
             commentInput: {},
             socialButton: {}
         },
+        readOnly: false,
         activeReactionButtons: [],
         defaultOpened: false,
         reactionButtonActive: false,

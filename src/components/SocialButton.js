@@ -107,8 +107,9 @@ const SocialButton = (props) => {
                 </PurePaper>
             ) : (
                 <PureIconButton
-                    onClick={(e) => props.onClick(e)}
+                    onClick={(e) => props.onClick(e, props.disabled)}
                     style={buttonStyleMerged}
+                    disabled={props.disabled}
                     iconStyle={iconStyleMerged}>
                     {props.icon}
                 </PureIconButton>
@@ -127,6 +128,7 @@ SocialButton.propTypes = {
         icon: React.PropTypes.object,
         activeIcon: React.PropTypes.object
     }),
+    disabled: React.PropTypes.bool,
     active: React.PropTypes.bool,
     icon: React.PropTypes.element,
     onClick: React.PropTypes.func,
@@ -136,6 +138,7 @@ SocialButton.propTypes = {
 SocialButton.defaultProps = {
     style: {},
     active: false,
+    disabled: false,
     onClick: (e) => {},
     hovered: false
 }

@@ -91,6 +91,7 @@
                 } },
             _react2.default.createElement(_SocialButton2.default, {
                 active: props.reactionButtonActive,
+                disabled: props.readOnly,
                 onClick: function onClick(e) {
                     return clickCallbackFactory(e, props.onReactionButtonClick);
                 },
@@ -140,6 +141,7 @@
             icon: _react2.default.PropTypes.object,
             count: _react2.default.PropTypes.object
         }),
+        readOnly: _react2.default.PropTypes.bool,
         reactionIcon: _react2.default.PropTypes.element,
         commentIcon: _react2.default.PropTypes.element,
         shareIcon: _react2.default.PropTypes.element,
@@ -156,6 +158,7 @@
 
     SocialToolbar.defaultProps = {
         style: {},
+        readOnly: false,
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         commentIcon: _react2.default.createElement(_comment2.default, null),
         shareIcon: _react2.default.createElement(_share2.default, null),

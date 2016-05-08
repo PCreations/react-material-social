@@ -127,6 +127,7 @@ class SocialInteractionsBox extends React.Component {
         return (
             <div style={style}>
                 <SocialToolbar
+                    readOnly={this.props.readOnly}
                     reactionIcon={this.props.reactionIcon}
                     reactionButtonActive={this.props.reactionButtonActive}
                     reactionsCount={this.props.reactionsCount}
@@ -143,6 +144,8 @@ class SocialInteractionsBox extends React.Component {
                     style={this.props.style.socialToolbar}
                     socialButtonsStyle={this.props.style.socialToolbarButton || this.props.style.socialButton}/>
                 <CommentsBox
+                    readOnly={this.props.readOnly}
+                    commentInputReadOnly={this.props.commentInputReadOnly}
                     onCommentBoxClosedClick={(e) => this.setState({opened: true})}
                     opened={this.state.opened}
                     previewedComment={this.props.previewedComment}
@@ -222,6 +225,8 @@ SocialInteractionsBox.propTypes = {
         commentInput: CommentInput.propTypes.style,
         socialButton: SocialButton.propTypes.style
     }),
+    readOnly: React.PropTypes.bool,
+    commentInputReadOnly: React.PropTypes.node,
     defaultOpened: React.PropTypes.bool,
     reactionButtonActive: React.PropTypes.bool,
     reactionIcon: React.PropTypes.element,
@@ -265,6 +270,7 @@ SocialInteractionsBox.defaultProps = {
         commentInput: {},
         socialButton: {}
     },
+    readOnly: false,
     activeReactionButtons: [],
     defaultOpened: false,
     reactionButtonActive: false,

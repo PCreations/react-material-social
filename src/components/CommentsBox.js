@@ -114,7 +114,11 @@ const CommentsBox = (props) => {
                         ))}
                     </ul>
                     {props.commentPopover}
-                    <CommentInput {...props.commentInputProps} />
+                    {props.readOnly ? (
+                        props.commentInputReadOnly
+                    ) : (
+                        <CommentInput {...props.commentInputProps} />
+                    )}
                 </div>
             ) : (
                 props.previewedComment ? (
@@ -171,6 +175,8 @@ CommentsBox.propTypes = {
         author: React.PropTypes.string.isRequired,
         text: React.PropTypes.string.isRequired,
     }),
+    readOnly: React.PropTypes.bool,
+    commentInputReadOnly: React.PropTypes.node,
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
     onCommentClick: React.PropTypes.func,
@@ -189,6 +195,8 @@ CommentsBox.defaultProps = {
     editingCommentStyle: {},
     commentStyle: {},
     commentInputStyle: {},
+    readOnly: false,
+    commentInputReadOnly: <noscript/>,
     opened: false,
     onCommentBoxClosedClick: (e) => {},
     onCommentClick: (e, id) => {},
