@@ -110,7 +110,8 @@ const SocialButton = (props) => {
                     onClick={(e) => props.onClick(e, props.disabled)}
                     style={buttonStyleMerged}
                     disabled={props.disabled}
-                    iconStyle={iconStyleMerged}>
+                    iconStyle={iconStyleMerged}
+                    disableTouchRipple={true}>
                     {props.icon}
                 </PureIconButton>
             )}

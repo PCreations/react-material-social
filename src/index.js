@@ -4,6 +4,7 @@ import Perf from 'react-addons-perf';
 window.Perf = Perf;
 import ThumbUp from 'material-ui/lib/svg-icons/action/thumb-up';
 
+
 import SocialInteractionsBox from './components/SocialInteractionsBox';
 
 window.React = React;
@@ -68,9 +69,6 @@ ReactDOM.render(
     }}>
         <SocialInteractionsBox
             readOnly={true}
-            commentInputReadOnly={
-                <p>{"Connectez-vous"}</p>
-            }
             reactionIcon={<ThumbUp/>}
             reactionsCount={45}
             commentsCount={1}

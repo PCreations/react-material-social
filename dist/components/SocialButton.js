@@ -135,7 +135,8 @@
                     },
                     style: buttonStyleMerged,
                     disabled: props.disabled,
-                    iconStyle: iconStyleMerged },
+                    iconStyle: iconStyleMerged,
+                    disableTouchRipple: true },
                 props.icon
             )
         );
