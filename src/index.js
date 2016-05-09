@@ -68,11 +68,12 @@ ReactDOM.render(
         backgroundColor: '#fefefe'
     }}>
         <SocialInteractionsBox
-            readOnly={true}
+            readOnly={false}
             reactionIcon={<ThumbUp/>}
             reactionsCount={45}
             reactionsCountTooltip={'Vous et 45 autres digggers aimez ça'}
             commentsCount={1}
+            clickedCommentEditable={true}
             comments={comments}
             commentInputProps={{
                 avatar: 'http://lh3.googleusercontent.com/-ImgnbmvkTZ8/AAAAAAAAAAI/AAAAAAAAHZ8/SRkXfj7CBkM/s36-p-k-rw-no/photo.jpg',

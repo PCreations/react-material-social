@@ -312,18 +312,26 @@
                                 onRequestClose: function onRequestClose(e) {
                                     return _this2.handleRequestClose(e);
                                 } },
-                            _react2.default.createElement(
+                            !this.props.readOnly && _react2.default.createElement(
                                 _menu2.default,
                                 null,
-                                _react2.default.createElement(_menuItem2.default, { primaryText: 'Ajouter +1 à ce commentaire' }),
-                                _react2.default.createElement(_menuItem2.default, { primaryText: 'Signaler ce commentaire' }),
-                                _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
-                                        _this2.setState({
-                                            popoverOpened: false,
-                                            editingCommentId: _this2.state.clickedCommentId,
-                                            editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
-                                        });
-                                    } })
+                                _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
+                                        _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
+                                    } }),
+                                this.props.clickedCommentEditable && _react2.default.createElement(
+                                    'div',
+                                    null,
+                                    _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
+                                            _this2.setState({
+                                                popoverOpened: false,
+                                                editingCommentId: _this2.state.clickedCommentId,
+                                                editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
+                                            });
+                                        } }),
+                                    _react2.default.createElement(_menuItem2.default, { primaryText: 'Supprimer ce commentaire', onClick: function onClick(e) {
+                                            _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
+                                        } })
+                                )
                             )
                         ),
                         cancelButtonText: this.props.cancelButtonText,
@@ -360,6 +368,7 @@
         }),
         readOnly: _react2.default.PropTypes.bool,
         commentInputReadOnly: _react2.default.PropTypes.node,
+        clickedCommentEditable: _react2.default.PropTypes.bool,
         defaultOpened: _react2.default.PropTypes.bool,
         reactionButtonActive: _react2.default.PropTypes.bool,
         reactionIcon: _react2.default.PropTypes.element,
@@ -392,7 +401,8 @@
         previewedComment: _CommentsBox2.default.propTypes.previewedComment,
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
-        onBoxOpened: _react2.default.PropTypes.func
+        onBoxOpened: _react2.default.PropTypes.func,
+        onDeleteCommentClick: _react2.default.PropTypes.func
     };
 
     SocialInteractionsBox.defaultProps = {
@@ -408,13 +418,15 @@
         },
         readOnly: false,
         activeReactionButtons: [],
+        clickedCommentEditable: false,
         defaultOpened: false,
         reactionButtonActive: false,
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},
         onCommentButtonClick: function onCommentButtonClick() {},
         onCommentReactionButtonClick: function onCommentReactionButtonClick(commentId) {},
-        onBoxToggled: function onBoxToggled() {}
+        onBoxToggled: function onBoxToggled() {},
+        onDeleteCommentClick: function onDeleteCommentClick() {}
     };
 
     exports.default = SocialInteractionsBox;

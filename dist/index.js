@@ -92,11 +92,12 @@
                 backgroundColor: '#fefefe'
             } },
         _react2.default.createElement(_SocialInteractionsBox2.default, {
-            readOnly: true,
+            readOnly: false,
             reactionIcon: _react2.default.createElement(_thumbUp2.default, null),
             reactionsCount: 45,
             reactionsCountTooltip: 'Vous et 45 autres digggers aimez ça',
             commentsCount: 1,
+            clickedCommentEditable: true,
             comments: comments,
             commentInputProps: {
                 avatar: 'http://lh3.googleusercontent.com/-ImgnbmvkTZ8/AAAAAAAAAAI/AAAAAAAAHZ8/SRkXfj7CBkM/s36-p-k-rw-no/photo.jpg',
