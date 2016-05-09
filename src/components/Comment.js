@@ -1,6 +1,7 @@
 import React from 'react';
 
 import MoreVertSVG from 'material-ui/lib/svg-icons/navigation/more-vert';
+import ThumbUp from 'material-ui/lib/svg-icons/action/thumb-up';
 
 import SocialButton from './SocialButton';
 import SocialCount from './SocialCount';
@@ -38,7 +39,6 @@ const avatarStyle = {
 }
 
 const commentHeadingStyle = {
-    overflow: 'hidden',
     wordBreak: 'break-word',
     margin: '0 10px 0 16px',
     WebkitBoxFlex: 'auto',
@@ -202,6 +202,7 @@ const Comment = (props) => {
                         }}
                         verticalPosition="top"
                         horizontalPosition="right" />
+                    <ThumbUp style={{ height: 10, width: 10, fill: 'rgba(0,0,0,0.54)', color: 'rgba(0,0,0,0.54)' }}/>
                 </div>
                 <div style={commentBodyStyleMerged}>
                     {props.text}

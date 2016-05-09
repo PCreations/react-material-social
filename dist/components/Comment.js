@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'material-ui/lib/svg-icons/navigation/more-vert', './SocialButton', './SocialCount', './addHoverState', './pureComponent'], factory);
+        define(['exports', 'react', 'material-ui/lib/svg-icons/navigation/more-vert', 'material-ui/lib/svg-icons/action/thumb-up', './SocialButton', './SocialCount', './addHoverState', './pureComponent'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('material-ui/lib/svg-icons/navigation/more-vert'), require('./SocialButton'), require('./SocialCount'), require('./addHoverState'), require('./pureComponent'));
+        factory(exports, require('react'), require('material-ui/lib/svg-icons/navigation/more-vert'), require('material-ui/lib/svg-icons/action/thumb-up'), require('./SocialButton'), require('./SocialCount'), require('./addHoverState'), require('./pureComponent'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.moreVert, global.SocialButton, global.SocialCount, global.addHoverState, global.pureComponent);
+        factory(mod.exports, global.react, global.moreVert, global.thumbUp, global.SocialButton, global.SocialCount, global.addHoverState, global.pureComponent);
         global.Comment = mod.exports;
     }
-})(this, function (exports, _react, _moreVert, _SocialButton, _SocialCount, _addHoverState, _pureComponent) {
+})(this, function (exports, _react, _moreVert, _thumbUp, _SocialButton, _SocialCount, _addHoverState, _pureComponent) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -20,6 +20,8 @@
     var _react2 = _interopRequireDefault(_react);
 
     var _moreVert2 = _interopRequireDefault(_moreVert);
+
+    var _thumbUp2 = _interopRequireDefault(_thumbUp);
 
     var _SocialButton2 = _interopRequireDefault(_SocialButton);
 
@@ -80,7 +82,6 @@
     };
 
     var commentHeadingStyle = {
-        overflow: 'hidden',
         wordBreak: 'break-word',
         margin: '0 10px 0 16px',
         WebkitBoxFlex: 'auto',
@@ -255,7 +256,8 @@
                             left: 25
                         },
                         verticalPosition: 'top',
-                        horizontalPosition: 'right' })
+                        horizontalPosition: 'right' }),
+                    _react2.default.createElement(_thumbUp2.default, { style: { height: 10, width: 10, fill: 'rgba(0,0,0,0.54)', color: 'rgba(0,0,0,0.54)' } })
                 ),
                 _react2.default.createElement(
                     'div',
