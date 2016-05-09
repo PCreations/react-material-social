@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'material-ui/lib/svg-icons/navigation/more-vert', './SocialButton', './addHoverState', './pureComponent'], factory);
+        define(['exports', 'react', 'material-ui/lib/svg-icons/navigation/more-vert', './SocialButton', './SocialCount', './addHoverState', './pureComponent'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('material-ui/lib/svg-icons/navigation/more-vert'), require('./SocialButton'), require('./addHoverState'), require('./pureComponent'));
+        factory(exports, require('react'), require('material-ui/lib/svg-icons/navigation/more-vert'), require('./SocialButton'), require('./SocialCount'), require('./addHoverState'), require('./pureComponent'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.moreVert, global.SocialButton, global.addHoverState, global.pureComponent);
+        factory(mod.exports, global.react, global.moreVert, global.SocialButton, global.SocialCount, global.addHoverState, global.pureComponent);
         global.Comment = mod.exports;
     }
-})(this, function (exports, _react, _moreVert, _SocialButton, _addHoverState, _pureComponent) {
+})(this, function (exports, _react, _moreVert, _SocialButton, _SocialCount, _addHoverState, _pureComponent) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -23,6 +23,8 @@
 
     var _SocialButton2 = _interopRequireDefault(_SocialButton);
 
+    var _SocialCount2 = _interopRequireDefault(_SocialCount);
+
     var _addHoverState2 = _interopRequireDefault(_addHoverState);
 
     var _pureComponent2 = _interopRequireDefault(_pureComponent);
@@ -32,6 +34,20 @@
             default: obj
         };
     }
+
+    var _extends = Object.assign || function (target) {
+        for (var i = 1; i < arguments.length; i++) {
+            var source = arguments[i];
+
+            for (var key in source) {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                    target[key] = source[key];
+                }
+            }
+        }
+
+        return target;
+    };
 
     var commentItemStyle = {
         padding: '12px 16px',
@@ -228,11 +244,18 @@
                         { href: '#', style: commentAuthorStyleMerged },
                         props.author
                     ),
-                    _react2.default.createElement(
-                        'span',
-                        { style: commentReactionsCountStyleMerged },
-                        props.reactionsCount
-                    )
+                    _react2.default.createElement(_SocialCount2.default, {
+                        style: _extends({
+                            lineHeight: '14px'
+                        }, commentReactionsCountStyleMerged),
+                        count: props.reactionsCount,
+                        tooltip: props.reactionsCountTooltip,
+                        tooltipStyle: {
+                            top: 25,
+                            left: 25
+                        },
+                        verticalPosition: 'top',
+                        horizontalPosition: 'right' })
                 ),
                 _react2.default.createElement(
                     'div',
@@ -299,6 +322,7 @@
         reactionButtonActive: _react2.default.PropTypes.bool,
         onReactionButtonClick: _react2.default.PropTypes.func,
         reactionsCount: _react2.default.PropTypes.node,
+        reactionsCountTooltip: _react2.default.PropTypes.string,
         text: _react2.default.PropTypes.string.isRequired,
         timeSince: _react2.default.PropTypes.string.isRequired,
         onClick: _react2.default.PropTypes.func.isRequired,

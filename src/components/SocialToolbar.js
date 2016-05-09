@@ -3,9 +3,9 @@ import React from 'react';
 import PlusOneSVG from 'material-ui/lib/svg-icons/social/plus-one';
 import CommentSVG from 'material-ui/lib/svg-icons/communication/comment';
 import ShareSVG from 'material-ui/lib/svg-icons/social/share';
-import Tooltip from 'material-ui/lib/tooltip';
 
 import SocialButton from './SocialButton';
+import SocialCount from './SocialCount';
 import pureComponent from './pureComponent';
 import addHoverState from './addHoverState';
 
@@ -36,44 +36,6 @@ const iconStyle = {
     color: '#444',
     fill: '#444',
 }
-
-const countStyle = {
-    lineHeight: '36px',
-    color: '#777',
-    fontSize: '12px',
-    marginRight: 6,
-    position: 'relative'
-}
-
-let SocialCount = (props) => {
-
-    let countStyleMerged = Object.assign({}, countStyle, props.style)
-
-    countStyleMerged['cursor'] = props.hovered && props.tooltip ? 'pointer' : 'default'
-
-    return (
-        <div style={countStyleMerged}>
-            {props.count}
-            {props.tooltip && (
-                <Tooltip
-                  label={props.tooltip}
-                  show={props.hovered}
-                  touch={true}
-                  style={{boxSizing: 'border-box'}}
-                  verticalPosition={'bottom'}
-                  horizontalPosition={'center'}/>
-            )}
-        </div>
-    )
-}
-
-SocialCount.propTypes = {
-    count: React.PropTypes.node,
-    style: React.PropTypes.object,
-    tooltip: React.PropTypes.string
-}
-
-SocialCount = pureComponent(addHoverState(SocialCount))
 
 const SocialToolbar = (props) => {
 

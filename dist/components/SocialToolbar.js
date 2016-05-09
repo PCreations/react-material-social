@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'material-ui/lib/svg-icons/social/plus-one', 'material-ui/lib/svg-icons/communication/comment', 'material-ui/lib/svg-icons/social/share', 'material-ui/lib/tooltip', './SocialButton', './pureComponent', './addHoverState'], factory);
+        define(['exports', 'react', 'material-ui/lib/svg-icons/social/plus-one', 'material-ui/lib/svg-icons/communication/comment', 'material-ui/lib/svg-icons/social/share', './SocialButton', './SocialCount', './pureComponent', './addHoverState'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('material-ui/lib/svg-icons/social/plus-one'), require('material-ui/lib/svg-icons/communication/comment'), require('material-ui/lib/svg-icons/social/share'), require('material-ui/lib/tooltip'), require('./SocialButton'), require('./pureComponent'), require('./addHoverState'));
+        factory(exports, require('react'), require('material-ui/lib/svg-icons/social/plus-one'), require('material-ui/lib/svg-icons/communication/comment'), require('material-ui/lib/svg-icons/social/share'), require('./SocialButton'), require('./SocialCount'), require('./pureComponent'), require('./addHoverState'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.plusOne, global.comment, global.share, global.tooltip, global.SocialButton, global.pureComponent, global.addHoverState);
+        factory(mod.exports, global.react, global.plusOne, global.comment, global.share, global.SocialButton, global.SocialCount, global.pureComponent, global.addHoverState);
         global.SocialToolbar = mod.exports;
     }
-})(this, function (exports, _react, _plusOne, _comment, _share, _tooltip, _SocialButton, _pureComponent, _addHoverState) {
+})(this, function (exports, _react, _plusOne, _comment, _share, _SocialButton, _SocialCount, _pureComponent, _addHoverState) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -25,9 +25,9 @@
 
     var _share2 = _interopRequireDefault(_share);
 
-    var _tooltip2 = _interopRequireDefault(_tooltip);
-
     var _SocialButton2 = _interopRequireDefault(_SocialButton);
+
+    var _SocialCount2 = _interopRequireDefault(_SocialCount);
 
     var _pureComponent2 = _interopRequireDefault(_pureComponent);
 
@@ -66,42 +66,6 @@
         fill: '#444'
     };
 
-    var countStyle = {
-        lineHeight: '36px',
-        color: '#777',
-        fontSize: '12px',
-        marginRight: 6,
-        position: 'relative'
-    };
-
-    var SocialCount = function SocialCount(props) {
-
-        var countStyleMerged = Object.assign({}, countStyle, props.style);
-
-        countStyleMerged['cursor'] = props.hovered && props.tooltip ? 'pointer' : 'default';
-
-        return _react2.default.createElement(
-            'div',
-            { style: countStyleMerged },
-            props.count,
-            props.tooltip && _react2.default.createElement(_tooltip2.default, {
-                label: props.tooltip,
-                show: props.hovered,
-                touch: true,
-                style: { boxSizing: 'border-box' },
-                verticalPosition: 'bottom',
-                horizontalPosition: 'center' })
-        );
-    };
-
-    SocialCount.propTypes = {
-        count: _react2.default.PropTypes.node,
-        style: _react2.default.PropTypes.object,
-        tooltip: _react2.default.PropTypes.string
-    };
-
-    SocialCount = (0, _pureComponent2.default)((0, _addHoverState2.default)(SocialCount));
-
     var SocialToolbar = function SocialToolbar(props) {
 
         var clickCallbackFactory = function clickCallbackFactory(e, func) {
@@ -128,7 +92,7 @@
                 },
                 icon: _react2.default.cloneElement(props.reactionIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
-            props.reactionsCount && _react2.default.createElement(SocialCount, {
+            props.reactionsCount && _react2.default.createElement(_SocialCount2.default, {
                 style: props.style.count,
                 count: props.reactionsCount,
                 tooltip: props.reactionsCountTooltip }),
@@ -146,7 +110,7 @@
                 },
                 icon: _react2.default.cloneElement(props.commentIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
-            _react2.default.createElement(SocialCount, {
+            _react2.default.createElement(_SocialCount2.default, {
                 style: props.style.count,
                 count: props.commentsCount,
                 tooltip: props.commentsCountTooltip }),
@@ -156,7 +120,7 @@
                 },
                 icon: _react2.default.cloneElement(props.shareIcon, { style: iconStyleMerged }),
                 style: props.socialButtonsStyle }),
-            _react2.default.createElement(SocialCount, {
+            _react2.default.createElement(_SocialCount2.default, {
                 style: props.style.count,
                 count: props.sharesCount,
                 tooltip: props.sharesCountTooltip })

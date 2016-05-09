@@ -3,6 +3,7 @@ import React from 'react';
 import MoreVertSVG from 'material-ui/lib/svg-icons/navigation/more-vert';
 
 import SocialButton from './SocialButton';
+import SocialCount from './SocialCount';
 import addHoverState from './addHoverState';
 import pureComponent from './pureComponent';
 
@@ -188,7 +189,19 @@ const Comment = (props) => {
             <div role="heading" style={commentHeadingStyleMerged}>
                 <div style={commentAuthorHeadingStyleMerged}>
                     <a href="#" style={commentAuthorStyleMerged}>{props.author}</a>
-                    <span style={commentReactionsCountStyleMerged}>{props.reactionsCount}</span>
+                    <SocialCount
+                        style={{
+                            lineHeight: '14px',
+                            ...commentReactionsCountStyleMerged
+                        }}
+                        count={props.reactionsCount}
+                        tooltip={props.reactionsCountTooltip}
+                        tooltipStyle={{
+                            top: 25,
+                            left: 25
+                        }}
+                        verticalPosition="top"
+                        horizontalPosition="right" />
                 </div>
                 <div style={commentBodyStyleMerged}>
                     {props.text}
@@ -248,6 +261,7 @@ Comment.propTypes = {
     reactionButtonActive: React.PropTypes.bool,
     onReactionButtonClick: React.PropTypes.func,
     reactionsCount: React.PropTypes.node,
+    reactionsCountTooltip: React.PropTypes.string,
     text: React.PropTypes.string.isRequired,
     timeSince: React.PropTypes.string.isRequired,
     onClick: React.PropTypes.func.isRequired,
