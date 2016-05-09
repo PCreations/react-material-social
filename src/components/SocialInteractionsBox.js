@@ -196,7 +196,7 @@ class SocialInteractionsBox extends React.Component {
                                     <MenuItem primaryText="J'aime ce commentaire" onClick={(e) => {
                                         this.props.onCommentReactionButtonClick(this.state.clickedCommentId)
                                     }}/>
-                                    {this.props.clickedCommentEditable && (
+                                    {this.props.isClickedCommentEditable(this.state.clickedCommentId) && (
                                         <div>
                                             <MenuItem primaryText="Modifier ce commentaire" onClick={(e) => {
                                                 this.setState({
@@ -274,7 +274,8 @@ SocialInteractionsBox.propTypes = {
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
     onBoxOpened: React.PropTypes.func,
-    onDeleteCommentClick: React.PropTypes.func
+    onDeleteCommentClick: React.PropTypes.func,
+    isClickedCommentEditable: React.PropTypes.func
 }
 
 SocialInteractionsBox.defaultProps = {
@@ -298,7 +299,8 @@ SocialInteractionsBox.defaultProps = {
     onCommentButtonClick: () => {},
     onCommentReactionButtonClick: (commentId) => {},
     onBoxToggled: () => {},
-    onDeleteCommentClick: () => {}
+    onDeleteCommentClick: () => {},
+    isClickedCommentEditable: (commentId) => true
 }
 
 export default SocialInteractionsBox;

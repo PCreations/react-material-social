@@ -318,7 +318,7 @@
                                 _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
                                         _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
                                     } }),
-                                this.props.clickedCommentEditable && _react2.default.createElement(
+                                this.props.isClickedCommentEditable(this.state.clickedCommentId) && _react2.default.createElement(
                                     'div',
                                     null,
                                     _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
@@ -402,7 +402,8 @@
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
         onBoxOpened: _react2.default.PropTypes.func,
-        onDeleteCommentClick: _react2.default.PropTypes.func
+        onDeleteCommentClick: _react2.default.PropTypes.func,
+        isClickedCommentEditable: _react2.default.PropTypes.func
     };
 
     SocialInteractionsBox.defaultProps = {
@@ -426,7 +427,10 @@
         onCommentButtonClick: function onCommentButtonClick() {},
         onCommentReactionButtonClick: function onCommentReactionButtonClick(commentId) {},
         onBoxToggled: function onBoxToggled() {},
-        onDeleteCommentClick: function onDeleteCommentClick() {}
+        onDeleteCommentClick: function onDeleteCommentClick() {},
+        isClickedCommentEditable: function isClickedCommentEditable(commentId) {
+            return true;
+        }
     };
 
     exports.default = SocialInteractionsBox;
