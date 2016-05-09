@@ -296,44 +296,7 @@
                         }),
                         editingCommentId: this.state.editingCommentId,
                         editingCommentText: this.state.editingCommentText,
-                        commentPopover: _react2.default.createElement(
-                            PurePopover,
-                            {
-                                open: this.state.popoverOpened,
-                                anchorEl: this.state.clickedComment,
-                                anchorOrigin: {
-                                    horizontal: 'middle',
-                                    vertical: 'top'
-                                },
-                                targetOrigin: {
-                                    horizontal: 'left',
-                                    vertical: 'top'
-                                },
-                                onRequestClose: function onRequestClose(e) {
-                                    return _this2.handleRequestClose(e);
-                                } },
-                            !this.props.readOnly && _react2.default.createElement(
-                                _menu2.default,
-                                null,
-                                _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
-                                        _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
-                                    } }),
-                                this.props.isClickedCommentEditable(this.state.clickedCommentId) && _react2.default.createElement(
-                                    'div',
-                                    null,
-                                    _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
-                                            _this2.setState({
-                                                popoverOpened: false,
-                                                editingCommentId: _this2.state.clickedCommentId,
-                                                editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
-                                            });
-                                        } }),
-                                    _react2.default.createElement(_menuItem2.default, { primaryText: 'Supprimer ce commentaire', onClick: function onClick(e) {
-                                            _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
-                                        } })
-                                )
-                            )
-                        ),
+                        commentPopover: _react2.default.createElement('noscript', null),
                         cancelButtonText: this.props.cancelButtonText,
                         editButtonText: this.props.editButtonText,
                         onCancelClick: function onCancelClick(e) {
