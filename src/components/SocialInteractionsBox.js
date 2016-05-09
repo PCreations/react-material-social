@@ -131,8 +131,11 @@ class SocialInteractionsBox extends React.Component {
                     reactionIcon={this.props.reactionIcon}
                     reactionButtonActive={this.props.reactionButtonActive}
                     reactionsCount={this.props.reactionsCount}
+                    reactionsCountTooltip={this.props.reactionsCountTooltip}
                     commentsCount={this.props.commentsCount}
+                    commentsCountTooltip={this.props.commentsCountTooltip}
                     sharesCount={this.props.sharesCount}
+                    sharesCountTooltip={this.props.sharesCountTooltip}
                     onClick={(e) => this.setState({
                         opened: !this.state.opened,
                         inputCommentOpened: false,
@@ -230,9 +233,12 @@ SocialInteractionsBox.propTypes = {
     defaultOpened: React.PropTypes.bool,
     reactionButtonActive: React.PropTypes.bool,
     reactionIcon: React.PropTypes.element,
-    reactionsCount: React.PropTypes.number,
-    commentsCount: React.PropTypes.number,
-    sharesCount: React.PropTypes.number,
+    reactionsCount: React.PropTypes.node,
+    reactionsCountTooltip: React.PropTypes.string,
+    commentsCount: React.PropTypes.node,
+    commentsCountTooltip: React.PropTypes.string,
+    sharesCount: React.PropTypes.node,
+    sharesCountTooltip: React.PropTypes.string,
     onReactionButtonClick: React.PropTypes.func,
     onCommentButtonClick: React.PropTypes.func,
     onEditClick: React.PropTypes.func,

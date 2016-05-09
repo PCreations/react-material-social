@@ -1,16 +1,16 @@
 (function (global, factory) {
     if (typeof define === "function" && define.amd) {
-        define(['exports', 'react', 'material-ui/lib/icon-button', 'material-ui/lib/paper', './addHoverState', './pureComponent'], factory);
+        define(['exports', 'react', 'material-ui/lib/icon-button', 'material-ui/lib/paper', 'material-ui/lib/tooltip', './addHoverState', './pureComponent'], factory);
     } else if (typeof exports !== "undefined") {
-        factory(exports, require('react'), require('material-ui/lib/icon-button'), require('material-ui/lib/paper'), require('./addHoverState'), require('./pureComponent'));
+        factory(exports, require('react'), require('material-ui/lib/icon-button'), require('material-ui/lib/paper'), require('material-ui/lib/tooltip'), require('./addHoverState'), require('./pureComponent'));
     } else {
         var mod = {
             exports: {}
         };
-        factory(mod.exports, global.react, global.iconButton, global.paper, global.addHoverState, global.pureComponent);
+        factory(mod.exports, global.react, global.iconButton, global.paper, global.tooltip, global.addHoverState, global.pureComponent);
         global.SocialButton = mod.exports;
     }
-})(this, function (exports, _react, _iconButton, _paper, _addHoverState, _pureComponent) {
+})(this, function (exports, _react, _iconButton, _paper, _tooltip, _addHoverState, _pureComponent) {
     'use strict';
 
     Object.defineProperty(exports, "__esModule", {
@@ -22,6 +22,8 @@
     var _iconButton2 = _interopRequireDefault(_iconButton);
 
     var _paper2 = _interopRequireDefault(_paper);
+
+    var _tooltip2 = _interopRequireDefault(_tooltip);
 
     var _addHoverState2 = _interopRequireDefault(_addHoverState);
 

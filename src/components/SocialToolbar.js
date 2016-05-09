@@ -3,9 +3,11 @@ import React from 'react';
 import PlusOneSVG from 'material-ui/lib/svg-icons/social/plus-one';
 import CommentSVG from 'material-ui/lib/svg-icons/communication/comment';
 import ShareSVG from 'material-ui/lib/svg-icons/social/share';
+import Tooltip from 'material-ui/lib/tooltip';
 
 import SocialButton from './SocialButton';
 import pureComponent from './pureComponent';
+import addHoverState from './addHoverState';
 
 
 const containerStyle = {
@@ -39,8 +41,39 @@ const countStyle = {
     lineHeight: '36px',
     color: '#777',
     fontSize: '12px',
-    marginRight: 6
+    marginRight: 6,
+    position: 'relative'
 }
+
+let SocialCount = (props) => {
+
+    let countStyleMerged = Object.assign({}, countStyle, props.style)
+
+    countStyleMerged['cursor'] = props.hovered && props.tooltip ? 'pointer' : 'default'
+
+    return (
+        <div style={countStyleMerged}>
+            {props.count}
+            {props.tooltip && (
+                <Tooltip
+                  label={props.tooltip}
+                  show={props.hovered}
+                  touch={true}
+                  style={{boxSizing: 'border-box'}}
+                  verticalPosition={'bottom'}
+                  horizontalPosition={'center'}/>
+            )}
+        </div>
+    )
+}
+
+SocialCount.propTypes = {
+    count: React.PropTypes.node,
+    style: React.PropTypes.object,
+    tooltip: React.PropTypes.string
+}
+
+SocialCount = pureComponent(addHoverState(SocialCount))
 
 const SocialToolbar = (props) => {
 
@@ -55,8 +88,6 @@ const SocialToolbar = (props) => {
 
     let iconStyleMerged = Object.assign({}, iconStyle, props.style.icon)
 
-    let countStyleMerged = Object.assign({}, countStyle, props.style.count)
-
     return (
         <div style={containerStyleMerged} role="toolbar" onClick={(e) => props.onClick(e)}>
             <SocialButton
@@ -69,9 +100,10 @@ const SocialToolbar = (props) => {
                 icon={React.cloneElement(props.reactionIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
             {props.reactionsCount && (
-                <div style={countStyleMerged}>
-                    {" "+props.reactionsCount+" "}
-                </div>
+                <SocialCount
+                    style={props.style.count}
+                    count={props.reactionsCount}
+                    tooltip={props.reactionsCountTooltip}/>
             )}
             <div style={{
                 WebkitBoxFlex: 1,
@@ -88,9 +120,10 @@ const SocialToolbar = (props) => {
                 )}
                 icon={React.cloneElement(props.commentIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
-            <div style={countStyleMerged}>
-                {" "+props.commentsCount+" "}
-            </div>
+            <SocialCount
+                style={props.style.count}
+                count={props.commentsCount}
+                tooltip={props.commentsCountTooltip}/>
             <SocialButton
                 onClick={(e) => clickCallbackFactory(
                     e,
@@ -98,9 +131,10 @@ const SocialToolbar = (props) => {
                 )}
                 icon={React.cloneElement(props.shareIcon, {style: iconStyleMerged})}
                 style={props.socialButtonsStyle}/>
-            <div style={countStyleMerged}>
-                {" "+props.sharesCount+" "}
-            </div>
+            <SocialCount
+                style={props.style.count}
+                count={props.sharesCount}
+                tooltip={props.sharesCountTooltip}/>
         </div>
     )
 }
@@ -117,9 +151,12 @@ SocialToolbar.propTypes = {
     shareIcon: React.PropTypes.element,
     reactionButtonActive: React.PropTypes.bool,
     socialButtonsStyle: SocialButton.propTypes.style,
-    reactionsCount: React.PropTypes.number,
-    commentsCount: React.PropTypes.number,
-    sharesCount: React.PropTypes.number,
+    reactionsCount: React.PropTypes.node,
+    reactionsCountTooltip: React.PropTypes.string,
+    commentsCount: React.PropTypes.node,
+    commentsCountTooltip: React.PropTypes.string,
+    sharesCount: React.PropTypes.node,
+    sharesCountTooltip: React.PropTypes.string,
     onClick: React.PropTypes.func,
     onReactionButtonClick: React.PropTypes.func,
     onCommentButtonClick: React.PropTypes.func,

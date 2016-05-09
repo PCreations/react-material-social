@@ -2,6 +2,7 @@ import React from 'react';
 
 import IconButton from 'material-ui/lib/icon-button';
 import Paper from 'material-ui/lib/paper';
+import Tooltip from 'material-ui/lib/tooltip';
 
 import addHoverState from './addHoverState';
 import pureComponent from './pureComponent';

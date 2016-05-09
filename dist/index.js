@@ -95,6 +95,7 @@
             readOnly: true,
             reactionIcon: _react2.default.createElement(_thumbUp2.default, null),
             reactionsCount: 45,
+            reactionsCountTooltip: 'Vous et 45 autres digggers aimez ça',
             commentsCount: 1,
             comments: comments,
             commentInputProps: {

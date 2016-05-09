@@ -71,6 +71,7 @@ ReactDOM.render(
             readOnly={true}
             reactionIcon={<ThumbUp/>}
             reactionsCount={45}
+            reactionsCountTooltip={'Vous et 45 autres digggers aimez ça'}
             commentsCount={1}
             comments={comments}
             commentInputProps={{
