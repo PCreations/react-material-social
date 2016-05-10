@@ -195,11 +195,13 @@ class SocialInteractionsBox extends React.Component {
                             {!this.props.readOnly && (
                                 <Menu>
                                     <MenuItem primaryText="J'aime ce commentaire" onClick={(e) => {
+                                        this.handleRequestClose(e)
                                         this.props.onCommentReactionButtonClick(this.state.clickedCommentId)
                                     }}/>
                                     {this.props.isClickedCommentEditable(this.state.clickedCommentId) && (
                                         <div>
                                             <MenuItem primaryText="Modifier ce commentaire" onClick={(e) => {
+                                                this.handleRequestClose(e)
                                                 this.setState({
                                                     popoverOpened: false,
                                                     editingCommentId: this.state.clickedCommentId,
@@ -207,6 +209,7 @@ class SocialInteractionsBox extends React.Component {
                                                 })
                                             }} />
                                             <MenuItem primaryText="Supprimer ce commentaire" onClick={(e) => {
+                                                this.handleRequestClose(e)
                                                 this.props.onDeleteCommentClick(this.state.clickedCommentId)
                                             }} />
                                         </div>

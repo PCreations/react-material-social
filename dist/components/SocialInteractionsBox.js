@@ -317,12 +317,14 @@
                                 _menu2.default,
                                 null,
                                 _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
+                                        _this2.handleRequestClose(e);
                                         _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
                                     } }),
                                 this.props.isClickedCommentEditable(this.state.clickedCommentId) && _react2.default.createElement(
                                     'div',
                                     null,
                                     _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
+                                            _this2.handleRequestClose(e);
                                             _this2.setState({
                                                 popoverOpened: false,
                                                 editingCommentId: _this2.state.clickedCommentId,
@@ -330,6 +332,7 @@
                                             });
                                         } }),
                                     _react2.default.createElement(_menuItem2.default, { primaryText: 'Supprimer ce commentaire', onClick: function onClick(e) {
+                                            _this2.handleRequestClose(e);
                                             _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
                                         } })
                                 )
