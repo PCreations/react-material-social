@@ -176,6 +176,7 @@ class SocialInteractionsBox extends React.Component {
                             }, this.props.onPublishButtonClick(e, commentText))
                         }
                     }}
+                    commentInputStyle={this.props.style.commentInput}
                     editingCommentId={this.state.editingCommentId}
                     editingCommentText={this.state.editingCommentText}
                     commentPopover={<noscript />}
