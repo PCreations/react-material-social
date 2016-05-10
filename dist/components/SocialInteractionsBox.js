@@ -294,6 +294,7 @@
                                 }, _this2.props.onPublishButtonClick(e, commentText));
                             }
                         }),
+                        commentInputStyle: this.props.style.commentInput,
                         editingCommentId: this.state.editingCommentId,
                         editingCommentText: this.state.editingCommentText,
                         commentPopover: _react2.default.createElement('noscript', null),
