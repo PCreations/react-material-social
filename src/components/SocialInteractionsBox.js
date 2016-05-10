@@ -179,7 +179,42 @@ class SocialInteractionsBox extends React.Component {
                     commentInputStyle={this.props.style.commentInput}
                     editingCommentId={this.state.editingCommentId}
                     editingCommentText={this.state.editingCommentText}
-                    commentPopover={<noscript />}
+                    commentPopover={
+                        <PurePopover
+                            open={this.state.popoverOpened}
+                            anchorEl={this.state.clickedComment}
+                            anchorOrigin={{
+                                horizontal: 'middle',
+                                vertical: 'top'
+                            }}
+                            targetOrigin={{
+                                horizontal: 'left',
+                                vertical: 'top'
+                            }}
+                            onRequestClose={(e) => this.handleRequestClose(e)}>
+                            {!this.props.readOnly && (
+                                <Menu>
+                                    <MenuItem primaryText="J'aime ce commentaire" onClick={(e) => {
+                                        this.props.onCommentReactionButtonClick(this.state.clickedCommentId)
+                                    }}/>
+                                    {this.props.isClickedCommentEditable(this.state.clickedCommentId) && (
+                                        <div>
+                                            <MenuItem primaryText="Modifier ce commentaire" onClick={(e) => {
+                                                this.setState({
+                                                    popoverOpened: false,
+                                                    editingCommentId: this.state.clickedCommentId,
+                                                    editingCommentText: this.getCommentTextFromId(this.state.clickedCommentId)
+                                                })
+                                            }} />
+                                            <MenuItem primaryText="Supprimer ce commentaire" onClick={(e) => {
+                                                this.props.onDeleteCommentClick(this.state.clickedCommentId)
+                                            }} />
+                                        </div>
+                                    )}
+                                </Menu>
+                            )}
+                        </PurePopover>
+                    }
                     cancelButtonText={this.props.cancelButtonText}
                     editButtonText={this.props.editButtonText}
                     onCancelClick={(e) => this.setState({editingCommentId: ''})}
