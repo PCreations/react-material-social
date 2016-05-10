@@ -313,29 +313,25 @@
                                 onRequestClose: function onRequestClose(e) {
                                     return _this2.handleRequestClose(e);
                                 } },
-                            !this.props.readOnly && (this.props.popoverMenu || _react2.default.createElement(
+                            !this.props.readOnly && (this.props.getPopoverMenu(this.state.clickedCommentId) || _react2.default.createElement(
                                 _menu2.default,
                                 null,
                                 _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
                                         _this2.handleRequestClose(e);
                                         _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
                                     } }),
-                                this.props.isClickedCommentEditable(this.state.clickedCommentId) && _react2.default.createElement(
-                                    'div',
-                                    null,
-                                    _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
-                                            _this2.handleRequestClose(e);
-                                            _this2.setState({
-                                                popoverOpened: false,
-                                                editingCommentId: _this2.state.clickedCommentId,
-                                                editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
-                                            });
-                                        } }),
-                                    _react2.default.createElement(_menuItem2.default, { primaryText: 'Supprimer ce commentaire', onClick: function onClick(e) {
-                                            _this2.handleRequestClose(e);
-                                            _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
-                                        } })
-                                )
+                                _react2.default.createElement(_menuItem2.default, { primaryText: 'Modifier ce commentaire', onClick: function onClick(e) {
+                                        _this2.handleRequestClose(e);
+                                        _this2.setState({
+                                            popoverOpened: false,
+                                            editingCommentId: _this2.state.clickedCommentId,
+                                            editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
+                                        });
+                                    } }),
+                                _react2.default.createElement(_menuItem2.default, { primaryText: 'Supprimer ce commentaire', onClick: function onClick(e) {
+                                        _this2.handleRequestClose(e);
+                                        _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
+                                    } })
                             ))
                         ),
                         cancelButtonText: this.props.cancelButtonText,
@@ -402,13 +398,12 @@
             opened: _react2.default.PropTypes.bool,
             text: _react2.default.PropTypes.string
         }),
-        popoverMenu: _react2.default.PropTypes.node,
+        getPopoverMenu: _react2.default.PropTypes.func,
         previewedComment: _CommentsBox2.default.propTypes.previewedComment,
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
         onBoxOpened: _react2.default.PropTypes.func,
-        onDeleteCommentClick: _react2.default.PropTypes.func,
-        isClickedCommentEditable: _react2.default.PropTypes.func
+        onDeleteCommentClick: _react2.default.PropTypes.func
     };
 
     SocialInteractionsBox.defaultProps = {
@@ -433,8 +428,8 @@
         onCommentReactionButtonClick: function onCommentReactionButtonClick(commentId) {},
         onBoxToggled: function onBoxToggled() {},
         onDeleteCommentClick: function onDeleteCommentClick() {},
-        isClickedCommentEditable: function isClickedCommentEditable(commentId) {
-            return true;
+        getPopoverMenu: function getPopoverMenu(commentId) {
+            return null;
         }
     };
 

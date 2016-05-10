@@ -192,28 +192,24 @@ class SocialInteractionsBox extends React.Component {
                                 vertical: 'top'
                             }}
                             onRequestClose={(e) => this.handleRequestClose(e)}>
-                            {!this.props.readOnly && (this.props.popoverMenu || (
+                            {!this.props.readOnly && (this.props.getPopoverMenu(this.state.clickedCommentId) || (
                                 <Menu>
                                     <MenuItem primaryText="J'aime ce commentaire" onClick={(e) => {
                                         this.handleRequestClose(e)
                                         this.props.onCommentReactionButtonClick(this.state.clickedCommentId)
                                     }}/>
-                                    {this.props.isClickedCommentEditable(this.state.clickedCommentId) && (
-                                        <div>
-                                            <MenuItem primaryText="Modifier ce commentaire" onClick={(e) => {
-                                                this.handleRequestClose(e)
-                                                this.setState({
-                                                    popoverOpened: false,
-                                                    editingCommentId: this.state.clickedCommentId,
-                                                    editingCommentText: this.getCommentTextFromId(this.state.clickedCommentId)
-                                                })
-                                            }} />
-                                            <MenuItem primaryText="Supprimer ce commentaire" onClick={(e) => {
-                                                this.handleRequestClose(e)
-                                                this.props.onDeleteCommentClick(this.state.clickedCommentId)
-                                            }} />
-                                        </div>
-                                    )}
+                                    <MenuItem primaryText="Modifier ce commentaire" onClick={(e) => {
+                                        this.handleRequestClose(e)
+                                        this.setState({
+                                            popoverOpened: false,
+                                            editingCommentId: this.state.clickedCommentId,
+                                            editingCommentText: this.getCommentTextFromId(this.state.clickedCommentId)
+                                        })
+                                    }} />
+                                    <MenuItem primaryText="Supprimer ce commentaire" onClick={(e) => {
+                                        this.handleRequestClose(e)
+                                        this.props.onDeleteCommentClick(this.state.clickedCommentId)
+                                    }} />
                                 </Menu>
                             ))}
                         </PurePopover>
@@ -274,13 +270,12 @@ SocialInteractionsBox.propTypes = {
         opened: React.PropTypes.bool,
         text: React.PropTypes.string
     }),
-    popoverMenu: React.PropTypes.node,
+    getPopoverMenu: React.PropTypes.func,
     previewedComment: CommentsBox.propTypes.previewedComment,
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,
     onBoxOpened: React.PropTypes.func,
     onDeleteCommentClick: React.PropTypes.func,
-    isClickedCommentEditable: React.PropTypes.func
 }
 
 SocialInteractionsBox.defaultProps = {
@@ -305,7 +300,7 @@ SocialInteractionsBox.defaultProps = {
     onCommentReactionButtonClick: (commentId) => {},
     onBoxToggled: () => {},
     onDeleteCommentClick: () => {},
-    isClickedCommentEditable: (commentId) => true
+    getPopoverMenu: (commentId) => null
 }
 
 export default SocialInteractionsBox;
