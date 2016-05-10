@@ -123,6 +123,7 @@ class SocialInteractionsBox extends React.Component {
             return c
         })
 
+        const getPopoverMenu = this.props.getPopoverMenu.bind(this)
 
         return (
             <div style={style}>
@@ -192,7 +193,17 @@ class SocialInteractionsBox extends React.Component {
                                 vertical: 'top'
                             }}
                             onRequestClose={(e) => this.handleRequestClose(e)}>
-                            {!this.props.readOnly && (this.props.getPopoverMenu(this.state.clickedCommentId) || (
+                            {!this.props.readOnly && (getPopoverMenu(
+                                this.state.clickedCommentId,
+                                this.handleRequestClose,
+                                () => () => this.props.onCommentReactionButtonClick(this.state.clickedCommentId),
+                                () => this.setState({
+                                    popoverOpened: false,
+                                    editingCommentId: this.state.clickedCommentId,
+                                    editingCommentText: this.getCommentTextFromId(this.state.clickedCommentId)
+                                }),
+                                () => () => this.props.onDeleteCommentClick(this.state.clickedCommentId)
+                            ) || (
                                 <Menu>
                                     <MenuItem primaryText="J'aime ce commentaire" onClick={(e) => {
                                         this.handleRequestClose(e)

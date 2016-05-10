@@ -233,6 +233,8 @@
                     return c;
                 });
 
+                var getPopoverMenu = this.props.getPopoverMenu.bind(this);
+
                 return _react2.default.createElement(
                     'div',
                     { style: style },
@@ -313,7 +315,21 @@
                                 onRequestClose: function onRequestClose(e) {
                                     return _this2.handleRequestClose(e);
                                 } },
-                            !this.props.readOnly && (this.props.getPopoverMenu(this.state.clickedCommentId) || _react2.default.createElement(
+                            !this.props.readOnly && (getPopoverMenu(this.state.clickedCommentId, this.handleRequestClose, function () {
+                                return function () {
+                                    return _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
+                                };
+                            }, function () {
+                                return _this2.setState({
+                                    popoverOpened: false,
+                                    editingCommentId: _this2.state.clickedCommentId,
+                                    editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
+                                });
+                            }, function () {
+                                return function () {
+                                    return _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
+                                };
+                            }) || _react2.default.createElement(
                                 _menu2.default,
                                 null,
                                 _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
