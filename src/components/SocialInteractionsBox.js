@@ -179,7 +179,7 @@ class SocialInteractionsBox extends React.Component {
                     commentInputStyle={this.props.style.commentInput}
                     editingCommentId={this.state.editingCommentId}
                     editingCommentText={this.state.editingCommentText}
-                    commentPopover={
+                    commentPopover={(
                         <PurePopover
                             open={this.state.popoverOpened}
                             anchorEl={this.state.clickedComment}
@@ -192,7 +192,7 @@ class SocialInteractionsBox extends React.Component {
                                 vertical: 'top'
                             }}
                             onRequestClose={(e) => this.handleRequestClose(e)}>
-                            {!this.props.readOnly && (
+                            {!this.props.readOnly && (this.props.popoverMenu || (
                                 <Menu>
                                     <MenuItem primaryText="J'aime ce commentaire" onClick={(e) => {
                                         this.handleRequestClose(e)
@@ -215,9 +215,9 @@ class SocialInteractionsBox extends React.Component {
                                         </div>
                                     )}
                                 </Menu>
-                            )}
+                            ))}
                         </PurePopover>
-                    }
+                    )}
                     cancelButtonText={this.props.cancelButtonText}
                     editButtonText={this.props.editButtonText}
                     onCancelClick={(e) => this.setState({editingCommentId: ''})}
@@ -274,6 +274,7 @@ SocialInteractionsBox.propTypes = {
         opened: React.PropTypes.bool,
         text: React.PropTypes.string
     }),
+    popoverMenu: React.PropTypes.node,
     previewedComment: CommentsBox.propTypes.previewedComment,
     cancelButtonText: React.PropTypes.string.isRequired,
     editButtonText: React.PropTypes.string.isRequired,

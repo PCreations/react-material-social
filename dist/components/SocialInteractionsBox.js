@@ -313,7 +313,7 @@
                                 onRequestClose: function onRequestClose(e) {
                                     return _this2.handleRequestClose(e);
                                 } },
-                            !this.props.readOnly && _react2.default.createElement(
+                            !this.props.readOnly && (this.props.popoverMenu || _react2.default.createElement(
                                 _menu2.default,
                                 null,
                                 _react2.default.createElement(_menuItem2.default, { primaryText: 'J\'aime ce commentaire', onClick: function onClick(e) {
@@ -336,7 +336,7 @@
                                             _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
                                         } })
                                 )
-                            )
+                            ))
                         ),
                         cancelButtonText: this.props.cancelButtonText,
                         editButtonText: this.props.editButtonText,
@@ -402,6 +402,7 @@
             opened: _react2.default.PropTypes.bool,
             text: _react2.default.PropTypes.string
         }),
+        popoverMenu: _react2.default.PropTypes.node,
         previewedComment: _CommentsBox2.default.propTypes.previewedComment,
         cancelButtonText: _react2.default.PropTypes.string.isRequired,
         editButtonText: _react2.default.PropTypes.string.isRequired,
