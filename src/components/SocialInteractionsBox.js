@@ -195,7 +195,7 @@ class SocialInteractionsBox extends React.Component {
                             onRequestClose={(e) => this.handleRequestClose(e)}>
                             {!this.props.readOnly && (getPopoverMenu(
                                 this.state.clickedCommentId,
-                                this.handleRequestClose,
+                                this.handleRequestClose.bind(this),
                                 () => () => this.props.onCommentReactionButtonClick(this.state.clickedCommentId),
                                 () => this.setState({
                                     popoverOpened: false,

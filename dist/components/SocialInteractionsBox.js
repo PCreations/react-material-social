@@ -315,7 +315,7 @@
                                 onRequestClose: function onRequestClose(e) {
                                     return _this2.handleRequestClose(e);
                                 } },
-                            !this.props.readOnly && (getPopoverMenu(this.state.clickedCommentId, this.handleRequestClose, function () {
+                            !this.props.readOnly && (getPopoverMenu(this.state.clickedCommentId, this.handleRequestClose.bind(this), function () {
                                 return function () {
                                     return _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
                                 };
