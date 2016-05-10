@@ -316,9 +316,7 @@
                                     return _this2.handleRequestClose(e);
                                 } },
                             !this.props.readOnly && (getPopoverMenu(this.state.clickedCommentId, this.handleRequestClose.bind(this), function () {
-                                return function () {
-                                    return _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
-                                };
+                                return _this2.props.onCommentReactionButtonClick(_this2.state.clickedCommentId);
                             }, function () {
                                 return _this2.setState({
                                     popoverOpened: false,
@@ -326,9 +324,7 @@
                                     editingCommentText: _this2.getCommentTextFromId(_this2.state.clickedCommentId)
                                 });
                             }, function () {
-                                return function () {
-                                    return _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
-                                };
+                                return _this2.props.onDeleteCommentClick(_this2.state.clickedCommentId);
                             }) || _react2.default.createElement(
                                 _menu2.default,
                                 null,
