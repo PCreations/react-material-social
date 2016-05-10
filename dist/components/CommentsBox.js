@@ -166,7 +166,7 @@
                     })
                 ),
                 props.commentPopover,
-                props.readOnly ? props.commentInputReadOnly : _react2.default.createElement(_CommentInput2.default, props.commentInputProps)
+                props.readOnly ? props.commentInputReadOnly : _react2.default.createElement(_CommentInput2.default, _extends({}, props.commentInputProps, { style: props.commentInputStyle }))
             ) : props.previewedComment ? _react2.default.createElement(
                 'div',
                 { style: commentsBoxClosedStyleMerged, onClick: function onClick(e) {

@@ -117,7 +117,7 @@ const CommentsBox = (props) => {
                     {props.readOnly ? (
                         props.commentInputReadOnly
                     ) : (
-                        <CommentInput {...props.commentInputProps} />
+                        <CommentInput {...props.commentInputProps} style={props.commentInputStyle} />
                     )}
                 </div>
             ) : (
