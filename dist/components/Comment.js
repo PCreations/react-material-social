@@ -256,7 +256,7 @@
                             left: 25
                         },
                         verticalPosition: 'top',
-                        horizontalPosition: 'right' }),
+                        horizontalPosition: 'left' }),
                     _react2.default.createElement(_thumbUp2.default, { style: { height: 10, width: 10, fill: 'rgba(0,0,0,0.54)', color: 'rgba(0,0,0,0.54)' } })
                 ),
                 _react2.default.createElement(

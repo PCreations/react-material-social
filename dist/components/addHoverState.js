@@ -104,6 +104,44 @@
             }
 
             _createClass(HoverableComponent, [{
+                key: '_isInRef',
+                value: function _isInRef(e) {
+                    var IE = document.all ? true : false;
+                    var refRect = this._ref.getBoundingClientRect();
+                    var posX = void 0,
+                        posY = void 0;
+                    if (IE) {
+                        // grab the x-y pos.s if browser is IE
+                        posX = event.clientX + document.body.scrollLeft;
+                        posY = event.clientY + document.body.scrollTop;
+                    } else {
+                        // grab the x-y pos.s if browser is NS
+                        posX = e.pageX;
+                        posY = e.pageY;
+                    }
+                    // catch possible negative values in NS4
+                    if (posX < 0) {
+                        posX = 0;
+                    }
+                    if (posY < 0) {
+                        posY = 0;
+                    }
+
+                    return posX >= refRect.left && posX <= refRect.right && posY >= refRect.top && posY <= refRect.bottom;
+                }
+            }, {
+                key: 'onMouseEnter',
+                value: function onMouseEnter(e) {
+                    if (this._isInRef(e)) {
+                        this.setState({ hovered: true });
+                    }
+                }
+            }, {
+                key: 'onMouseLeave',
+                value: function onMouseLeave(e) {
+                    this.setState({ hovered: false });
+                }
+            }, {
                 key: 'render',
                 value: function render() {
                     var _this2 = this;
@@ -111,11 +149,14 @@
                     return _react2.default.createElement(
                         'div',
                         {
+                            ref: function ref(_ref) {
+                                return _this2._ref = _ref;
+                            },
                             onMouseEnter: function onMouseEnter(e) {
-                                return _this2.setState({ hovered: true });
+                                return _this2.onMouseEnter(e);
                             },
                             onMouseLeave: function onMouseLeave(e) {
-                                return _this2.setState({ hovered: false });
+                                return _this2.onMouseLeave(e);
                             } },
                         _react2.default.createElement(Component, _extends({}, this.props, this.state))
                     );

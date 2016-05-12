@@ -40,7 +40,8 @@
         author: 'Shubhansh Jaiswal',
         text: "Sa n as aucun intérêt, une application de plus pour te bouffer un peu plus de mémoire dans le tel",
         reactionsCount: '+5',
-        timeSince: '6h'
+        timeSince: '6h',
+        reactionsCountTooltip: 'Foo bar aime votre commentaire'
     }, {
         id: 'abcdd',
         avatar: 'https://lh3.googleusercontent.com/-_vBaPOEPDzs/AAAAAAAAAAI/AAAAAAAAAEA/CC4I2POdOFk/s36-p-k-rw-no/photo.jpg',

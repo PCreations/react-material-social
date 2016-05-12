@@ -201,7 +201,7 @@ const Comment = (props) => {
                             left: 25
                         }}
                         verticalPosition="top"
-                        horizontalPosition="right" />
+                        horizontalPosition="left" />
                     <ThumbUp style={{ height: 10, width: 10, fill: 'rgba(0,0,0,0.54)', color: 'rgba(0,0,0,0.54)' }}/>
                 </div>
                 <div style={commentBodyStyleMerged}>
