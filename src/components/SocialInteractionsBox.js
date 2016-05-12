@@ -174,6 +174,7 @@ class SocialInteractionsBox extends React.Component {
                         onPublishButtonClick: (e, commentText) => {
                             this.setState({
                                 inputCommentOpened: false,
+                                inputText: ''
                             }, this.props.onPublishButtonClick(e, commentText))
                         }
                     }}
@@ -308,6 +309,7 @@ SocialInteractionsBox.defaultProps = {
     reactionIcon: <PlusOneSVG/>,
     onReactionButtonClick: () => {},
     onCommentButtonClick: () => {},
+    onPublishButtonClick: () => {},
     onCommentReactionButtonClick: (commentId) => {},
     onBoxToggled: () => {},
     onDeleteCommentClick: () => {},

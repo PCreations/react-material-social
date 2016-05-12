@@ -292,7 +292,8 @@
                         commentInputProps: _extends({}, commentInputProps, {
                             onPublishButtonClick: function onPublishButtonClick(e, commentText) {
                                 _this2.setState({
-                                    inputCommentOpened: false
+                                    inputCommentOpened: false,
+                                    inputText: ''
                                 }, _this2.props.onPublishButtonClick(e, commentText));
                             }
                         }),
@@ -437,6 +438,7 @@
         reactionIcon: _react2.default.createElement(_plusOne2.default, null),
         onReactionButtonClick: function onReactionButtonClick() {},
         onCommentButtonClick: function onCommentButtonClick() {},
+        onPublishButtonClick: function onPublishButtonClick() {},
         onCommentReactionButtonClick: function onCommentReactionButtonClick(commentId) {},
         onBoxToggled: function onBoxToggled() {},
         onDeleteCommentClick: function onDeleteCommentClick() {},
