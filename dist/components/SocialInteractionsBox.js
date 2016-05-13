@@ -146,8 +146,7 @@
                 clickedCommentId: "",
                 editingCommentId: "",
                 editingCommentText: "",
-                inputText: "",
-                activeReactionButtons: props.activeReactionButtons
+                inputText: ""
             };
             return _this;
         }
@@ -228,11 +227,6 @@
                     style = _extends({}, style, socialInteractionsBoxEmptyStyle);
                 }
 
-                comments = this.props.comments.map(function (c) {
-                    c.reactionButtonActive = _this2.state.activeReactionButtons.indexOf(c.id) !== -1;
-                    return c;
-                });
-
                 var getPopoverMenu = this.props.getPopoverMenu.bind(this);
 
                 return _react2.default.createElement(
@@ -275,16 +269,7 @@
                         comments: comments,
                         reactionIcon: this.props.reactionIcon,
                         onReactionButtonClick: function onReactionButtonClick(e, commentId) {
-                            var buttonIndex = _this2.state.activeReactionButtons.indexOf(commentId);
-                            var activeReactionButtons = _this2.state.activeReactionButtons;
-                            if (buttonIndex === -1) {
-                                activeReactionButtons.push(commentId);
-                            } else {
-                                activeReactionButtons.splice(buttonIndex, 1);
-                            }
-                            _this2.setState({
-                                activeReactionButtons: activeReactionButtons
-                            }, _this2.props.onCommentReactionButtonClick(commentId));
+                            return _this2.props.onCommentReactionButtonClick(commentId);
                         },
                         onCommentClick: function onCommentClick(e, commentId) {
                             return _this2.setClickedComment(e, commentId);

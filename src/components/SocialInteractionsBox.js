@@ -46,7 +46,6 @@ class SocialInteractionsBox extends React.Component {
             editingCommentId: "",
             editingCommentText: "",
             inputText: "",
-            activeReactionButtons: props.activeReactionButtons
         }
     }
     setClickedComment(e, commentId) {
@@ -118,11 +117,6 @@ class SocialInteractionsBox extends React.Component {
             }
         }
 
-        comments = this.props.comments.map(c => {
-            c.reactionButtonActive = this.state.activeReactionButtons.indexOf(c.id) !== -1
-            return c
-        })
-
         const getPopoverMenu = this.props.getPopoverMenu.bind(this)
 
         return (
@@ -155,19 +149,7 @@ class SocialInteractionsBox extends React.Component {
                     previewedComment={this.props.previewedComment}
                     comments={comments}
                     reactionIcon={this.props.reactionIcon}
-                    onReactionButtonClick={(e, commentId) => {
-                        let buttonIndex = this.state.activeReactionButtons.indexOf(commentId)
-                        let activeReactionButtons = this.state.activeReactionButtons
-                        if (buttonIndex === -1) {
-                            activeReactionButtons.push(commentId)
-                        }
-                        else {
-                            activeReactionButtons.splice(buttonIndex, 1);
-                        }
-                        this.setState({
-                            activeReactionButtons: activeReactionButtons
-                        }, this.props.onCommentReactionButtonClick(commentId))
-                    }}
+                    onReactionButtonClick={(e, commentId) => this.props.onCommentReactionButtonClick(commentId)}
                     onCommentClick={(e, commentId) => this.setClickedComment(e, commentId)}
                     commentInputProps={{
                         ...commentInputProps,

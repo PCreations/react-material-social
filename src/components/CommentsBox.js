@@ -159,6 +159,7 @@ CommentsBox.propTypes = {
         author: React.PropTypes.string.isRequired,
         reactionsCount: React.PropTypes.node.isRequired,
         reactionsCountTooltip: React.PropTypes.string.isRequired,
+        reactionButtonActive: React.PropTypes.bool.isRequired,
         text: React.PropTypes.string.isRequired,
     })),
     reactionIcon: React.PropTypes.element,

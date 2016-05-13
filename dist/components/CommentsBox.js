@@ -215,6 +215,7 @@
             author: _react2.default.PropTypes.string.isRequired,
             reactionsCount: _react2.default.PropTypes.node.isRequired,
             reactionsCountTooltip: _react2.default.PropTypes.string.isRequired,
+            reactionButtonActive: _react2.default.PropTypes.bool.isRequired,
             text: _react2.default.PropTypes.string.isRequired
         })),
         reactionIcon: _react2.default.PropTypes.element,
