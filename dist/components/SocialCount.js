@@ -68,7 +68,9 @@
                 show: props.hovered,
                 touch: true,
                 style: _extends({
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    fontSize: '12px',
+                    color: '#fff'
                 }, props.tooltipStyle),
                 verticalPosition: props.verticalPosition,
                 horizontalPosition: props.horizontalPosition })

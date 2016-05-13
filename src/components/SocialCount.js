@@ -30,6 +30,8 @@ const SocialCount = (props) => {
                   touch={true}
                   style={{
                     boxSizing: 'border-box',
+                    fontSize: '12px',
+                    color: '#fff',
                     ...props.tooltipStyle
                   }}
                   verticalPosition={props.verticalPosition}
