@@ -115,6 +115,10 @@
         maxHeight: 36
     };
 
+    var previewedCommentTextStyle = {
+        fontSize: '13px'
+    };
+
     var CommentsBox = function CommentsBox(props) {
         var commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened);
         var commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList);
@@ -123,6 +127,7 @@
         var firstAvatarStyleMerged = Object.assign({}, firstAvatarStyle, props.style.firstAvatar);
         var commentTextStyleMerged = Object.assign({}, commentTextStyle, props.style.commentText);
         var commentAuthorStyleMerged = Object.assign({}, commentAuthorStyle, props.style.commentAuthor);
+        var previewedCommentTextStyleMerged = Object.assign({}, previewedCommentTextStyle, props.style.previewedCommentText);
 
         return _react2.default.createElement(
             'div',
@@ -186,7 +191,7 @@
                         ),
                         _react2.default.createElement(
                             'span',
-                            null,
+                            { style: previewedCommentTextStyleMerged },
                             props.previewedComment.text
                         )
                     )

@@ -74,6 +74,10 @@ const commentTextStyle = {
     maxHeight: 36
 }
 
+const previewedCommentTextStyle = {
+    fontSize: '13px'
+}
+
 const CommentsBox = (props) => {
     let commentsBoxOpenedStyleMerged = Object.assign({}, commentsBoxOpenedStyle, props.style.opened)
     let commentsListStyleMerged = Object.assign({}, commentsListStyle, props.style.commentsList)
@@ -82,6 +86,7 @@ const CommentsBox = (props) => {
     let firstAvatarStyleMerged = Object.assign({}, firstAvatarStyle, props.style.firstAvatar)
     let commentTextStyleMerged = Object.assign({}, commentTextStyle, props.style.commentText)
     let commentAuthorStyleMerged = Object.assign({}, commentAuthorStyle, props.style.commentAuthor)
+    let previewedCommentTextStyleMerged = Object.assign({}, previewedCommentTextStyle, props.style.previewedCommentText)
 
     return (
         <div>
@@ -127,7 +132,7 @@ const CommentsBox = (props) => {
                             <img width={36} height={36} style={firstAvatarStyleMerged} src={props.previewedComment.avatar} />
                             <div style={commentTextStyleMerged}>
                                 <span style={commentAuthorStyleMerged}>{props.previewedComment.author+": "}</span>
-                                <span>{props.previewedComment.text}</span>
+                                <span style={previewedCommentTextStyleMerged}>{props.previewedComment.text}</span>
                             </div>
                         </div>
                     </div>
