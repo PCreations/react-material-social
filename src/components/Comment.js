@@ -223,9 +223,7 @@ const Comment = (props) => {
                 )}
                 <div style={moreVertButtonContainerStyleMerged}>
                     {(props.hovered && !props.reactionButtonActive) ? (
-                        <SocialButton
-                            icon={<MoreVertSVG/>}
-                            style={socialButtonMoreVertStyleMerged}/>
+                        <noscript />
                     ) : (
                         <div style={timeSinceStyleMerged}>
                             <span>{props.timeSince}</span>

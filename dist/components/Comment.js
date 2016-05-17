@@ -283,9 +283,7 @@
                 _react2.default.createElement(
                     'div',
                     { style: moreVertButtonContainerStyleMerged },
-                    props.hovered && !props.reactionButtonActive ? _react2.default.createElement(_SocialButton2.default, {
-                        icon: _react2.default.createElement(_moreVert2.default, null),
-                        style: socialButtonMoreVertStyleMerged }) : _react2.default.createElement(
+                    props.hovered && !props.reactionButtonActive ? _react2.default.createElement('noscript', null) : _react2.default.createElement(
                         'div',
                         { style: timeSinceStyleMerged },
                         _react2.default.createElement(
